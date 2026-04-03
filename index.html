@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bredaz | Desarrolladores de EncryptIA</title>
-    <meta name="description" content="La app definitiva para scouts y entusiastas. Aprende métodos de encriptación, cifra textos y usa nuestra IA para detectar claves secretas.">
+    <meta name="description" content="Somos Bredaz, desarrolladores de EncryptIA. La app definitiva para scouts y entusiastas. Aprende métodos de encriptación, cifra textos y usa nuestra IA para detectar que clave se utilizó.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,6 +79,74 @@
             100% { transform: scale(1.1) translate(-20px, 20px); opacity: 0.7; }
         }
 
+        /* Nav Actions & Mobile Menu */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary);
+        }
+
+        .nav-mobile-cta {
+            display: none;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 0;
+            position: relative;
+        }
+        
+        .about-content {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.6));
+            border: 1px solid var(--surface-border);
+            border-radius: 32px;
+            padding: 4rem;
+            backdrop-filter: blur(10px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h2 span {
+            color: var(--primary);
+        }
+        
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-image {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--surface-border);
+        }
+
         /* Layout & Utilities */
         main {
             position: relative;
@@ -144,6 +212,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 0.5rem;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
             font-weight: 600;
@@ -163,6 +232,58 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.6);
+        }
+
+        .btn-store {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-store:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.2);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 1));
+        }
+
+        .btn-store .store-icon {
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .btn-store:hover .store-icon {
+            color: var(--primary);
+        }
+
+        .btn-store .store-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .btn-store .store-subtitle {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-store .store-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
         }
 
         /* Hero Section */
@@ -396,8 +517,52 @@
                 max-width: 100%;
             }
 
-            .nav-links {
+            .nav-actions .btn-primary {
                 display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 76px;
+                left: 0;
+                right: 0;
+                background: rgba(2, 6, 23, 0.95);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 2.5rem 2rem;
+                gap: 2rem;
+                border-bottom: 1px solid var(--surface-border);
+                transform: translateY(-150%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 40;
+                box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-mobile-cta {
+                display: flex !important;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                padding: 2.5rem;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
             }
             
             .features {
@@ -474,21 +639,30 @@
                 font-size: 1.05rem;
             }
             
-            .cta-container {
+            .cta-container, 
+            .about-content {
                 padding: 2.5rem 1rem;
                 border-radius: 16px;
             }
             
-            .btn-primary {
+            .btn-primary, .btn-store {
                 width: 100%;
+            }
+            
+            .btn-primary {
                 font-size: 1rem !important; /* Standardize font size on mobile */
+            }
+
+            .btn-store {
+                padding: 1rem;
             }
             
             header .btn-primary {
                 width: auto;
             }
             
-            .hero .btn-primary, .cta .btn-primary {
+            .hero .btn-primary, .cta .btn-primary,
+            .hero .btn-store, .cta .btn-store {
                 justify-content: center; /* Ensures content centers inside flex button when full width */
             }
         }
@@ -507,13 +681,23 @@
                     Bredaz
                 </a>
                 <div class="nav-links">
-                    <a href="#features" class="nav-link">Características</a>
+                    <a href="#features" class="nav-link">EncryptIA</a>
+                    <a href="#about" class="nav-link">Sobre Bredaz</a>
                     <a href="/privacy.html" class="nav-link">Política de Privacidad</a>
+                    <a href="#download" class="nav-link nav-mobile-cta" style="color: var(--primary); font-weight: 700; align-items: center; gap: 0.5rem;">
+                        <i data-lucide="download" size="20"></i>
+                        Descargar
+                    </a>
                 </div>
-                <a href="#" class="btn btn-primary" style="display: flex; gap: 0.5rem;">
-                    <i data-lucide="play" size="18" style="fill: currentColor;"></i>
-                    Google Play
-                </a>
+                <div class="nav-actions">
+                    <a href="#download" class="btn btn-primary" style="padding: 0.5rem 1.25rem;">
+                        <i data-lucide="download" size="18"></i>
+                        Descargar
+                    </a>
+                    <button class="mobile-menu-btn" aria-label="Abrir Menú">
+                        <i data-lucide="menu" size="28"></i>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -528,9 +712,12 @@
                     </div>
                     <h1>El Secreto Está en la Clave</h1>
                     <p><strong>Bredaz</strong> presenta <strong>EncryptIA</strong>, nacida en el mundo scout. Aprende métodos de encriptación clásicos, cifra mensajes con tu patrulla, y usa nuestra Inteligencia Artificial para detectar que clave se utilizó.</p>
-                    <a href="#features" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.125rem;">
-                        Explorar Funciones
-                        <i data-lucide="arrow-right" size="20" style="margin-left: 0.5rem;"></i>
+                    <a href="#" class="btn-store">
+                        <i data-lucide="play" size="32" class="store-icon" style="fill: currentColor;"></i>
+                        <div class="store-text">
+                            <span class="store-subtitle">Descárgalo Gratis en</span>
+                            <span class="store-title">Google Play</span>
+                        </div>
                     </a>
                 </div>
                 <div class="hero-image-wrapper">
@@ -559,27 +746,50 @@
                             <i data-lucide="message-square-dashed" size="32"></i>
                         </div>
                         <h3>Cifra tus Textos</h3>
-                        <p>Utiliza nuestra aplicación para convertir tus mensajes en códigos impenetrables en segundos. Ideal para juegos y comunicación secreta.</p>
+                        <p>Utiliza nuestra aplicación para convertir tus mensajes en textos cifrados en segundos. Ideal para juegos y comunicación secreta.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon-wrapper">
                             <i data-lucide="brain-circuit" size="32"></i>
                         </div>
                         <h3>Detección con IA</h3>
-                        <p>¿No sabes qué clave se usó? Nuestra inteligencia artificial analiza el texto oculto y sugiere instantáneamente el método de encriptación.</p>
+                        <p>¿No sabes qué clave se usó para cifrar un mensaje? Nuestra inteligencia artificial analiza el texto oculto y sugiere instantáneamente el método de encriptación.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta">
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="badge" style="margin-bottom: 1.5rem;">
+                            <i data-lucide="users" size="16"></i>
+                            Conoce al Equipo
+                        </div>
+                        <h2>Somos <span>Bredaz</span></h2>
+                        <p>Nacidos de la hermandad scout, en <strong>Bredaz</strong> somos un equipo apasionado por la tecnología, la seguridad y el ingenio.</p>
+                        <p>Nos dedicamos a crear software innovador que fusione la rica tradición del conocimiento con las herramientas del mañana. Creemos en empoderar a la comunidad con aplicaciones prácticas y accesibles.</p>
+                        <p>Con <strong>EncryptIA</strong>, reimaginamos cómo los entusiastas viven su pasión por la criptografía, combinando encriptación clásica con los avances de la Inteligencia Artificial.</p>
+                    </div>
+                    <div class="about-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop" alt="Equipo Bredaz trabajando juntos" class="about-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="cta">
             <div class="container">
                 <div class="cta-container">
                     <h2>Descarga EncryptIA en Google Play</h2>
                     <p>Únete a la comunidad. Desarrollado por <strong>Bredaz</strong>, disponible de forma gratuita.</p>
-                    <a href="#" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.125rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
-                        <i data-lucide="play" size="24" style="fill: currentColor;"></i>
-                        Consíguelo en Google Play
+                    <a href="#" class="btn-store">
+                        <i data-lucide="play" size="32" class="store-icon" style="fill: currentColor;"></i>
+                        <div class="store-text">
+                            <span class="store-subtitle">Descárgalo Gratis en</span>
+                            <span class="store-title">Google Play</span>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -599,6 +809,32 @@
     <!-- Initialize Lucide Icons -->
     <script>
         lucide.createIcons();
+        
+        // Mobile Menu Logic
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const mobileIcon = mobileBtn.querySelector('i');
+
+        if(mobileBtn && navLinks) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                if(navLinks.classList.contains('active')) {
+                    mobileIcon.setAttribute('data-lucide', 'x');
+                } else {
+                    mobileIcon.setAttribute('data-lucide', 'menu');
+                }
+                lucide.createIcons();
+            });
+
+            // Cerrar al hacer clic en un link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileIcon.setAttribute('data-lucide', 'menu');
+                    lucide.createIcons();
+                });
+            });
+        }
     </script>
 </body>
 </html>
