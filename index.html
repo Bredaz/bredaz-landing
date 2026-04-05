@@ -3,699 +3,1051 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bredaz | Desarrolladores de EncryptIA</title>
-    <meta name="description" content="Somos Bredaz, desarrolladores de EncryptIA. La app definitiva para scouts y entusiastas. Aprende métodos de encriptación, cifra textos y usa nuestra IA para detectar que clave se utilizó.">
-    
-    <!-- Google Fonts -->
+    <title>Bredaz — Tecnología con propósito</title>
+    <meta name="description" content="Bredaz es una empresa de desarrollo de software innovador. Conocé EncryptIA, nuestra app para aprender encriptación clásica y descifrar mensajes con Inteligencia Artificial.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Icons (Lucide) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
+
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
+        /* ─────────────────────────────────────────
+           TOKENS
+        ───────────────────────────────────────── */
         :root {
-            --bg-dark: #020617;
-            --bg-light: #0f172a;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #10b981;
-            --primary-glow: rgba(16, 185, 129, 0.4);
-            --secondary: #3b82f6;
-            --surface: rgba(30, 41, 59, 0.4);
-            --surface-border: rgba(255, 255, 255, 0.05);
+            /* Backgrounds */
+            --bg:        #06060a;
+            --bg-2:      #0b0b12;
+            --bg-3:      #10101a;
+
+            /* Surfaces */
+            --s0: rgba(255,255,255,0.03);
+            --s1: rgba(255,255,255,0.06);
+            --s2: rgba(255,255,255,0.10);
+            --b0: rgba(255,255,255,0.06);
+            --b1: rgba(255,255,255,0.12);
+
+            /* Text */
+            --t1: #eeeef5;
+            --t2: #8080a0;
+            --t3: #404058;
+
+            /* Brand: deep violet → electric indigo */
+            --v1: #6d4aff;   /* primary violet */
+            --v2: #4f31e8;   /* darker */
+            --v3: #8b6bff;   /* lighter / hover */
+            --vg: rgba(109,74,255,0.30);   /* glow */
+            --vs: rgba(109,74,255,0.10);   /* subtle tint */
+
+            /* Accent: ice blue */
+            --a1: #60a5fa;
+            --ag: rgba(96,165,250,0.15);
+
+            /* Radii */
+            --r-sm: 10px;
+            --r:    18px;
+            --r-lg: 28px;
+            --r-xl: 40px;
+
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ─────────────────────────────────────────
+           RESET
+        ───────────────────────────────────────── */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--t1);
             overflow-x: hidden;
-            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.65;
         }
+        img  { max-width: 100%; display: block; }
+        a    { text-decoration: none; color: inherit; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Abstract Backgrounds */
-        .ambient-glow-1 {
+        /* ─────────────────────────────────────────
+           AMBIENT BACKGROUND
+        ───────────────────────────────────────── */
+        .bg-scene {
             position: fixed;
-            top: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
             filter: blur(100px);
-            opacity: 0.5;
-            z-index: 0;
-            border-radius: 50%;
-            animation: pulse-slow 8s infinite alternate;
+            will-change: transform;
         }
 
-        .ambient-glow-2 {
+        .bg-orb--a {
+            width: 800px; height: 800px;
+            top: -25%; right: -15%;
+            background: radial-gradient(circle, rgba(109,74,255,0.22) 0%, transparent 65%);
+            animation: orb-a 18s ease-in-out infinite alternate;
+        }
+
+        .bg-orb--b {
+            width: 600px; height: 600px;
+            bottom: -20%; left: -10%;
+            background: radial-gradient(circle, rgba(96,165,250,0.12) 0%, transparent 65%);
+            animation: orb-b 22s ease-in-out infinite alternate;
+        }
+
+        .bg-orb--c {
+            width: 400px; height: 400px;
+            top: 40%; left: 45%;
+            background: radial-gradient(circle, rgba(139,107,255,0.12) 0%, transparent 65%);
+            animation: orb-c 14s ease-in-out infinite alternate;
+        }
+
+        @keyframes orb-a {
+            from { transform: translate(0,0) scale(1); }
+            to   { transform: translate(-50px, 60px) scale(1.1); }
+        }
+        @keyframes orb-b {
+            from { transform: translate(0,0) scale(1); }
+            to   { transform: translate(40px, -50px) scale(1.08); }
+        }
+        @keyframes orb-c {
+            from { transform: translate(0,0) scale(1); opacity: 0.6; }
+            to   { transform: translate(-30px, 30px) scale(1.15); opacity: 1; }
+        }
+
+        /* Dot grid */
+        .bg-grid {
             position: fixed;
-            bottom: -200px;
-            left: -200px;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(234, 179, 8, 0.15) 0%, transparent 70%); /* Changed to gold glow */
-            filter: blur(120px);
-            opacity: 0.5;
+            inset: 0;
             z-index: 0;
-            border-radius: 50%;
-            animation: pulse-slow 12s infinite alternate-reverse;
+            pointer-events: none;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 20%, #000 20%, transparent 100%);
         }
 
-        @keyframes pulse-slow {
-            0% { transform: scale(1) translate(0, 0); opacity: 0.4; }
-            100% { transform: scale(1.1) translate(-20px, 20px); opacity: 0.7; }
-        }
-
-        /* Nav Actions & Mobile Menu */
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            color: var(--text-main);
-            cursor: pointer;
-            transition: color 0.3s ease;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-btn:hover {
-            color: var(--primary);
-        }
-
-        .nav-mobile-cta {
-            display: none;
-        }
-
-        /* About Section */
-        .about {
-            padding: 8rem 0;
-            position: relative;
-        }
-        
-        .about-content {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.6));
-            border: 1px solid var(--surface-border);
-            border-radius: 32px;
-            padding: 4rem;
-            backdrop-filter: blur(10px);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .about-text h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text h2 span {
-            color: var(--primary);
-        }
-        
-        .about-text p {
-            color: var(--text-muted);
-            font-size: 1.125rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .about-image {
-            width: 100%;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--surface-border);
-        }
-
-        /* Layout & Utilities */
-        main {
-            position: relative;
-            z-index: 1;
-        }
+        /* ─────────────────────────────────────────
+           LAYOUT
+        ───────────────────────────────────────── */
+        main { position: relative; z-index: 1; }
 
         .container {
-            max-width: 1200px;
+            max-width: 1120px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        /* Navbar */
+        /* ─────────────────────────────────────────
+           HEADER
+        ───────────────────────────────────────── */
         header {
             position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 0;
-            z-index: 50;
-            background: rgba(2, 6, 23, 0.7);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--surface-border);
+            inset: 0 0 auto;
+            z-index: 200;
+            padding: 1rem 0;
+            background: rgba(6,6,10,0.55);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--b0);
+            transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+        }
+
+        header.dark {
+            background: rgba(6,6,10,0.92);
+            border-color: var(--b1);
         }
 
         nav {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
+        /* Logo */
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            color: var(--text-main);
-            text-decoration: none;
+            gap: 0.55rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: var(--t1);
         }
 
         .logo-icon {
-            color: var(--primary);
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--v1), var(--v2));
+            border-radius: 9px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff;
+            box-shadow: 0 0 18px var(--vg);
+            flex-shrink: 0;
         }
 
+        /* Nav links */
         .nav-links {
             display: flex;
-            gap: 2rem;
             align-items: center;
+            gap: 0.15rem;
         }
 
         .nav-link {
-            color: var(--text-muted);
-            text-decoration: none;
+            padding: 0.45rem 0.9rem;
+            border-radius: var(--r-sm);
+            font-size: 0.875rem;
             font-weight: 500;
-            transition: color 0.3s ease;
+            color: var(--t2);
+            transition: color 0.2s, background 0.2s;
         }
 
         .nav-link:hover {
-            color: var(--text-main);
+            color: var(--t1);
+            background: var(--s1);
+        }
+
+        /* Nav CTA */
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1.1rem;
+            background: var(--v1);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 99px;
+            transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+            box-shadow: 0 0 22px var(--vg);
+        }
+
+        .nav-cta:hover {
+            background: var(--v3);
+            box-shadow: 0 0 32px var(--vg);
+            transform: translateY(-1px);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            width: 36px; height: 36px;
+            background: var(--s1);
+            border: 1px solid var(--b0);
+            border-radius: var(--r-sm);
+            align-items: center; justify-content: center;
+            color: var(--t1);
+            transition: background 0.2s;
+        }
+
+        .hamburger:hover { background: var(--s2); }
+
+        /* ─────────────────────────────────────────
+           HERO
+        ───────────────────────────────────────── */
+        .hero {
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7rem 0 5rem;
+            position: relative;
+        }
+
+        .hero-inner {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Pill */
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 1rem;
+            border-radius: 99px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border: 1px solid var(--b0);
+            background: var(--s0);
+            color: var(--v3);
+            margin-bottom: 2.25rem;
+        }
+
+        .pill-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--v1);
+            box-shadow: 0 0 8px var(--vg);
+            animation: blink 2.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.75); }
+        }
+
+        /* Heading */
+        .hero-h1 {
+            font-size: clamp(2.75rem, 6vw, 5.25rem);
+            font-weight: 900;
+            line-height: 1.04;
+            letter-spacing: -0.05em;
+            color: var(--t1);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-h1 em {
+            font-style: normal;
+            background: linear-gradient(100deg, var(--v3) 0%, var(--a1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Sub */
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--t2);
+            line-height: 1.75;
+            max-width: 520px;
+            margin: 0 auto 2.75rem;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 0.85rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            font-family: inherit;
+            padding: 0.85rem 1.85rem;
+            border-radius: 99px;
+            font-size: 0.975rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            transition: transform 0.2s var(--ease), box-shadow 0.25s var(--ease), background 0.2s;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #059669);
-            color: white;
-            box-shadow: 0 4px 14px 0 var(--primary-glow);
+        .btn:hover { transform: translateY(-2px); }
+
+        .btn-solid {
+            background: linear-gradient(135deg, var(--v1) 0%, var(--v2) 100%);
+            color: #fff;
+            box-shadow: 0 8px 30px var(--vg);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.6);
+        .btn-solid:hover {
+            box-shadow: 0 12px 40px var(--vg);
         }
 
-        .btn-store {
+        .btn-ghost {
+            background: var(--s1);
+            border: 1px solid var(--b0);
+            color: var(--t1);
+        }
+
+        .btn-ghost:hover {
+            background: var(--s2);
+            border-color: var(--b1);
+        }
+
+        /* Stats row */
+        .hero-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-top: 4.5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--b0);
+        }
+
+        .stat {
+            flex: 1;
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .stat + .stat {
+            border-left: 1px solid var(--b0);
+        }
+
+        .stat-val {
+            display: block;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: var(--t1);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-lbl {
+            font-size: 0.8rem;
+            color: var(--t3);
+            font-weight: 500;
+        }
+
+        /* ─────────────────────────────────────────
+           SECTION COMMON
+        ───────────────────────────────────────── */
+        section { padding: 7rem 0; }
+
+        .label {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .label-bar {
+            width: 20px; height: 2px;
+            border-radius: 2px;
+            background: var(--v1);
+        }
+
+        .label-txt {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--v3);
+        }
+
+        .section-h {
+            font-size: clamp(1.9rem, 3.5vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-sub {
+            font-size: 1rem;
+            color: var(--t2);
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        /* ─────────────────────────────────────────
+           PRODUCTS SECTION
+        ───────────────────────────────────────── */
+
+        /* ── Flagship card ── */
+        .flagship {
+            margin-top: 4rem;
+            border-radius: var(--r-xl);
+            border: 1px solid var(--b0);
+            background: var(--s0);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* top shimmer line */
+        .flagship::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 10%, var(--v1) 40%, var(--a1) 60%, transparent 90%);
+        }
+
+        /* inner glow */
+        .flagship::after {
+            content: '';
+            position: absolute;
+            top: -120px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 350px;
+            background: radial-gradient(ellipse at center, var(--vg) 0%, transparent 65%);
+            filter: blur(50px);
+            pointer-events: none;
+        }
+
+        .flagship-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .flagship-left {
+            padding: 3.5rem;
+            border-right: 1px solid var(--b0);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .flagship-right {
+            padding: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(109,74,255,0.06) 0%, transparent 60%);
+        }
+
+        /* Star badge */
+        .star-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.3rem 0.9rem;
+            border-radius: 99px;
+            border: 1px solid var(--b1);
+            background: var(--vs);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--v3);
+            margin-bottom: 1.75rem;
+        }
+
+        .flagship-h {
+            font-size: clamp(1.9rem, 3vw, 2.75rem);
+            font-weight: 900;
+            letter-spacing: -0.045em;
+            line-height: 1.08;
+            margin-bottom: 1.25rem;
+        }
+
+        .flagship-h span {
+            background: linear-gradient(110deg, var(--v3) 0%, var(--a1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .flagship-desc {
+            font-size: 0.975rem;
+            color: var(--t2);
+            line-height: 1.75;
+            margin-bottom: 1.75rem;
+        }
+
+        /* Feature tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 99px;
+            border: 1px solid var(--b0);
+            background: var(--s1);
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--t2);
+        }
+
+        .tag svg { color: var(--v3); flex-shrink: 0; }
+
+        /* Download button */
+        .btn-dl {
             display: inline-flex;
             align-items: center;
             gap: 1rem;
-            padding: 0.75rem 1.75rem;
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.95));
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            color: white;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            padding: 0.9rem 1.6rem;
+            background: var(--bg-2, #0b0b12);
+            border: 1px solid var(--b1);
+            border-radius: var(--r);
+            color: var(--t1);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: transform 0.2s var(--ease), border-color 0.25s, box-shadow 0.25s, background 0.25s;
+            align-self: flex-start;
         }
 
-        .btn-store:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.2);
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 1));
+        .btn-dl:hover {
+            transform: translateY(-2px);
+            border-color: var(--v1);
+            box-shadow: 0 8px 30px rgba(109,74,255,0.2);
+            background: var(--bg-3, #10101a);
         }
 
-        .btn-store .store-icon {
-            color: white;
-            transition: color 0.3s ease;
+        .btn-dl-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--v1), var(--v2));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff;
+            flex-shrink: 0;
         }
 
-        .btn-store:hover .store-icon {
-            color: var(--primary);
+        .btn-dl-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
+        .btn-dl-text small { font-size: 0.65rem; font-weight: 500; color: var(--t2); letter-spacing: 0.05em; text-transform: uppercase; }
+        .btn-dl-text strong { font-size: 1.05rem; font-weight: 700; }
+
+        /* Product image */
+        .flagship-img {
+            width: 100%;
+            max-width: 420px;
+            border-radius: var(--r-lg);
+            border: 1px solid var(--b0);
+            box-shadow:
+                0 40px 80px -20px rgba(0,0,0,0.7),
+                0 0 0 1px rgba(255,255,255,0.03);
+            transition: transform 0.6s var(--ease);
         }
 
-        .btn-store .store-text {
+        .flagship-right:hover .flagship-img {
+            transform: translateY(-6px) scale(1.01);
+        }
+
+        /* ── Coming soon ── */
+        .soon-header {
             display: flex;
-            flex-direction: column;
-            text-align: left;
-            line-height: 1.2;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-top: 6rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
-        .btn-store .store-subtitle {
+        .soon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--b0);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+            border: 1px solid var(--b0);
+        }
+
+        .soon-card {
+            padding: 2.25rem 2rem;
+            background: var(--bg-2);
+            position: relative;
+            transition: background 0.25s;
+        }
+
+        .soon-card:hover { background: var(--bg-3); }
+
+        .soon-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--b0);
+            background: var(--vs);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--v3);
+            margin-bottom: 1.25rem;
+        }
+
+        .soon-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .soon-card p {
+            font-size: 0.875rem;
+            color: var(--t2);
+            line-height: 1.65;
+        }
+
+        .soon-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 1.25rem;
+            padding: 0.22rem 0.65rem;
+            border-radius: 99px;
+            border: 1px solid rgba(109,74,255,0.25);
+            background: var(--vs);
             font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--text-muted);
+            font-weight: 600;
+            color: var(--v3);
+            letter-spacing: 0.05em;
             text-transform: uppercase;
+        }
+
+        /* ─────────────────────────────────────────
+           ABOUT SECTION
+        ───────────────────────────────────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-left { display: flex; flex-direction: column; gap: 0; }
+
+        .about-left .section-sub { margin-bottom: 2.5rem; }
+
+        .checkpoints { display: flex; flex-direction: column; gap: 0; }
+
+        .cp {
+            display: flex;
+            gap: 1rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--b0);
+        }
+
+        .cp:first-child { border-top: 1px solid var(--b0); }
+
+        .cp-num {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--v3);
+            min-width: 1.5rem;
+            padding-top: 0.2rem;
             letter-spacing: 0.05em;
         }
 
-        .btn-store .store-title {
-            font-size: 1.25rem;
+        .cp-body h4 {
+            font-size: 0.95rem;
             font-weight: 700;
-            color: white;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.3rem;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 5rem;
+        .cp-body p {
+            font-size: 0.855rem;
+            color: var(--t2);
+            line-height: 1.65;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
+        /* Right side: photo + card */
+        .about-right { position: relative; }
 
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            animation: fade-up 1s ease-out;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 5vw, 4.25rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #ffffff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            max-width: 90%;
-        }
-
-        .hero-image-wrapper {
-            position: relative;
-            animation: fade-in 1.5s ease-out;
-        }
-
-        .hero-image {
+        .about-photo {
             width: 100%;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--surface-border);
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.5s ease;
+            border-radius: var(--r-lg);
+            border: 1px solid var(--b0);
+            overflow: hidden;
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
         }
 
-        .hero-image-wrapper:hover .hero-image {
-            transform: perspective(1000px) rotateY(0deg);
+        .about-photo img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            filter: brightness(0.7) saturate(0.5);
+            transition: filter 0.4s;
         }
 
-        /* Features Section */
-        .features {
-            padding: 8rem 0;
-            background: linear-gradient(to bottom, transparent, rgba(2, 6, 23, 0.8));
+        .about-photo:hover img {
+            filter: brightness(0.8) saturate(0.65);
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            padding: 2.5rem;
-            border-radius: 24px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(16, 185, 129, 0.3);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.1);
-        }
-
-        .feature-icon-wrapper {
-            width: 60px;
-            height: 60px;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 16px;
+        /* Floating info card */
+        .info-card {
+            position: absolute;
+            bottom: -1.25rem;
+            left: -1.5rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
+            gap: 1rem;
+            padding: 1.1rem 1.5rem;
+            background: var(--bg-2);
+            border: 1px solid var(--b1);
+            border-radius: var(--r);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
         }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .info-card-icon {
+            width: 42px; height: 42px;
+            background: linear-gradient(135deg, var(--v1), var(--v2));
+            border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff;
+            flex-shrink: 0;
         }
 
-        .feature-card p {
-            color: var(--text-muted);
+        .info-card-text h5 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
         }
 
-        /* CTA Section */
-        .cta {
-            padding: 8rem 0;
+        .info-card-text p {
+            font-size: 0.76rem;
+            color: var(--t2);
+        }
+
+        /* ─────────────────────────────────────────
+           CTA SECTION
+        ───────────────────────────────────────── */
+        .cta-section { padding-bottom: 8rem; }
+
+        .cta-box {
+            border-radius: var(--r-xl);
+            border: 1px solid var(--b0);
+            background: var(--s0);
+            padding: 6rem 3rem;
             text-align: center;
-        }
-
-        .cta-container {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
-            border: 1px solid var(--surface-border);
-            padding: 5rem 2rem;
-            border-radius: 32px;
             position: relative;
             overflow: hidden;
         }
 
-        .cta-container::before {
+        .cta-box::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
+            top: 0; left: 0; right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            background: linear-gradient(90deg, transparent 5%, var(--v1) 35%, var(--a1) 65%, transparent 95%);
         }
 
-        .cta h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+        .cta-box::after {
+            content: '';
+            position: absolute;
+            top: -200px; left: 50%;
+            transform: translateX(-50%);
+            width: 700px; height: 500px;
+            background: radial-gradient(ellipse at center, rgba(109,74,255,0.18) 0%, transparent 65%);
+            filter: blur(60px);
+            pointer-events: none;
         }
 
-        .cta p {
-            color: var(--text-muted);
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        .cta-box h2 {
+            font-size: clamp(1.9rem, 4vw, 3.25rem);
+            font-weight: 900;
+            letter-spacing: -0.045em;
+            margin-bottom: 1.25rem;
+            position: relative; z-index: 1;
         }
 
-        /* Footer */
+        .cta-box p {
+            font-size: 1.05rem;
+            color: var(--t2);
+            max-width: 440px;
+            margin: 0 auto 2.75rem;
+            line-height: 1.7;
+            position: relative; z-index: 1;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative; z-index: 1;
+        }
+
+        /* ─────────────────────────────────────────
+           FOOTER
+        ───────────────────────────────────────── */
         footer {
-            border-top: 1px solid var(--surface-border);
-            padding: 3rem 0;
-            text-align: center;
-            color: var(--text-muted);
+            border-top: 1px solid var(--b0);
+            padding: 2.25rem 0;
+        }
+
+        .footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            font-size: 1.05rem;
+        }
+
+        .footer-logo .logo-icon {
+            width: 26px; height: 26px;
+            border-radius: 7px;
+        }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            color: var(--t3);
+            margin-top: 0.25rem;
         }
 
         .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
+            align-items: center;
+            gap: 1.75rem;
         }
 
         .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
+            font-size: 0.8rem;
+            color: var(--t3);
+            transition: color 0.2s;
         }
 
-        .footer-links a:hover {
-            color: var(--text-main);
+        .footer-links a:hover { color: var(--t2); }
+
+        /* ─────────────────────────────────────────
+           ANIMATIONS
+        ───────────────────────────────────────── */
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Animations */
-        @keyframes fade-up {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .hero-inner > * { animation: rise 0.9s var(--ease) both; }
+        .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+        .hero-inner > *:nth-child(2) { animation-delay: 0.18s; }
+        .hero-inner > *:nth-child(3) { animation-delay: 0.3s; }
+        .hero-inner > *:nth-child(4) { animation-delay: 0.42s; }
+        .hero-inner > *:nth-child(5) { animation-delay: 0.55s; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
         }
 
-        @keyframes fade-in {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-                padding-top: 8rem;
-            }
+        /* ─────────────────────────────────────────
+           RESPONSIVE
+        ───────────────────────────────────────── */
+        @media (max-width: 1024px) {
+            section { padding: 5rem 0; }
 
-            .hero-content {
-                align-items: center;
-            }
-
-            .hero p {
-                max-width: 100%;
-            }
-
-            .nav-actions .btn-primary {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 76px;
-                left: 0;
-                right: 0;
-                background: rgba(2, 6, 23, 0.95);
-                backdrop-filter: blur(16px);
-                flex-direction: column;
+            .flagship-body { grid-template-columns: 1fr; }
+            .flagship-left {
+                border-right: none;
+                border-bottom: 1px solid var(--b0);
                 padding: 2.5rem 2rem;
-                gap: 2rem;
-                border-bottom: 1px solid var(--surface-border);
-                transform: translateY(-150%);
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                z-index: 40;
-                box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
             }
+            .flagship-right { padding: 2rem; order: -1; }
+            .flagship-img { max-width: 380px; margin: 0 auto; }
 
-            .nav-links.active {
-                transform: translateY(0);
-            }
+            .soon-grid { grid-template-columns: 1fr; }
+            .soon-card + .soon-card { border-top: 1px solid var(--b0); }
 
-            .nav-mobile-cta {
-                display: flex !important;
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                padding: 2.5rem;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            .about-text h2 {
-                font-size: 2rem;
-            }
-            
-            .features {
-                padding: 5rem 0;
-            }
-            
-            .cta {
-                padding: 5rem 0;
-            }
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .about-right { max-width: 480px; }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
-            }
-            
-            .cta h2 {
-                font-size: 2.25rem;
-            }
-            
-            .cta-container {
-                padding: 3rem 1.5rem;
-                border-radius: 20px;
-            }
-            
-            .section-header h2 {
-                font-size: 2rem;
-            }
-            
-            .footer-links {
+            /* Nav */
+            .nav-links {
+                position: fixed;
+                inset: 64px 0 auto;
+                background: rgba(6,6,10,0.97);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--b0);
                 flex-direction: column;
-                gap: 1.25rem;
-                align-items: center;
+                gap: 0.2rem;
+                padding: 1.25rem;
+                transform: translateY(-120%);
+                transition: transform 0.35s var(--ease);
+                z-index: 150;
             }
+
+            .nav-links.open { transform: translateY(0); }
+
+            .nav-link { width: 100%; font-size: 0.975rem; padding: 0.75rem 1rem; }
+
+            .nav-cta { display: none; }
+
+            .hamburger { display: flex; }
+
+            /* Hero */
+            .hero-h1 { font-size: 2.5rem; }
+            .hero-stats { gap: 0; }
+            .stat-val { font-size: 1.6rem; }
+
+            /* Flagship */
+            .flagship { border-radius: var(--r-lg); }
+
+            /* About */
+            .info-card {
+                position: relative;
+                bottom: auto; left: auto;
+                margin-top: 1rem;
+            }
+
+            /* CTA */
+            .cta-box { padding: 4rem 1.75rem; border-radius: var(--r-lg); }
+
+            /* Footer */
+            .footer-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem; /* Reduce padding on small screens */
-            }
-            
-            header .btn-primary {
-                padding: 0.5rem 1rem;
-                font-size: 0.875rem;
-            }
-            
-            header .logo {
-                font-size: 1.25rem;
-            }
-            
-            .hero {
-                padding-top: 6rem;
-            }
-            
-            .hero-grid {
-                gap: 2rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.1rem;
-            }
-            
-            .feature-card {
-                padding: 1.75rem;
-                border-radius: 20px;
-            }
-            
-            .cta h2 {
-                font-size: 1.75rem;
-            }
-            
-            .cta p {
-                font-size: 1.05rem;
-            }
-            
-            .cta-container, 
-            .about-content {
-                padding: 2.5rem 1rem;
-                border-radius: 16px;
-            }
-            
-            .btn-primary, .btn-store {
-                width: 100%;
-            }
-            
-            .btn-primary {
-                font-size: 1rem !important; /* Standardize font size on mobile */
-            }
-
-            .btn-store {
-                padding: 1rem;
-            }
-            
-            header .btn-primary {
-                width: auto;
-            }
-            
-            .hero .btn-primary, .cta .btn-primary,
-            .hero .btn-store, .cta .btn-store {
-                justify-content: center; /* Ensures content centers inside flex button when full width */
-            }
+            .container { padding: 0 1.25rem; }
+            section { padding: 4rem 0; }
+            .hero-h1 { font-size: 2.1rem; }
+            .hero-sub { font-size: 0.975rem; }
+            .btn { padding: 0.8rem 1.4rem; font-size: 0.9rem; width: 100%; justify-content: center; }
+            .btn-group { flex-direction: column; }
+            .cta-actions { flex-direction: column; }
+            .btn-dl { width: 100%; }
+            .soon-grid { border-radius: var(--r); }
+            .flagship { border-radius: var(--r-lg); }
+            .flagship-left { padding: 2rem 1.5rem; }
+            .soon-header { margin-top: 4rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .footer-links { flex-direction: column; gap: 0.75rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Ambient Background -->
-    <div class="ambient-glow-1"></div>
-    <div class="ambient-glow-2"></div>
 
-    <header>
+    <!-- Background scene -->
+    <div class="bg-scene" aria-hidden="true">
+        <div class="bg-orb bg-orb--a"></div>
+        <div class="bg-orb bg-orb--b"></div>
+        <div class="bg-orb bg-orb--c"></div>
+    </div>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <!-- ══════════════════════
+         HEADER
+    ══════════════════════ -->
+    <header id="site-header">
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    <i data-lucide="compass" class="logo-icon"></i>
+                    <span class="logo-icon">
+                        <i data-lucide="zap" size="16"></i>
+                    </span>
                     Bredaz
                 </a>
-                <div class="nav-links">
-                    <a href="#features" class="nav-link">EncryptIA</a>
-                    <a href="#about" class="nav-link">Sobre Bredaz</a>
-                    <a href="/privacy.html" class="nav-link">Política de Privacidad</a>
-                    <a href="#download" class="nav-link nav-mobile-cta" style="color: var(--primary); font-weight: 700; align-items: center; gap: 0.5rem;">
-                        <i data-lucide="download" size="20"></i>
-                        Descargar
-                    </a>
+
+                <div class="nav-links" id="nav-links">
+                    <a href="#products" class="nav-link">Productos</a>
+                    <a href="#about" class="nav-link">Empresa</a>
+                    <a href="/privacy.html" class="nav-link">Privacidad</a>
                 </div>
-                <div class="nav-actions">
-                    <a href="#download" class="btn btn-primary" style="padding: 0.5rem 1.25rem;">
-                        <i data-lucide="download" size="18"></i>
-                        Descargar
+
+                <div style="display:flex;gap:.6rem;align-items:center;">
+                    <a href="#download" class="nav-cta" id="header-cta">
+                        <i data-lucide="download" size="14"></i>
+                        Descargar EncryptIA
                     </a>
-                    <button class="mobile-menu-btn" aria-label="Abrir Menú">
-                        <i data-lucide="menu" size="28"></i>
+                    <button class="hamburger" id="hamburger" aria-label="Menú">
+                        <i data-lucide="menu" size="20"></i>
                     </button>
                 </div>
             </nav>
@@ -703,138 +1055,336 @@
     </header>
 
     <main>
+
+        <!-- ══════════════════════
+             HERO
+        ══════════════════════ -->
         <section class="hero">
-            <div class="container hero-grid">
-                <div class="hero-content">
-                    <div class="badge">
-                        <i data-lucide="smartphone" size="16"></i>
-                        Producto Destacado de Bredaz
+            <div class="container">
+                <div class="hero-inner">
+
+                    <div class="pill">
+                        <span class="pill-dot"></span>
+                        Bienvenidos a Bredaz
                     </div>
-                    <h1>El Secreto Está en la Clave</h1>
-                    <p><strong>Bredaz</strong> presenta <strong>EncryptIA</strong>, nacida en el mundo scout. Aprende métodos de encriptación clásicos, cifra mensajes con tu patrulla, y usa nuestra Inteligencia Artificial para detectar que clave se utilizó.</p>
-                    <a href="#" class="btn-store">
-                        <i data-lucide="play" size="32" class="store-icon" style="fill: currentColor;"></i>
-                        <div class="store-text">
-                            <span class="store-subtitle">Descárgalo Gratis en</span>
-                            <span class="store-title">Google Play</span>
+
+                    <h1 class="hero-h1">
+                        Tecnología con<br>
+                        <em>propósito real</em>
+                    </h1>
+
+                    <p class="hero-sub">
+                        Somos <strong>Bredaz</strong>, una empresa de desarrollo de software dedicada a crear aplicaciones innovadoras que combinan tradición con los avances de la Inteligencia Artificial.
+                    </p>
+
+                    <div class="btn-group">
+                        <a href="#products" class="btn btn-solid">
+                            <i data-lucide="layers" size="17"></i>
+                            Ver nuestros productos
+                        </a>
+                        <a href="#about" class="btn btn-ghost">
+                            Conocé Bredaz
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-val">100%</span>
+                            <span class="stat-lbl">Software propio</span>
                         </div>
-                    </a>
-                </div>
-                <div class="hero-image-wrapper">
-                    <!-- Updated with the new scout theme image -->
-                    <img src="./assets/hero-scout-image.png" alt="EncryptIA Scout Encryption App Concept" class="hero-image" onerror="this.src='https://images.unsplash.com/photo-1544383835-bda2bc62754a?q=80&w=2000&auto=format&fit=crop';">
+                        <div class="stat">
+                            <span class="stat-val">IA</span>
+                            <span class="stat-lbl">Integrada en nuestros productos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-val">Gratis</span>
+                            <span class="stat-lbl">EncryptIA en Google Play</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <section id="features" class="features">
+        <!-- ══════════════════════
+             PRODUCTS
+        ══════════════════════ -->
+        <section id="products">
             <div class="container">
-                <div class="section-header">
-                    <h2>De la Tradición a la Inteligencia Artificial</h2>
-                    <p>Recopilamos las claves más utilizadas en el escultismo y las combinamos con el poder de redes neuronales para que descifrar no tenga límites.</p>
+
+                <div class="label reveal">
+                    <div class="label-bar"></div>
+                    <span class="label-txt">Nuestros Productos</span>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <i data-lucide="book-open" size="32"></i>
+                <h2 class="section-h reveal">Lo que construimos</h2>
+                <p class="section-sub reveal">
+                    Desarrollamos software con intención. Cada producto nace de una necesidad real y combina diseño, tecnología y propósito.
+                </p>
+
+                <!-- Flagship: EncryptIA -->
+                <div class="flagship reveal">
+                    <div class="flagship-body">
+
+                        <div class="flagship-left">
+                            <div class="star-badge">
+                                <i data-lucide="star" size="11" style="fill:currentColor;"></i>
+                                Producto Estrella
+                            </div>
+
+                            <h3 class="flagship-h">
+                                <span>EncryptIA</span><br>
+                                El Secreto Está en la Clave
+                            </h3>
+
+                            <p class="flagship-desc">
+                                <strong>Bredaz</strong> presenta <strong>EncryptIA</strong>, nacida en el mundo scout. Aprende métodos de encriptación clásicos, cifra mensajes con tu patrulla, y usa nuestra Inteligencia Artificial para detectar que clave se utilizó.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">
+                                    <i data-lucide="book-open" size="12"></i>
+                                    Aprende Métodos de Encriptación
+                                </span>
+                                <span class="tag">
+                                    <i data-lucide="message-square-dashed" size="12"></i>
+                                    Cifra tus Textos
+                                </span>
+                                <span class="tag">
+                                    <i data-lucide="brain-circuit" size="12"></i>
+                                    Detección con IA
+                                </span>
+                            </div>
+
+                            <a href="#download" class="btn-dl">
+                                <div class="btn-dl-icon">
+                                    <i data-lucide="play" size="16" style="fill:white;"></i>
+                                </div>
+                                <div class="btn-dl-text">
+                                    <small>Descárgalo Gratis en</small>
+                                    <strong>Google Play</strong>
+                                </div>
+                            </a>
                         </div>
-                        <h3>Aprende Métodos de Encriptación</h3>
-                        <p>Descubre y domina las 'claves' clásicas que han sido transmitidas de generación en generación en los grupos scouts y a nivel global.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <i data-lucide="message-square-dashed" size="32"></i>
+
+                        <div class="flagship-right">
+                            <img
+                                src="./assets/hero-scout-image.png"
+                                alt="EncryptIA — App de encriptación con IA"
+                                class="flagship-img"
+                                onerror="this.src='https://images.unsplash.com/photo-1544383835-bda2bc62754a?q=80&w=2000&auto=format&fit=crop';"
+                            >
                         </div>
-                        <h3>Cifra tus Textos</h3>
-                        <p>Utiliza nuestra aplicación para convertir tus mensajes en textos cifrados en segundos. Ideal para juegos y comunicación secreta.</p>
+
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <i data-lucide="brain-circuit" size="32"></i>
+                </div>
+
+                <!-- More products coming -->
+                <div class="soon-header reveal">
+                    <div>
+                        <div class="label">
+                            <div class="label-bar"></div>
+                            <span class="label-txt">En Desarrollo</span>
                         </div>
-                        <h3>Detección con IA</h3>
-                        <p>¿No sabes qué clave se usó para cifrar un mensaje? Nuestra inteligencia artificial analiza el texto oculto y sugiere instantáneamente el método de encriptación.</p>
+                        <h3 class="section-h" style="font-size:1.75rem; margin-bottom:0;">Más productos en camino</h3>
                     </div>
+                    <p style="font-size:.875rem; color:var(--t2); max-width:300px; line-height:1.65;">
+                        Esto es solo el comienzo. En Bredaz seguimos construyendo herramientas innovadoras.
+                    </p>
+                </div>
+
+                <div class="soon-grid">
+                    <div class="soon-card reveal">
+                        <div class="soon-icon">
+                            <i data-lucide="shield-check" size="20"></i>
+                        </div>
+                        <h3>Próximo Proyecto</h3>
+                        <p>Seguimos trabajando en nuevas herramientas que combinen tecnología de punta con experiencias únicas.</p>
+                        <div class="soon-badge">
+                            <i data-lucide="clock" size="9"></i>
+                            Próximamente
+                        </div>
+                    </div>
+                    <div class="soon-card reveal">
+                        <div class="soon-icon">
+                            <i data-lucide="sparkles" size="20"></i>
+                        </div>
+                        <h3>Ideas en Proceso</h3>
+                        <p>Exploramos constantemente nuevas áreas donde la Inteligencia Artificial puede marcar una diferencia real.</p>
+                        <div class="soon-badge">
+                            <i data-lucide="clock" size="9"></i>
+                            Próximamente
+                        </div>
+                    </div>
+                    <div class="soon-card reveal">
+                        <div class="soon-icon">
+                            <i data-lucide="zap" size="20"></i>
+                        </div>
+                        <h3>Innovación Continua</h3>
+                        <p>En Bredaz creemos en crecer. Cada nuevo producto nace de una necesidad real de nuestra comunidad.</p>
+                        <div class="soon-badge">
+                            <i data-lucide="clock" size="9"></i>
+                            Próximamente
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══════════════════════
+             ABOUT
+        ══════════════════════ -->
+        <section id="about">
+            <div class="container">
+                <div class="about-grid">
+
+                    <div class="about-left">
+                        <div class="label reveal">
+                            <div class="label-bar"></div>
+                            <span class="label-txt">Sobre Nosotros</span>
+                        </div>
+                        <h2 class="section-h reveal">Somos Bredaz</h2>
+                        <p class="section-sub reveal">
+                            Nacidos de la hermandad scout, en <strong>Bredaz</strong> somos un equipo apasionado por la tecnología, la seguridad y el ingenio.
+                        </p>
+
+                        <div class="checkpoints">
+                            <div class="cp reveal">
+                                <span class="cp-num">01</span>
+                                <div class="cp-body">
+                                    <h4>Software innovador con propósito</h4>
+                                    <p>Nos dedicamos a crear software innovador que fusione la rica tradición del conocimiento con las herramientas del mañana.</p>
+                                </div>
+                            </div>
+                            <div class="cp reveal">
+                                <span class="cp-num">02</span>
+                                <div class="cp-body">
+                                    <h4>Comunidad primero</h4>
+                                    <p>Creemos en empoderar a la comunidad con aplicaciones prácticas y accesibles.</p>
+                                </div>
+                            </div>
+                            <div class="cp reveal">
+                                <span class="cp-num">03</span>
+                                <div class="cp-body">
+                                    <h4>IA al servicio de las personas</h4>
+                                    <p>Con <strong>EncryptIA</strong>, reimaginamos cómo los entusiastas viven su pasión por la criptografía, combinando encriptación clásica con los avances de la Inteligencia Artificial.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-right reveal">
+                        <div class="about-photo">
+                            <img
+                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop"
+                                alt="Equipo Bredaz trabajando juntos"
+                            >
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-icon">
+                                <i data-lucide="code-2" size="18"></i>
+                            </div>
+                            <div class="info-card-text">
+                                <h5>Desarrolladores apasionados</h5>
+                                <p>Construyendo el futuro desde Argentina</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about">
+        <!-- ══════════════════════
+             CTA / DOWNLOAD
+        ══════════════════════ -->
+        <section id="download" class="cta-section">
             <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <div class="badge" style="margin-bottom: 1.5rem;">
-                            <i data-lucide="users" size="16"></i>
-                            Conoce al Equipo
-                        </div>
-                        <h2>Somos <span>Bredaz</span></h2>
-                        <p>Nacidos de la hermandad scout, en <strong>Bredaz</strong> somos un equipo apasionado por la tecnología, la seguridad y el ingenio.</p>
-                        <p>Nos dedicamos a crear software innovador que fusione la rica tradición del conocimiento con las herramientas del mañana. Creemos en empoderar a la comunidad con aplicaciones prácticas y accesibles.</p>
-                        <p>Con <strong>EncryptIA</strong>, reimaginamos cómo los entusiastas viven su pasión por la criptografía, combinando encriptación clásica con los avances de la Inteligencia Artificial.</p>
-                    </div>
-                    <div class="about-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop" alt="Equipo Bredaz trabajando juntos" class="about-image">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="download" class="cta">
-            <div class="container">
-                <div class="cta-container">
+                <div class="cta-box reveal">
                     <h2>Descarga EncryptIA en Google Play</h2>
                     <p>Únete a la comunidad. Desarrollado por <strong>Bredaz</strong>, disponible de forma gratuita.</p>
-                    <a href="#" class="btn-store">
-                        <i data-lucide="play" size="32" class="store-icon" style="fill: currentColor;"></i>
-                        <div class="store-text">
-                            <span class="store-subtitle">Descárgalo Gratis en</span>
-                            <span class="store-title">Google Play</span>
-                        </div>
-                    </a>
+                    <div class="cta-actions">
+                        <a href="#" class="btn-dl">
+                            <div class="btn-dl-icon">
+                                <i data-lucide="play" size="16" style="fill:white;"></i>
+                            </div>
+                            <div class="btn-dl-text">
+                                <small>Descárgalo Gratis en</small>
+                                <strong>Google Play</strong>
+                            </div>
+                        </a>
+                        <a href="#products" class="btn btn-ghost" style="border-radius:var(--r);">
+                            Ver todos los productos
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
+
     </main>
 
+    <!-- ══════════════════════
+         FOOTER
+    ══════════════════════ -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Bredaz - Todos los derechos reservados.</p>
-            <div class="footer-links">
-                <a href="/privacy.html">Política de Privacidad</a>
-                <a href="mailto:support@bredaz.com">support@bredaz.com</a>
+            <div class="footer-row">
+                <div>
+                    <div class="footer-logo">
+                        <span class="logo-icon">
+                            <i data-lucide="zap" size="13"></i>
+                        </span>
+                        Bredaz
+                    </div>
+                    <p class="footer-copy">© 2026 Bredaz — Todos los derechos reservados.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="/privacy.html">Política de Privacidad</a>
+                    <a href="mailto:support@bredaz.com">support@bredaz.com</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Initialize Lucide Icons -->
+    <!-- Scripts -->
     <script>
         lucide.createIcons();
-        
-        // Mobile Menu Logic
-        const mobileBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        const mobileIcon = mobileBtn.querySelector('i');
 
-        if(mobileBtn && navLinks) {
-            mobileBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                if(navLinks.classList.contains('active')) {
-                    mobileIcon.setAttribute('data-lucide', 'x');
-                } else {
-                    mobileIcon.setAttribute('data-lucide', 'menu');
+        // Header state
+        const header = document.getElementById('site-header');
+        const onScroll = () => header.classList.toggle('dark', window.scrollY > 30);
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Hamburger
+        const ham = document.getElementById('hamburger');
+        const nav = document.getElementById('nav-links');
+
+        ham.addEventListener('click', () => {
+            const open = nav.classList.toggle('open');
+            ham.querySelector('i').setAttribute('data-lucide', open ? 'x' : 'menu');
+            lucide.createIcons();
+        });
+
+        document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => {
+            nav.classList.remove('open');
+            ham.querySelector('i').setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+        }));
+
+        // Scroll reveal
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    // slight stagger for siblings
+                    const siblings = [...e.target.parentElement.querySelectorAll('.reveal')];
+                    const idx = siblings.indexOf(e.target);
+                    setTimeout(() => e.target.classList.add('visible'), idx * 60);
+                    io.unobserve(e.target);
                 }
-                lucide.createIcons();
             });
+        }, { threshold: 0.08 });
 
-            // Cerrar al hacer clic en un link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    mobileIcon.setAttribute('data-lucide', 'menu');
-                    lucide.createIcons();
-                });
-            });
-        }
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </script>
 </body>
 </html>
