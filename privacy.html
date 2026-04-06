@@ -51,20 +51,20 @@
 
     <style>
         :root {
-            --bg:   #06060a;
-            --bg-2: #0b0b12;
-            --bg-3: #10101a;
+            --bg:   #080508;
+            --bg-2: #0d0709;
+            --bg-3: #12090b;
             --s0: rgba(255,255,255,0.03);
             --s1: rgba(255,255,255,0.06);
-            --b0: rgba(255,255,255,0.06);
-            --b1: rgba(255,255,255,0.12);
-            --t1: #eeeef5;
-            --t2: #8080a0;
-            --t3: #404058;
-            --v1: #6d4aff;
-            --v2: #4f31e8;
-            --v3: #8b6bff;
-            --vg: rgba(109,74,255,0.25);
+            --b0: rgba(255,255,255,0.07);
+            --b1: rgba(255,255,255,0.13);
+            --t1: #f5eef0;
+            --t2: #9a8088;
+            --t3: #554048;
+            --v1: #8B1A2E;
+            --v2: #6B0F22;
+            --v3: #C4314B;
+            --vg: rgba(139,26,46,0.30);
             --r:  18px;
             --r-sm: 10px;
         }
@@ -88,7 +88,7 @@
         .site-header {
             border-bottom: 1px solid var(--b0);
             padding: 1rem 0;
-            background: rgba(6,6,10,0.85);
+            background: rgba(8,5,8,0.85);
             backdrop-filter: blur(20px);
             position: sticky;
             top: 0;
@@ -116,15 +116,21 @@
             text-decoration: none;
         }
 
-        .logo-icon {
-            width: 28px; height: 28px;
-            background: linear-gradient(135deg, var(--v1), var(--v2));
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            color: #fff;
-            font-size: 14px;
-            box-shadow: 0 0 14px var(--vg);
-            flex-shrink: 0;
+        .logo-img-wrap {
+            background: #fff;
+            border-radius: 10px;
+            padding: 3px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+            transition: box-shadow 0.2s;
+        }
+
+        .logo-img-wrap img {
+            height: 28px;
+            width: auto;
+            display: block;
         }
 
         .back-link {
@@ -158,8 +164,8 @@
             gap: 0.45rem;
             padding: 0.28rem 0.85rem;
             border-radius: 99px;
-            border: 1px solid rgba(109,74,255,0.3);
-            background: rgba(109,74,255,0.08);
+            border: 1px solid rgba(139,26,46,0.35);
+            background: rgba(139,26,46,0.10);
             font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -184,7 +190,7 @@
         }
 
         .page-header h1 span {
-            background: linear-gradient(110deg, var(--v3) 0%, #60a5fa 100%);
+            background: linear-gradient(110deg, var(--v3) 0%, #e8777f 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -238,8 +244,8 @@
             align-items: center;
             justify-content: center;
             width: 22px; height: 22px;
-            background: rgba(109,74,255,0.12);
-            border: 1px solid rgba(109,74,255,0.2);
+            background: rgba(139,26,46,0.14);
+            border: 1px solid rgba(139,26,46,0.25);
             border-radius: 6px;
             font-size: 0.65rem;
             font-weight: 700;
@@ -292,8 +298,8 @@
             margin: 0.75rem 0;
             padding: 1rem 1.25rem;
             border-radius: var(--r-sm);
-            background: rgba(109,74,255,0.07);
-            border: 1px solid rgba(109,74,255,0.18);
+            background: rgba(139,26,46,0.08);
+            border: 1px solid rgba(139,26,46,0.20);
             border-left: 3px solid var(--v1);
         }
 
@@ -365,8 +371,9 @@
     <header class="site-header">
         <div class="header-inner">
             <a href="/" class="logo" aria-label="Bredaz — Inicio">
-                <span class="logo-icon">⚡</span>
-                Bredaz
+                <div class="logo-img-wrap">
+                    <img src="./assets/logo.png" alt="Bredaz">
+                </div>
             </a>
             <a href="/" class="back-link" aria-label="Volver al inicio">
                 ← Volver al inicio

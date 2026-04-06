@@ -18,32 +18,32 @@
         ───────────────────────────────────────── */
         :root {
             /* Backgrounds */
-            --bg:        #06060a;
-            --bg-2:      #0b0b12;
-            --bg-3:      #10101a;
+            --bg:        #080508;
+            --bg-2:      #0d0709;
+            --bg-3:      #12090b;
 
             /* Surfaces */
             --s0: rgba(255,255,255,0.03);
             --s1: rgba(255,255,255,0.06);
             --s2: rgba(255,255,255,0.10);
-            --b0: rgba(255,255,255,0.06);
-            --b1: rgba(255,255,255,0.12);
+            --b0: rgba(255,255,255,0.07);
+            --b1: rgba(255,255,255,0.13);
 
             /* Text */
-            --t1: #eeeef5;
-            --t2: #8080a0;
-            --t3: #404058;
+            --t1: #f5eef0;
+            --t2: #9a8088;
+            --t3: #554048;
 
-            /* Brand: deep violet → electric indigo */
-            --v1: #6d4aff;   /* primary violet */
-            --v2: #4f31e8;   /* darker */
-            --v3: #8b6bff;   /* lighter / hover */
-            --vg: rgba(109,74,255,0.30);   /* glow */
-            --vs: rgba(109,74,255,0.10);   /* subtle tint */
+            /* Brand: deep burgundy / crimson */
+            --v1: #8B1A2E;   /* primary crimson */
+            --v2: #6B0F22;   /* darker */
+            --v3: #C4314B;   /* lighter / hover */
+            --vg: rgba(139,26,46,0.35);    /* glow */
+            --vs: rgba(139,26,46,0.12);    /* subtle tint */
 
-            /* Accent: ice blue */
-            --a1: #60a5fa;
-            --ag: rgba(96,165,250,0.15);
+            /* Accent: rose/blush */
+            --a1: #e8777f;
+            --ag: rgba(232,119,127,0.15);
 
             /* Radii */
             --r-sm: 10px;
@@ -92,21 +92,21 @@
         .bg-orb--a {
             width: 800px; height: 800px;
             top: -25%; right: -15%;
-            background: radial-gradient(circle, rgba(109,74,255,0.22) 0%, transparent 65%);
+            background: radial-gradient(circle, rgba(139,26,46,0.20) 0%, transparent 65%);
             animation: orb-a 18s ease-in-out infinite alternate;
         }
 
         .bg-orb--b {
             width: 600px; height: 600px;
             bottom: -20%; left: -10%;
-            background: radial-gradient(circle, rgba(96,165,250,0.12) 0%, transparent 65%);
+            background: radial-gradient(circle, rgba(107,15,34,0.14) 0%, transparent 65%);
             animation: orb-b 22s ease-in-out infinite alternate;
         }
 
         .bg-orb--c {
             width: 400px; height: 400px;
             top: 40%; left: 45%;
-            background: radial-gradient(circle, rgba(139,107,255,0.12) 0%, transparent 65%);
+            background: radial-gradient(circle, rgba(196,49,75,0.10) 0%, transparent 65%);
             animation: orb-c 14s ease-in-out infinite alternate;
         }
 
@@ -153,7 +153,7 @@
             inset: 0 0 auto;
             z-index: 200;
             padding: 1rem 0;
-            background: rgba(6,6,10,0.55);
+            background: rgba(8,5,8,0.55);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border-bottom: 1px solid var(--b0);
@@ -161,7 +161,7 @@
         }
 
         header.dark {
-            background: rgba(6,6,10,0.92);
+            background: rgba(8,5,8,0.92);
             border-color: var(--b1);
         }
 
@@ -178,21 +178,27 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.55rem;
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            color: var(--t1);
         }
 
-        .logo-icon {
-            width: 32px; height: 32px;
-            background: linear-gradient(135deg, var(--v1), var(--v2));
-            border-radius: 9px;
-            display: flex; align-items: center; justify-content: center;
-            color: #fff;
-            box-shadow: 0 0 18px var(--vg);
-            flex-shrink: 0;
+        .logo-img-wrap {
+            background: #fff;
+            border-radius: 10px;
+            padding: 4px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+            transition: box-shadow 0.2s;
+        }
+
+        .logo-img-wrap:hover {
+            box-shadow: 0 4px 20px rgba(139,26,46,0.35);
+        }
+
+        .logo-img-wrap img {
+            height: 32px;
+            width: auto;
+            display: block;
         }
 
         /* Nav links */
@@ -520,7 +526,7 @@
             top: -120px; left: 50%;
             transform: translateX(-50%);
             width: 600px; height: 350px;
-            background: radial-gradient(ellipse at center, var(--vg) 0%, transparent 65%);
+            background: radial-gradient(ellipse at center, rgba(139,26,46,0.22) 0%, transparent 65%);
             filter: blur(50px);
             pointer-events: none;
         }
@@ -546,7 +552,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(109,74,255,0.06) 0%, transparent 60%);
+            background: linear-gradient(135deg, rgba(139,26,46,0.08) 0%, transparent 60%);
         }
 
         /* Star badge */
@@ -630,8 +636,8 @@
         .btn-dl:hover {
             transform: translateY(-2px);
             border-color: var(--v1);
-            box-shadow: 0 8px 30px rgba(109,74,255,0.2);
-            background: var(--bg-3, #10101a);
+            box-shadow: 0 8px 30px rgba(139,26,46,0.25);
+            background: var(--bg-3, #12090b);
         }
 
         .btn-dl-icon {
@@ -641,6 +647,7 @@
             display: flex; align-items: center; justify-content: center;
             color: #fff;
             flex-shrink: 0;
+            box-shadow: 0 0 12px var(--vg);
         }
 
         .btn-dl-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
@@ -723,7 +730,7 @@
             margin-top: 1.25rem;
             padding: 0.22rem 0.65rem;
             border-radius: 99px;
-            border: 1px solid rgba(109,74,255,0.25);
+            border: 1px solid rgba(139,26,46,0.30);
             background: var(--vs);
             font-size: 0.7rem;
             font-weight: 600;
@@ -825,6 +832,7 @@
             display: flex; align-items: center; justify-content: center;
             color: #fff;
             flex-shrink: 0;
+            box-shadow: 0 0 14px var(--vg);
         }
 
         .info-card-text h5 {
@@ -867,7 +875,7 @@
             top: -200px; left: 50%;
             transform: translateX(-50%);
             width: 700px; height: 500px;
-            background: radial-gradient(ellipse at center, rgba(109,74,255,0.18) 0%, transparent 65%);
+            background: radial-gradient(ellipse at center, rgba(139,26,46,0.20) 0%, transparent 65%);
             filter: blur(60px);
             pointer-events: none;
         }
@@ -916,15 +924,10 @@
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            font-size: 1.05rem;
         }
 
-        .footer-logo .logo-icon {
-            width: 26px; height: 26px;
-            border-radius: 7px;
+        .footer-logo .logo-img-wrap img {
+            height: 26px;
         }
 
         .footer-copy {
@@ -1006,7 +1009,7 @@
                 top: var(--header-h);
                 left: 0;
                 right: 0;
-                background: rgba(6,6,10,0.98);
+                background: rgba(8,5,8,0.98);
                 backdrop-filter: blur(24px);
                 -webkit-backdrop-filter: blur(24px);
                 border-bottom: 1px solid var(--b1);
@@ -1136,10 +1139,9 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    <span class="logo-icon">
-                        <i data-lucide="zap" size="16"></i>
-                    </span>
-                    Bredaz
+                    <div class="logo-img-wrap">
+                        <img src="./assets/logo.png" alt="Bredaz">
+                    </div>
                 </a>
 
                 <div class="nav-links" id="nav-links">
@@ -1337,7 +1339,7 @@
                         </div>
                         <div class="info-card">
                             <div class="info-card-icon">
-                                <i data-lucide="code-2" size="18"></i>
+                                <i data-lucide="code-2" size="18" style="color:#fff;"></i>
                             </div>
                             <div class="info-card-text">
                                 <h5>Desarrolladores jovenes</h5>
@@ -1386,10 +1388,9 @@
             <div class="footer-row">
                 <div>
                     <div class="footer-logo">
-                        <span class="logo-icon">
-                            <i data-lucide="zap" size="13"></i>
-                        </span>
-                        Bredaz
+                        <div class="logo-img-wrap">
+                            <img src="./assets/logo.png" alt="Bredaz">
+                        </div>
                     </div>
                     <p class="footer-copy">© 2026 Bredaz — Todos los derechos reservados.</p>
                 </div>
