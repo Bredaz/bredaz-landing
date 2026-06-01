@@ -1,7 +1,8 @@
-const CACHE_NAME = 'encryptia-offline-v1';
+const CACHE_NAME = 'encryptia-offline-v2';
 
 // Inicialización e instalación de la caché
 self.addEventListener('install', (event) => {
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll([
@@ -19,27 +20,44 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Interceptar peticiones (Estrategia Stale-While-Revalidate)
+// Limpiar caches anteriores al activar
+self.addEventListener('activate', (event) => {
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames
+                    .filter((name) => name !== CACHE_NAME)
+                    .map((name) => caches.delete(name))
+            );
+        }).then(() => self.clients.claim())
+    );
+});
+
+// Interceptar peticiones (Network-first, fallback to cache)
 self.addEventListener('fetch', (event) => {
     // Solo interceptar peticiones GET de nuestro propio origen
     if (event.request.method !== 'GET') return;
-    
+
     const url = new URL(event.request.url);
     if (url.origin !== self.location.origin) return;
 
+    // NUNCA interceptar archivos .wasm — WebAssembly.compile necesita
+    // respuestas de red reales con Content-Type application/wasm
+    if (url.pathname.endsWith('.wasm')) return;
+
     event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            const fetchPromise = fetch(event.request).then((networkResponse) => {
+        fetch(event.request)
+            .then((networkResponse) => {
                 if (networkResponse && networkResponse.status === 200) {
+                    const cloned = networkResponse.clone();
                     caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(event.request, networkResponse.clone());
+                        cache.put(event.request, cloned);
                     });
                 }
                 return networkResponse;
-            }).catch(() => {
-                // Silencioso, retorna el caché si está disponible
-            });
-            return cachedResponse || fetchPromise;
-        })
+            })
+            .catch(() => {
+                return caches.match(event.request);
+            })
     );
 });
