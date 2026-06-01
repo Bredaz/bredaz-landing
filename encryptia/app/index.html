@@ -6,18 +6,18 @@
     <title>EncryptIA - Bredaz</title>
     
     <!-- Enlace al manifiesto PWA -->
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="./manifest.json?v=3">
 
     <!-- Etiquetas exclusivas para iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="EncryptIA">
-    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=3">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
-    <link rel="shortcut icon" href="./assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=3">
+    <link rel="shortcut icon" href="./assets/favicon.ico?v=3">
 
     <script>
         // Diagnostic error console
@@ -141,174 +141,316 @@
       }
     </script>
 
-    <!-- iOS PWA Installation Guide Prompt -->
+    <!-- PWA Installation Suggest/Force Overlay -->
     <style>
-        #ios-pwa-prompt {
+        #pwa-install-overlay {
             position: fixed;
-            bottom: -250px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 32px);
-            max-width: 380px;
-            background: rgba(15, 23, 42, 0.94);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.95);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(34, 211, 238, 0.25);
-            border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 20px rgba(34, 211, 238, 0.15);
-            z-index: 10000;
-            transition: bottom 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            color: #f8fafc;
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, sans-serif;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        #pwa-install-overlay.show {
+            display: flex;
+        }
+
+        .install-card {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(34, 211, 238, 0.35);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 420px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(34, 211, 238, 0.2);
+            text-align: center;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-        }
-
-        #ios-pwa-prompt.show {
-            bottom: 16px;
-        }
-
-        .ios-prompt-header {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 20px;
         }
 
-        .ios-prompt-title {
+        .install-logo-wrap {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+            border: 2px solid #22d3ee;
+            background: #020617;
+        }
+
+        .install-logo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .install-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .install-title span {
+            color: #22d3ee;
+        }
+
+        .install-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin: 0;
+        }
+
+        .install-instruction-box {
+            width: 100%;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .install-instruction-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #22d3ee;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .install-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .install-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13px;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        .install-step-num {
+            background: rgba(34, 211, 238, 0.15);
+            color: #22d3ee;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .install-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #22d3ee, #0891b2);
+            color: #0f172a;
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
             font-size: 15px;
             font-weight: 700;
-            color: #22d3ee;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);
+            transition: all 0.2s;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
         }
 
-        .ios-prompt-close {
+        .install-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(34, 211, 238, 0.5);
+        }
+
+        .install-btn:active {
+            transform: translateY(1px);
+        }
+
+        .install-cancel-link {
+            font-size: 12px;
+            color: #64748b;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.2s;
             background: none;
             border: none;
-            color: #94a3b8;
-            font-size: 22px;
-            cursor: pointer;
-            line-height: 1;
             padding: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .ios-prompt-close:hover {
-            color: #f1f5f9;
-        }
-
-        .ios-prompt-body {
-            font-size: 13px;
-            line-height: 1.5;
+        .install-cancel-link:hover {
             color: #cbd5e1;
-        }
-
-        .ios-prompt-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 8px;
-        }
-
-        .ios-prompt-step {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .ios-icon-wrapper {
-            background: rgba(34, 211, 238, 0.12);
-            border-radius: 6px;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: #22d3ee;
-        }
-
-        .ios-icon-wrapper svg {
-            width: 16px;
-            height: 16px;
         }
     </style>
 
-    <div id="ios-pwa-prompt">
-        <div class="ios-prompt-header">
-            <div class="ios-prompt-title">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+    <div id="pwa-install-overlay">
+        <div class="install-card">
+            <div class="install-logo-wrap">
+                <img src="./assets/apple-touch-icon.png?v=3" alt="EncryptIA Logo">
+            </div>
+            <h3 class="install-title">Instalar <span>EncryptIA</span></h3>
+            <p class="install-desc">Para usar esta aplicación offline sin internet y disfrutar de la experiencia táctica completa, instálala en tu dispositivo.</p>
+            
+            <div class="install-instruction-box">
+                <div class="install-instruction-title" id="pwa-instruction-title">
+                    Instrucciones
+                </div>
+                <div class="install-steps" id="pwa-steps-content">
+                    <!-- Dynamic Steps insertion based on OS -->
+                </div>
+            </div>
+
+            <button class="install-btn" id="btn-pwa-install" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="17 8 12 3 7 8"></polyline>
-                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
-                Instalar EncryptIA
-            </div>
-            <button class="ios-prompt-close" onclick="dismissIosPrompt()" aria-label="Cerrar">×</button>
-        </div>
-        <div class="ios-prompt-body">
-            Instala esta aplicación en tu iPhone para usarla a pantalla completa y sin conexión a internet.
-            <div class="ios-prompt-steps">
-                <div class="ios-prompt-step">
-                    <div class="ios-icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                            <polyline points="16 6 12 2 8 6"></polyline>
-                            <line x1="12" y1="2" x2="12" y2="15"></line>
-                        </svg>
-                    </div>
-                    <span>Toca el botón <strong>Compartir</strong> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px; height:12px; display:inline-block; vertical-align:middle; margin:0 2px;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> en la barra inferior de Safari.</span>
-                </div>
-                <div class="ios-prompt-step">
-                    <div class="ios-icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="12" y1="8" x2="12" y2="16"></line>
-                            <line x1="8" y1="12" x2="16" y2="12"></line>
-                        </svg>
-                    </div>
-                    <span>Selecciona <strong>"Agregar al inicio"</strong>.</span>
-                </div>
-            </div>
+                Instalar Aplicación
+            </button>
+            
+            <button class="install-cancel-link" id="pwa-install-cancel">Continuar en el navegador</button>
         </div>
     </div>
 
     <script>
+      let deferredPrompt;
+      const overlay = document.getElementById('pwa-install-overlay');
+      const installBtn = document.getElementById('btn-pwa-install');
+      const cancelLink = document.getElementById('pwa-install-cancel');
+      const stepContainer = document.getElementById('pwa-steps-content');
+      const instructionTitle = document.getElementById('pwa-instruction-title');
+
       function isIos() {
         const userAgent = window.navigator.userAgent.toLowerCase();
         return /iphone|ipad|ipod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       }
+
       function isStandalone() {
-        return ('standalone' in window.navigator) && (window.navigator.standalone);
+        return ('standalone' in window.navigator && window.navigator.standalone) || 
+               window.matchMedia('(display-mode: standalone)').matches;
       }
 
-      document.addEventListener('DOMContentLoaded', () => {
-        // Show tooltip only on iOS when not installed
-        if (isIos() && !isStandalone()) {
-          if (!localStorage.getItem('ios-pwa-prompt-dismissed')) {
-            setTimeout(() => {
-              const prompt = document.getElementById('ios-pwa-prompt');
-              if (prompt) {
-                prompt.classList.add('show');
-              }
-            }, 3000);
+      function getPlatform() {
+        if (isIos()) return 'ios';
+        if (/android/.test(window.navigator.userAgent.toLowerCase())) return 'android';
+        return 'desktop';
+      }
+
+      function showInstallOverlay() {
+        const platform = getPlatform();
+        
+        if (platform === 'ios') {
+          instructionTitle.textContent = "Instalación en iPhone / iPad";
+          stepContainer.innerHTML = `
+            <div class="install-step">
+              <div class="install-step-num">1</div>
+              <span>Toca el botón <strong>Compartir</strong> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px; display:inline-block; vertical-align:middle; margin:-2px 2px 0;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> en la barra inferior de Safari.</span>
+            </div>
+            <div class="install-step">
+              <div class="install-step-num">2</div>
+              <span>Busca y selecciona la opción <strong>"Agregar al inicio"</strong>.</span>
+            </div>
+          `;
+          installBtn.style.display = 'none';
+        } else if (platform === 'android') {
+          instructionTitle.textContent = "Instalación en Android";
+          stepContainer.innerHTML = `
+            <div class="install-step">
+              <div class="install-step-num">1</div>
+              <span>Presiona el botón <strong>"Instalar Aplicación"</strong> abajo.</span>
+            </div>
+            <div class="install-step">
+              <div class="install-step-num">2</div>
+              <span>Si no se abre, toca los 3 puntos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px; display:inline-block; vertical-align:middle;"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg> arriba a la derecha en Chrome y selecciona <strong>"Instalar aplicación"</strong>.</span>
+            </div>
+          `;
+          // If deferredPrompt is already captured, show the install button
+          if (deferredPrompt) {
+            installBtn.style.display = 'flex';
           }
+        } else {
+          instructionTitle.textContent = "Instalación en Computadora";
+          stepContainer.innerHTML = `
+            <div class="install-step">
+              <div class="install-step-num">1</div>
+              <span>Presiona el botón <strong>"Instalar Aplicación"</strong> abajo.</span>
+            </div>
+            <div class="install-step">
+              <div class="install-step-num">2</div>
+              <span>O haz clic en el icono de instalación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px; display:inline-block; vertical-align:middle;"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg> en la barra de direcciones superior.</span>
+            </div>
+          `;
+          if (deferredPrompt) {
+            installBtn.style.display = 'flex';
+          }
+        }
+
+        overlay.classList.add('show');
+      }
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (getPlatform() !== 'ios') {
+          installBtn.style.display = 'flex';
         }
       });
 
-      function dismissIosPrompt() {
-        const prompt = document.getElementById('ios-pwa-prompt');
-        if (prompt) {
-          prompt.classList.remove('show');
-          localStorage.setItem('ios-pwa-prompt-dismissed', 'true');
+      installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          deferredPrompt = null;
+          overlay.classList.remove('show');
         }
-      }
+      });
+
+      cancelLink.addEventListener('click', () => {
+        overlay.classList.remove('show');
+        // Cache dismissal timestamp to avoid showing on every page reload for 1 hour
+        localStorage.setItem('pwa-overlay-dismissed', Date.now());
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const dismissedTime = localStorage.getItem('pwa-overlay-dismissed');
+        const delayPeriod = 60 * 60 * 1000; // 1 hour cooldown to not be extremely annoying, but still highly suggest
+        
+        if (!isStandalone()) {
+          if (!dismissedTime || (Date.now() - dismissedTime > delayPeriod)) {
+            setTimeout(showInstallOverlay, 1500);
+          }
+        }
+      });
     </script>
 </body>
 </html>

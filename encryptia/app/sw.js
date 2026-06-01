@@ -1,4 +1,4 @@
-const CACHE_NAME = 'encryptia-offline-v2';
+const CACHE_NAME = 'encryptia-offline-v3';
 
 // Inicialización e instalación de la caché
 self.addEventListener('install', (event) => {
