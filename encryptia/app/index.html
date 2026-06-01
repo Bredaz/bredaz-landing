@@ -2,11 +2,26 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EncryptIA - Bredaz Studio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EncryptIA - Bredaz</title>
+    
+    <!-- Enlace al manifiesto PWA -->
+    <link rel="manifest" href="./manifest.json">
+
+    <!-- Etiquetas exclusivas para iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EncryptIA">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+    <link rel="shortcut icon" href="./assets/favicon.ico">
+
     <script>
         // Redirect to trailing slash to ensure relative assets load correctly
-        if (window.location.pathname.endsWith('/app')) {
+        if (window.location.pathname.toLowerCase().endsWith('/app')) {
             window.location.replace(window.location.pathname + '/' + window.location.search + window.location.hash);
         }
 
@@ -113,7 +128,22 @@
     <div id="loading-screen">
         <div class="spinner"></div>
         <div class="logo-text">EncryptIA</div>
-        <div class="subtitle">Bredaz Studio</div>
+        <div class="subtitle">Bredaz</div>
     </div>
+
+    <!-- Registro del Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(registration => {
+              console.log('ServiceWorker registrado con éxito');
+            })
+            .catch(err => {
+              console.log('Error al registrar ServiceWorker: ', err);
+            });
+        });
+      }
+    </script>
 </body>
 </html>
