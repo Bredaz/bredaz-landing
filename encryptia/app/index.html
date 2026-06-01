@@ -20,11 +20,6 @@
     <link rel="shortcut icon" href="./assets/favicon.ico">
 
     <script>
-        // Redirect to trailing slash to ensure relative assets load correctly
-        if (window.location.pathname.toLowerCase().endsWith('/app')) {
-            window.location.replace(window.location.pathname + '/' + window.location.search + window.location.hash);
-        }
-
         // Diagnostic error console
         window.onerror = function(message, source, lineno, colno, error) {
             showError("Error: " + message + "\nSource: " + source + "\nLine: " + lineno + ":" + colno + (error ? "\nStack: " + error.stack : ""));
