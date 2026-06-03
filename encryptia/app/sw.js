@@ -41,9 +41,28 @@ self.addEventListener('fetch', (event) => {
     const url = new URL(event.request.url);
     if (url.origin !== self.location.origin) return;
 
-    // NUNCA interceptar archivos .wasm — WebAssembly.compile necesita
-    // respuestas de red reales con Content-Type application/wasm
-    if (url.pathname.endsWith('.wasm')) return;
+    // Interceptar peticiones de archivos .wasm para cachearlos de manera local (Cache-First)
+    // Dado que los archivos .wasm generados tienen hashes en sus nombres, son inmutables.
+    if (url.pathname.endsWith('.wasm')) {
+        event.respondWith(
+            caches.match(event.request).then((cachedResponse) => {
+                if (cachedResponse) {
+                    console.log('[ServiceWorker] Sirviendo WASM desde caché:', url.pathname);
+                    return cachedResponse;
+                }
+                return fetch(event.request).then((networkResponse) => {
+                    if (networkResponse && networkResponse.status === 200) {
+                        const cloned = networkResponse.clone();
+                        caches.open(CACHE_NAME).then((cache) => {
+                            cache.put(event.request, cloned);
+                        });
+                    }
+                    return networkResponse;
+                });
+            })
+        );
+        return;
+    }
 
     event.respondWith(
         fetch(event.request)

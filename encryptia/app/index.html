@@ -47,6 +47,8 @@
             console.error(text);
         }
     </script>
+    
+    <link rel="preload" href="shared.js" as="script">
     <style>
         html, body {
             margin: 0;
@@ -56,22 +58,6 @@
             overflow: hidden;
             background-color: #020617; /* Slate950 */
             font-family: system-ui, -apple-system, sans-serif;
-        }
-
-        #loading-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            background-color: #020617; /* Slate950 */
-            z-index: 9999;
-            transition: opacity 0.5s ease-in-out;
         }
 
         #ComposeTarget {
@@ -84,36 +70,133 @@
             touch-action: none;
         }
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(34, 211, 238, 0.1);
+        #loading-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #020617; /* Slate950 */
+            z-index: 9999;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Responsive Skeleton Wrapper */
+        .skeleton-app-shell {
+            width: 100%;
+            max-width: 480px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: #020617;
+            position: relative;
+            box-sizing: border-box;
+            border-left: 1px solid rgba(30, 41, 59, 0.3);
+            border-right: 1px solid rgba(30, 41, 59, 0.3);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Header Skeleton */
+        .skeleton-header {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            height: 85px;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.2);
+            box-sizing: border-box;
+            gap: 12px;
+        }
+        .skeleton-profile {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            border-top-color: #22d3ee;
-            animation: spin 1s ease-in-out infinite;
+        }
+        .skeleton-user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-grow: 1;
+        }
+        .skeleton-username {
+            width: 120px;
+            height: 16px;
+            border-radius: 4px;
+        }
+        .skeleton-badge {
+            width: 70px;
+            height: 12px;
+            border-radius: 3px;
+        }
+        .skeleton-settings-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        /* Content Skeleton */
+        .skeleton-content {
+            flex-grow: 1;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            overflow: hidden;
+            box-sizing: border-box;
         }
-
-        .logo-text {
-            margin-top: 24px;
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: #ffffff;
-            text-transform: uppercase;
+        .skeleton-progress-card {
+            height: 130px;
+            border-radius: 16px;
         }
-
-        .subtitle {
+        .skeleton-section-title {
+            width: 140px;
+            height: 18px;
+            border-radius: 4px;
             margin-top: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #22d3ee;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            opacity: 0.8;
+        }
+        .skeleton-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .skeleton-feed-item {
+            height: 85px;
+            border-radius: 12px;
+        }
+
+        /* Bottom Nav Skeleton */
+        .skeleton-bottom-nav {
+            height: 90px;
+            border-top: 1px solid rgba(30, 41, 59, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 16px 12px 16px;
+            box-sizing: border-box;
+            background-color: #020617;
+        }
+        .skeleton-nav-item {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+        }
+
+        /* Shimmer Animation */
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        .skeleton {
+            background: linear-gradient(90deg, #090f1d 25%, #1e293b 50%, #090f1d 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.6s infinite linear;
         }
     </style>
     <script type="text/javascript" src="shared.js" defer></script>
@@ -121,9 +204,38 @@
 <body>
     <div id="ComposeTarget"></div>
     <div id="loading-screen">
-        <div class="spinner"></div>
-        <div class="logo-text">EncryptIA</div>
-        <div class="subtitle">Bredaz</div>
+        <!-- Dashboard Skeleton App Shell -->
+        <div class="skeleton-app-shell">
+            <!-- App Header Skeleton -->
+            <div class="skeleton-header">
+                <div class="skeleton-profile skeleton"></div>
+                <div class="skeleton-user-info">
+                    <div class="skeleton-username skeleton"></div>
+                    <div class="skeleton-badge skeleton"></div>
+                </div>
+                <div class="skeleton-settings-btn skeleton"></div>
+            </div>
+            
+            <!-- Dashboard Main Content Skeleton -->
+            <div class="skeleton-content">
+                <div class="skeleton-progress-card skeleton"></div>
+                <div class="skeleton-section-title skeleton"></div>
+                <div class="skeleton-feed">
+                    <div class="skeleton-feed-item skeleton"></div>
+                    <div class="skeleton-feed-item skeleton"></div>
+                    <div class="skeleton-feed-item skeleton"></div>
+                </div>
+            </div>
+            
+            <!-- Bottom Nav Skeleton -->
+            <div class="skeleton-bottom-nav">
+                <div class="skeleton-nav-item skeleton"></div>
+                <div class="skeleton-nav-item skeleton"></div>
+                <div class="skeleton-nav-item skeleton"></div>
+                <div class="skeleton-nav-item skeleton"></div>
+                <div class="skeleton-nav-item skeleton"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Registro del Service Worker -->
