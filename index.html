@@ -283,9 +283,12 @@
                 <div class="md:col-span-8 surface-card p-5 md:p-8 lg:p-12 min-h-[280px] md:min-h-[360px] flex flex-col justify-end relative group overflow-hidden">
                     <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
                     <div class="relative z-10">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <span class="material-symbols-outlined text-primary-container font-light" style="font-variation-settings: 'wght' 200;">flame</span>
-                            <span class="font-mono-label text-mono-label text-text-muted">APP.01</span>
+                        <div class="flex items-center justify-between w-full mb-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="material-symbols-outlined text-primary-container font-light" style="font-variation-settings: 'wght' 200;">flame</span>
+                                <span class="font-mono-label text-mono-label text-text-muted">APP.01</span>
+                            </div>
+                            <span class="font-mono-label text-[10px] bg-secondary/10 text-secondary border border-secondary/20 px-2 py-0.5 rounded-full flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>BETA</span>
                         </div>
                         <h3 class="font-headline-lg text-headline-lg font-bold mb-2">Fogón App</h3>
                         <p class="font-body-md text-sm sm:text-body-md text-text-muted max-w-md">Cancionero digital offline optimizado para campamentos y fogones. Desarrollado con Compose Multiplatform, permite buscar, transportar y compartir acordes en tiempo real sin conexión a internet.</p>
@@ -294,7 +297,8 @@
                 <!-- Card 2 (Medium): TrailMap -->
                 <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[280px] md:min-h-[360px] flex flex-col justify-between relative group overflow-hidden">
                     <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                    <div class="flex justify-end w-full relative z-10">
+                    <div class="flex justify-between items-center w-full relative z-10">
+                        <span class="font-mono-label text-[10px] bg-text-muted/10 text-text-muted border border-border-subtle px-2 py-0.5 rounded-full">EN DESARROLLO</span>
                         <span class="material-symbols-outlined text-on-surface-variant font-light" style="font-variation-settings: 'wght' 200;">map</span>
                     </div>
                     <div class="relative z-10 mt-auto">
@@ -307,7 +311,10 @@
                 <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[220px] md:min-h-[260px] flex flex-col justify-end relative group overflow-hidden">
                     <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
                     <div class="relative z-10">
-                        <div class="font-mono-label text-mono-label text-text-muted mb-4 border border-border-subtle w-fit px-2 py-1 rounded">APP.03</div>
+                        <div class="flex items-center justify-between w-full mb-4">
+                            <div class="font-mono-label text-mono-label text-text-muted border border-border-subtle px-2 py-0.5 rounded">APP.03</div>
+                            <span class="font-mono-label text-[10px] bg-primary-container/10 text-primary border border-primary-container/20 px-2 py-0.5 rounded-full">PLANIFICADO</span>
+                        </div>
                         <h3 class="font-headline-lg text-headline-lg font-bold mb-2 text-xl">GeoQuest</h3>
                         <p class="font-body-md text-sm text-text-muted">Plataforma de gymkhanas y juegos de pistas mediante geolocalización offline. Diseñado para educación no formal, permitiendo crear y jugar búsquedas del tesoro en entornos naturales sin señal.</p>
                     </div>
@@ -315,8 +322,11 @@
                 <!-- Card 4 (Small): Developer Tooling -->
                 <div class="md:col-span-8 surface-card p-5 lg:p-8 min-h-[260px] md:min-h-[260px] flex flex-col justify-between items-start relative group overflow-hidden">
                     <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                    <div class="relative z-10">
-                        <span class="font-mono-label text-mono-label text-text-muted mb-2 block">HERRAMIENTAS</span>
+                    <div class="relative z-10 w-full">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="font-mono-label text-mono-label text-text-muted block">HERRAMIENTAS</span>
+                            <span class="font-mono-label text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>ACTIVO</span>
+                        </div>
                         <h3 class="font-headline-lg text-headline-lg font-bold mb-2 text-xl">Librerías & Código Abierto</h3>
                         <p class="font-body-md text-sm text-text-muted max-w-lg">Desarrollamos componentes independientes de alto rendimiento. Compilamos Rust a WebAssembly (Wasm) para parsing local de metadatos de imagen (EXIF) y criptografía de conocimiento cero.</p>
                     </div>
