@@ -459,45 +459,28 @@
     <!-- Contact Modal Overlay -->
     <div id="contact-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500">
         <!-- Modal Card Container -->
-        <div class="relative w-full max-w-lg bg-surface border border-border-subtle p-6 md:p-8 rounded-lg shadow-2xl transform scale-95 opacity-0 transition-all duration-500" id="contact-modal-card">
+        <div class="relative w-full max-w-md bg-surface border border-border-subtle p-6 md:p-8 rounded-lg shadow-2xl transform scale-95 opacity-0 transition-all duration-500" id="contact-modal-card">
             <!-- Close Button -->
             <button class="absolute top-4 right-4 text-text-muted hover:text-on-surface transition-colors" id="close-modal-btn">
                 <span class="material-symbols-outlined text-2xl">close</span>
             </button>
             
-            <!-- Form State -->
-            <div id="modal-form-state">
-                <h3 class="font-headline-lg text-headline-lg font-bold mb-2">Hablemos de tu proyecto</h3>
-                <p class="font-body-md text-sm text-text-muted mb-6">Contanos tu idea. Respondemos en menos de 24 horas.</p>
+            <div class="flex flex-col items-center text-center py-4">
+                <!-- Glowing Mail Icon -->
+                <div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center border border-primary-container/20 mb-6 shadow-[0_0_15px_rgba(214,34,70,0.15)]">
+                    <span class="material-symbols-outlined text-primary-container text-3xl" style="font-variation-settings: 'wght' 200;">mail</span>
+                </div>
+                <h3 class="font-headline-lg text-headline-lg font-bold mb-3">Enviar Correo</h3>
+                <p class="font-body-md text-text-muted mb-8 max-w-xs">Se abrirá tu cliente de correo predeterminado dirigido a <span class="text-[#22d3ee] font-mono-label">support@bredaz.com</span> para iniciar la conversación.</p>
                 
-                <form id="contact-form" class="space-y-4">
-                    <div>
-                        <label class="block font-mono-label text-xs uppercase tracking-wider text-text-muted mb-2" for="contact-name">Nombre</label>
-                        <input type="text" id="contact-name" required class="w-full bg-[#080609] border border-border-subtle rounded px-4 py-2.5 text-on-surface focus:outline-none focus:border-[#22d3ee] transition-colors font-body-md text-sm" placeholder="Tu nombre">
-                    </div>
-                    <div>
-                        <label class="block font-mono-label text-xs uppercase tracking-wider text-text-muted mb-2" for="contact-email">Email</label>
-                        <input type="email" id="contact-email" required class="w-full bg-[#080609] border border-border-subtle rounded px-4 py-2.5 text-on-surface focus:outline-none focus:border-[#22d3ee] transition-colors font-body-md text-sm" placeholder="tu@correo.com">
-                    </div>
-                    <div>
-                        <label class="block font-mono-label text-xs uppercase tracking-wider text-text-muted mb-2" for="contact-message">Mensaje / Idea</label>
-                        <textarea id="contact-message" required rows="4" class="w-full bg-[#080609] border border-border-subtle rounded px-4 py-2.5 text-on-surface focus:outline-none focus:border-[#22d3ee] transition-colors font-body-md text-sm resize-none" placeholder="¿Qué estás construyendo?"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="bg-primary-container text-text-primary px-6 py-3 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-colors w-full text-center scale-95 active:scale-90 transition-transform">
-                        Enviar Mensaje
+                <div class="flex flex-col sm:flex-row gap-3 w-full">
+                    <button id="open-mail-btn" class="bg-primary-container text-text-primary px-6 py-3 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-colors flex-grow text-center scale-95 active:scale-90 transition-transform">
+                        Abrir Correo
                     </button>
-                </form>
-            </div>
-            
-            <!-- Success State (hidden by default) -->
-            <div id="modal-success-state" class="hidden flex flex-col items-center text-center py-8">
-                <span class="material-symbols-outlined text-[#22d3ee] text-6xl mb-4" style="font-variation-settings: 'wght' 200;">check_circle</span>
-                <h3 class="font-headline-lg text-headline-lg font-bold mb-2">¡Mensaje Enviado!</h3>
-                <p class="font-body-md text-text-muted max-w-sm">Gracias por escribirnos. Nos pondremos en contacto contigo a la brevedad para diseñar tu solución.</p>
-                <button class="mt-8 border border-border-subtle text-on-surface px-6 py-2.5 rounded font-mono-label text-mono-label hover:bg-surface-container transition-colors" id="success-close-btn">
-                    Cerrar
-                </button>
+                    <button id="cancel-mail-btn" class="border border-border-subtle text-on-surface px-6 py-3 rounded font-mono-label text-mono-label hover:bg-surface-container transition-colors flex-grow text-center scale-95 active:scale-90 transition-transform">
+                        Cerrar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -854,10 +837,8 @@
                 document.getElementById('footer-contact-btn')
             ];
             const closeBtn = document.getElementById('close-modal-btn');
-            const successCloseBtn = document.getElementById('success-close-btn');
-            const contactForm = document.getElementById('contact-form');
-            const formState = document.getElementById('modal-form-state');
-            const successState = document.getElementById('modal-success-state');
+            const cancelBtn = document.getElementById('cancel-mail-btn');
+            const openMailBtn = document.getElementById('open-mail-btn');
 
             const openModal = (e) => {
                 if (e) e.preventDefault();
@@ -872,12 +853,6 @@
                 modalCard.classList.remove('scale-100', 'opacity-100');
                 modalCard.classList.add('scale-95', 'opacity-0');
                 document.body.style.overflow = '';
-                
-                setTimeout(() => {
-                    formState.classList.remove('hidden');
-                    successState.classList.add('hidden');
-                    contactForm.reset();
-                }, 500);
             };
 
             openBtns.forEach(btn => {
@@ -885,7 +860,14 @@
             });
 
             if (closeBtn) closeBtn.addEventListener('click', closeModal);
-            if (successCloseBtn) successCloseBtn.addEventListener('click', closeModal);
+            if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+            if (openMailBtn) {
+                openMailBtn.addEventListener('click', () => {
+                    window.location.href = 'mailto:support@bredaz.com?subject=Propuesta%20de%20Proyecto%20-%20Bredaz';
+                    closeModal();
+                });
+            }
 
             if (modal) {
                 modal.addEventListener('click', (e) => {
@@ -898,19 +880,6 @@
                     closeModal();
                 }
             });
-
-            if (contactForm) {
-                contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    formState.classList.add('hidden');
-                    successState.classList.remove('hidden');
-                    
-                    const name = document.getElementById('contact-name').value;
-                    const email = document.getElementById('contact-email').value;
-                    const message = document.getElementById('contact-message').value;
-                    console.log("Contact submission:", { name, email, message });
-                });
-            }
         });
     </script>
 </body>
