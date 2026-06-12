@@ -144,20 +144,7 @@
             .spotlight-card:hover::before {
                 opacity: 1;
             }
-            .cipher-widget-container {
-                perspective: 1200px;
-            }
-            .cipher-widget-screen {
-                transform: rotateX(20deg) scale(0.88) translateY(40px);
-                transform-origin: bottom center;
-                opacity: 0.6;
-                transition: transform 1.2s cubic-bezier(0.32, 0.72, 0, 1), opacity 1.2s cubic-bezier(0.32, 0.72, 0, 1);
-                will-change: transform, opacity;
-            }
-            .cipher-widget-screen.screen-open {
-                transform: rotateX(0deg) scale(1) translateY(0);
-                opacity: 1;
-            }
+
             .site-header {
                 transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease, padding 0.3s ease;
             }
@@ -298,52 +285,64 @@
                             <span class="font-body-md text-body-md">Disponible de forma gratuita en la versión Web</span>
                         </li>
                     </ul>
-                    <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-                        <a href="/encryptia/app" class="bg-primary-container text-text-primary px-5 py-3 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-all duration-200 inline-flex items-center justify-center scale-95 active:scale-90 transition-transform w-full sm:w-auto">
-                            Usar Versión Web
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start w-full">
+                        <a href="/encryptia/app" class="group/btn bg-primary-container text-text-primary px-6 py-4 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-all duration-300 inline-flex items-center justify-center gap-3 scale-95 active:scale-90 w-full sm:w-auto shadow-[0_0_20px_rgba(214,34,70,0.15)] hover:shadow-[0_0_30px_rgba(214,34,70,0.3)]">
+                            <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'wght' 300;">language</span>
+                            <div class="leading-tight text-left">
+                                <div class="text-[9px] uppercase tracking-wider opacity-70">Probar Gratis</div>
+                                <div class="text-sm font-bold">Versión Web</div>
+                            </div>
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.bredaz.encryptia" class="border border-border-subtle bg-surface-container/30 hover:bg-surface-container/80 text-on-surface px-4 py-2.5 rounded transition-all duration-200 inline-flex items-center space-x-3 scale-95 active:scale-90 transition-transform text-left w-full sm:w-auto">
-                            <svg class="w-5 h-5 fill-current text-secondary" viewBox="0 0 24 24">
+                        <a href="https://play.google.com/store/apps/details?id=com.bredaz.encryptia" class="group/btn border border-border-subtle bg-surface-container/40 hover:bg-surface-container text-on-surface px-6 py-4 rounded transition-all duration-300 inline-flex items-center justify-center gap-3 scale-95 active:scale-90 w-full sm:w-auto hover:border-secondary/30">
+                            <svg class="w-6 h-6 fill-current text-secondary group-hover/btn:scale-110 transition-transform" viewBox="0 0 24 24">
                                 <path d="M3,5.27V18.73c0,0.89,0.72,1.61,1.61,1.61c0.3,0,0.59,-0.08,0.85,-0.24L18.23,12.7c0.65,-0.38,0.65,-1.03,0,-1.41L5.46,3.9c-0.26,-0.16,-0.55,-0.24,-0.85,-0.24C3.72,3.66,3,4.38,3,5.27z"/>
                             </svg>
-                            <div class="leading-tight">
-                                <div class="text-[9px] uppercase tracking-wider text-text-muted font-mono-label">Disponible en</div>
-                                <div class="text-xs font-bold font-body-md">Google Play</div>
+                            <div class="leading-tight text-left">
+                                <div class="text-[9px] uppercase tracking-wider text-text-muted font-mono-label">Descargar en</div>
+                                <div class="text-sm font-bold font-body-md">Google Play</div>
                             </div>
                         </a>
-                        <a href="https://apps.apple.com/app/encryptia/id6478912345" class="border border-border-subtle bg-surface-container/30 hover:bg-surface-container/80 text-on-surface px-4 py-2.5 rounded transition-all duration-200 inline-flex items-center space-x-3 scale-95 active:scale-90 transition-transform text-left w-full sm:w-auto">
-                            <svg class="w-5 h-5 fill-current text-on-surface" viewBox="0 0 24 24">
-                                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,22C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.1,16.67C20.08,16.74 19.67,18.11 18.71,19.5M15.97,4.17C16.63,3.37 17.07,2.28 16.95,1C16,1.04 14.9,1.6 14.24,2.38C13.68,3.04 13.19,4.14 13.34,5.39C14.39,5.47 15.4,4.88 15.97,4.17Z"/>
-                            </svg>
-                            <div class="leading-tight">
-                                <div class="text-[9px] uppercase tracking-wider text-text-muted font-mono-label">Descargar para</div>
-                                <div class="text-xs font-bold font-body-md">iOS App</div>
-                            </div>
-                        </a>
-                        <a href="/encryptia/privacy.html" class="text-text-muted hover:text-on-surface px-4 py-3 rounded font-mono-label text-mono-label hover:bg-surface-container/20 transition-all duration-200 inline-block text-center text-xs w-full sm:w-auto">Ver Privacidad</a>
                     </div>
+                    <a href="/encryptia/privacy.html" class="mt-4 text-text-muted hover:text-on-surface font-mono-label text-[11px] hover:underline transition-colors inline-block">Ver Política de Privacidad →</a>
                 </div>
-                <div class="py-12 px-4 sm:p-8 md:p-16 bg-[#0a070b] flex items-center justify-center relative overflow-hidden cipher-widget-container">
-                    <!-- Interactive Cipher Widget Mock -->
-                    <div class="w-full max-w-sm border border-[#2c292d] bg-surface rounded-lg p-4 sm:p-6 relative z-10 shadow-2xl cipher-widget-screen">
-                        <div class="flex justify-between items-center mb-6 border-b border-border-subtle pb-4">
-                            <div class="font-mono-label text-mono-label text-text-muted">CIPHER_STREAM</div>
-                            <div class="flex space-x-2">
-                                <div class="w-2 h-2 rounded-full bg-primary-container"></div>
-                                <div class="w-2 h-2 rounded-full bg-surface-container-high"></div>
+                <!-- Right Panel: EncryptIA Feature Visual -->
+                <div class="py-12 px-6 sm:p-8 md:p-16 bg-[#0a070b] flex flex-col items-center justify-center relative overflow-hidden">
+                    <!-- Ambient glow -->
+                    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(214,34,70,0.06)_0%,transparent_70%)]"></div>
+                    <!-- Algorithm cards -->
+                    <div class="relative z-10 w-full max-w-sm space-y-3">
+                        <div class="text-center mb-8">
+                            <span class="material-symbols-outlined text-primary-container text-5xl mb-3 block" style="font-variation-settings: 'wght' 200;">enhanced_encryption</span>
+                            <div class="font-mono-label text-[10px] text-text-muted tracking-widest">ALGORITMOS SOPORTADOS</div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="bg-surface border border-border-subtle rounded p-3 text-center group/algo hover:border-primary-container/30 transition-colors">
+                                <div class="font-mono-stat text-lg text-primary-container mb-1">C</div>
+                                <div class="font-mono-label text-[9px] text-text-muted">CÉSAR</div>
+                            </div>
+                            <div class="bg-surface border border-border-subtle rounded p-3 text-center group/algo hover:border-secondary/30 transition-colors">
+                                <div class="font-mono-stat text-lg text-secondary mb-1">V</div>
+                                <div class="font-mono-label text-[9px] text-text-muted">VIGENÈRE</div>
+                            </div>
+                            <div class="bg-surface border border-border-subtle rounded p-3 text-center group/algo hover:border-cyan-400/30 transition-colors">
+                                <div class="font-mono-stat text-lg text-cyan-glow mb-1">M</div>
+                                <div class="font-mono-label text-[9px] text-text-muted">MORSE</div>
                             </div>
                         </div>
-                        <div class="font-mono-stat text-xs md:text-mono-stat text-on-surface break-all leading-relaxed tracking-wider h-48 overflow-hidden opacity-80" id="cipher-text">
-                            0xFA1B 0x77C3 0x90A1 0x22DD<br/>
-                            <span class="text-primary-container">0x88F1</span> 0xBB20 0x11CC 0x44EE<br/>
-                            0xAA33 0x99FF <span class="text-cyan-glow">0x22BB</span> 0x88CC<br/>
-                            0x77DD 0x11AA 0x33FF 0x99BB<br/>
-                            <span class="text-primary-container">0x44CC</span> 0x22EE 0x55AA 0x11FF<br/>
-                            0x88BB 0x33CC 0x77DD 0x99EE
+                        <div class="border border-border-subtle rounded p-4 bg-surface/50 mt-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono-label text-[10px] text-text-muted">DETECCIÓN IA</span>
+                                <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                            </div>
+                            <div class="font-mono-stat text-xs text-on-surface opacity-70 leading-relaxed" id="cipher-text">
+                                <span class="text-text-muted">INPUT →</span> <span class="text-primary-container">KHOOR ZRUOG</span><br/>
+                                <span class="text-text-muted">ALGO  →</span> <span class="text-secondary">CÉSAR (ROT-3)</span><br/>
+                                <span class="text-text-muted">OUT   →</span> <span class="text-cyan-glow">HELLO WORLD</span>
+                            </div>
                         </div>
-                        <div class="mt-6 pt-4 border-t border-border-subtle flex justify-between items-center">
-                            <div class="font-mono-label text-mono-label text-text-muted">ESTADO: <span class="text-cyan-glow">ACTIVO</span></div>
-                            <button class="text-on-surface font-mono-label border border-border-subtle px-3 py-1 rounded hover:bg-surface-container transition-colors text-xs" id="widget-cipher-btn">RE-CLAVE</button>
+                        <div class="flex items-center justify-between pt-3">
+                            <div class="font-mono-label text-[10px] text-text-muted">100% LOCAL · ZERO DATA</div>
+                            <span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'wght' 200;">verified_user</span>
                         </div>
                     </div>
                 </div>
@@ -528,55 +527,7 @@
                 });
             });
 
-            // ─────────────────────────────────────────
-            // 3. MATRIX CIPHER STREAM DECRYPTOR
-            // ─────────────────────────────────────────
-            const cipherText = document.getElementById('cipher-text');
-            const widgetBtn = document.getElementById('widget-cipher-btn');
 
-            const secretPhrases = [
-                "BREDAZ{ALWAYS_BE_PREPARED}<br/>0x77DD 0x11AA 0x33FF 0x99BB<br/>ESTADO: CONEXIÓN_SEGURA",
-                "ENCRYPTIA{DECRYPTED_OK_2026}<br/>0x88F1 0xBB20 0x11CC 0x44EE<br/>MÉTODO: CÉSAR_SHIFT_3",
-                "FOGON{LOCAL_OFFLINE_SONGS}<br/>0xAA33 0x99FF 0x22BB 0x88CC<br/>BASE_DATOS: CARGADA_CORRECTO",
-                "TRAILMAP{GPS_ACTIVE_ZERO_DATA}<br/>0xFA1B 0x77C3 0x90A1 0x22DD<br/>COORD: 34.6037_S_58.3816_W"
-            ];
-            let currentPhraseIdx = 0;
-
-            function scrambleDecodeText(targetText) {
-                const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ{}[_]:';
-                let iteration = 0;
-                const interval = setInterval(() => {
-                    cipherText.innerHTML = targetText
-                        .split('')
-                        .map((char, index) => {
-                            if (char === '<' || char === 'b' || char === 'r' || char === '/' || char === '>') {
-                                return char; // Skip HTML tags to avoid breaking markup
-                            }
-                            if (index < iteration) {
-                                return targetText[index];
-                            }
-                            return chars[Math.floor(Math.random() * chars.length)];
-                        })
-                        .join('');
-                    
-                    if (iteration >= targetText.length) {
-                        clearInterval(interval);
-                    }
-                    iteration += 2;
-                }, 30);
-            }
-
-            if (cipherText) {
-                // Initial load decrypt scramble
-                scrambleDecodeText(secretPhrases[0]);
-            }
-
-            if (widgetBtn) {
-                widgetBtn.addEventListener('click', () => {
-                    currentPhraseIdx = (currentPhraseIdx + 1) % secretPhrases.length;
-                    scrambleDecodeText(secretPhrases[currentPhraseIdx]);
-                });
-            }
 
             // ─────────────────────────────────────────
             // 4. HERO PHONE MOCKUP PARALLAX
@@ -601,26 +552,6 @@
                     heroFrame.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
                     heroFrame.style.transform = `perspective(1000px) rotateX(2deg) rotateY(0deg) scale3d(1, 1, 1)`;
                 });
-            }
-
-            // ─────────────────────────────────────────
-            // 4b. ENCRYPTIA CIPHER WIDGET 3D ZOOM REVEAL
-            // ─────────────────────────────────────────
-            const widgetScreen = document.querySelector('.cipher-widget-screen');
-            if (widgetScreen) {
-                const widgetObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('screen-open');
-                        } else {
-                            entry.target.classList.remove('screen-open');
-                        }
-                    });
-                }, {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                });
-                widgetObserver.observe(widgetScreen);
             }
 
 
