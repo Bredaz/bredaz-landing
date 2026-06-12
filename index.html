@@ -238,6 +238,7 @@
             </a>
             <div class="hidden md:flex space-x-8 items-center font-mono-label text-mono-label">
                 <a class="nav-link-item active" href="#">Nosotros</a>
+                <a class="nav-link-item" href="#encryptia">EncryptIA</a>
                 <a class="nav-link-item" href="#projects">Proyectos</a>
                 <a class="nav-link-item" href="#manifesto">Manifiesto</a>
                 <a class="nav-link-item" href="#contact">Contacto</a>
@@ -250,6 +251,7 @@
         <!-- Mobile Dropdown Menu (Animated via height and opacity in CSS) -->
         <div class="md:hidden bg-background border-t border-border-subtle px-5 py-6 flex flex-col items-center space-y-4 font-mono-label text-mono-label" id="mobile-menu">
             <a class="nav-link-item block w-fit active" href="#">Nosotros</a>
+            <a class="nav-link-item block w-fit" href="#encryptia">EncryptIA</a>
             <a class="nav-link-item block w-fit" href="#projects">Proyectos</a>
             <a class="nav-link-item block w-fit" href="#manifesto">Manifiesto</a>
             <a class="nav-link-item block w-fit" href="#contact">Contacto</a>
@@ -272,64 +274,11 @@
             </div>
         </section>
 
-        <!-- Bento Product Showcase -->
-        <section class="px-5 md:px-20 max-w-[1440px] mx-auto mb-[80px] md:mb-[160px]" id="projects">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-2 mb-12 text-center md:text-left">
-                <h2 class="font-headline-xl text-headline-xl font-bold">Nuestros Proyectos</h2>
-                <div class="font-mono-label text-mono-label text-text-muted">[01]</div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
-                <!-- Card 1 (Large): EncryptIA -->
-                <div class="md:col-span-8 surface-card p-5 md:p-8 lg:p-12 min-h-[280px] md:min-h-[360px] flex flex-col justify-end relative group overflow-hidden">
-                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center justify-between w-full mb-4">
-                            <div class="flex items-center space-x-3">
-                                <span class="material-symbols-outlined text-primary-container font-light" style="font-variation-settings: 'wght' 200;">lock</span>
-                                <span class="font-mono-label text-mono-label text-text-muted">APP.01</span>
-                            </div>
-                            <span class="font-mono-label text-[10px] bg-secondary/10 text-secondary border border-secondary/20 px-2 py-0.5 rounded-full flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>ACTIVO</span>
-                        </div>
-                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2">EncryptIA</h3>
-                        <p class="font-body-md text-sm sm:text-body-md text-text-muted max-w-md">Aprende algoritmos criptográficos históricos y protege tus mensajes. Desarrollada con Kotlin Multiplatform y Compose, analiza y reconoce cifrado clásico 100% local.</p>
-                        <div class="mt-6 flex flex-wrap gap-3">
-                            <a href="#encryptia" class="border border-border-subtle hover:border-text-muted text-on-surface px-4 py-2 rounded font-mono-label text-xs transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Ver Detalles</a>
-                            <a href="/encryptia/app" class="bg-primary-container text-text-primary hover:bg-inverse-primary px-4 py-2 rounded font-mono-label text-xs transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Usar Versión Web</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 2 (Medium): Tu Proyecto Aquí -->
-                <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[280px] md:min-h-[360px] flex flex-col justify-center items-center text-center relative group overflow-hidden">
-                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                    <h3 class="font-headline-lg text-headline-lg font-bold relative z-10 mb-4">Tu Proyecto Aquí</h3>
-                    <button class="contact-trigger-btn bg-surface-container hover:bg-surface-container-high border border-border-subtle text-on-surface px-6 py-2.5 rounded font-mono-label text-xs transition-colors scale-95 active:scale-90 transition-transform relative z-10">
-                        Contactanos
-                    </button>
-                </div>
-                <!-- Card 3 (Small): Tu Proyecto Aquí -->
-                <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[160px] md:min-h-[200px] flex flex-col justify-center items-center text-center relative group overflow-hidden">
-                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                    <h3 class="font-headline-lg text-headline-lg font-bold relative z-10 mb-4">Tu Proyecto Aquí</h3>
-                    <button class="contact-trigger-btn bg-surface-container hover:bg-surface-container-high border border-border-subtle text-on-surface px-6 py-2.5 rounded font-mono-label text-xs transition-colors scale-95 active:scale-90 transition-transform relative z-10">
-                        Contactanos
-                    </button>
-                </div>
-                <!-- Card 4 (Large): Tu Proyecto Aquí -->
-                <div class="md:col-span-8 surface-card p-5 md:p-8 lg:p-12 min-h-[160px] md:min-h-[200px] flex flex-col justify-center items-center text-center relative group overflow-hidden">
-                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                    <h3 class="font-headline-lg text-headline-lg font-bold relative z-10 mb-4">Tu Proyecto Aquí</h3>
-                    <button class="contact-trigger-btn bg-primary-container text-text-primary hover:bg-inverse-primary px-8 py-3 rounded font-mono-label text-xs transition-colors scale-95 active:scale-90 transition-transform relative z-10">
-                        Contactanos
-                    </button>
-                </div>
-            </div>
-        </section>
-
         <!-- Flagship Feature Card: EncryptIA -->
         <section class="px-5 md:px-20 max-w-[1440px] mx-auto mb-[80px] md:mb-[160px]" id="encryptia">
             <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-2 mb-12 text-center md:text-left">
                 <h2 class="font-headline-xl text-headline-xl font-bold">Producto Estrella</h2>
-                <div class="font-mono-label text-mono-label text-text-muted">[02]</div>
+                <div class="font-mono-label text-mono-label text-text-muted">[01]</div>
             </div>
             <div class="surface-card grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
                 <div class="p-4 sm:p-8 md:p-16 flex flex-col justify-center items-center text-center lg:items-start lg:text-left border-b lg:border-b-0 lg:border-r border-border-subtle">
@@ -397,6 +346,59 @@
                             <button class="text-on-surface font-mono-label border border-border-subtle px-3 py-1 rounded hover:bg-surface-container transition-colors text-xs" id="widget-cipher-btn">RE-CLAVE</button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bento Product Showcase -->
+        <section class="px-5 md:px-20 max-w-[1440px] mx-auto mb-[80px] md:mb-[160px]" id="projects">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-2 mb-12 text-center md:text-left">
+                <h2 class="font-headline-xl text-headline-xl font-bold">Nuestros Proyectos</h2>
+                <div class="font-mono-label text-mono-label text-text-muted">[02]</div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+                <!-- Card 1 (Large): EncryptIA -->
+                <div class="md:col-span-8 surface-card p-5 md:p-8 lg:p-12 min-h-[280px] md:min-h-[360px] flex flex-col justify-end relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between w-full mb-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="material-symbols-outlined text-primary-container font-light" style="font-variation-settings: 'wght' 200;">lock</span>
+                                <span class="font-mono-label text-mono-label text-text-muted">APP.01</span>
+                            </div>
+                            <span class="font-mono-label text-[10px] bg-secondary/10 text-secondary border border-secondary/20 px-2 py-0.5 rounded-full flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>ACTIVO</span>
+                        </div>
+                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2">EncryptIA</h3>
+                        <p class="font-body-md text-sm sm:text-body-md text-text-muted max-w-md">Aprende algoritmos criptográficos históricos y protege tus mensajes. Desarrollada con Kotlin Multiplatform y Compose, analiza y reconoce cifrado clásico 100% local.</p>
+                        <div class="mt-6 flex flex-wrap gap-3">
+                            <a href="#encryptia" class="border border-border-subtle hover:border-text-muted text-on-surface px-4 py-2 rounded font-mono-label text-xs transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Ver Detalles</a>
+                            <a href="/encryptia/app" class="bg-primary-container text-text-primary hover:bg-inverse-primary px-4 py-2 rounded font-mono-label text-xs transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Usar Versión Web</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 (Medium): Tu Proyecto Aquí -->
+                <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[280px] md:min-h-[360px] flex flex-col justify-center items-center text-center relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <h3 class="font-headline-lg text-headline-lg font-bold relative z-10 mb-4">Tu Proyecto Aquí</h3>
+                    <button class="contact-trigger-btn bg-surface-container hover:bg-surface-container-high border border-border-subtle text-on-surface px-6 py-2.5 rounded font-mono-label text-xs transition-colors scale-95 active:scale-90 transition-transform relative z-10">
+                        Contactanos
+                    </button>
+                </div>
+                <!-- Card 3 (Small): Tu Proyecto Aquí -->
+                <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[160px] md:min-h-[200px] flex flex-col justify-center items-center text-center relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <h3 class="font-headline-lg text-headline-lg font-bold relative z-10 mb-4">Tu Proyecto Aquí</h3>
+                    <button class="contact-trigger-btn bg-surface-container hover:bg-surface-container-high border border-border-subtle text-on-surface px-6 py-2.5 rounded font-mono-label text-xs transition-colors scale-95 active:scale-90 transition-transform relative z-10">
+                        Contactanos
+                    </button>
+                </div>
+                <!-- Card 4 (Large): Tu Proyecto Aquí -->
+                <div class="md:col-span-8 surface-card p-5 md:p-8 lg:p-12 min-h-[160px] md:min-h-[200px] flex flex-col justify-center items-center text-center relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <h3 class="font-headline-lg text-headline-lg font-bold relative z-10 mb-4">Tu Proyecto Aquí</h3>
+                    <button class="contact-trigger-btn bg-primary-container text-text-primary hover:bg-inverse-primary px-8 py-3 rounded font-mono-label text-xs transition-colors scale-95 active:scale-90 transition-transform relative z-10">
+                        Contactanos
+                    </button>
                 </div>
             </div>
         </section>
@@ -629,6 +631,7 @@
             // Scroll spy sections configuration
             const spySections = [
                 { id: '#', element: document.querySelector('main') },
+                { id: '#encryptia', element: document.getElementById('encryptia') },
                 { id: '#projects', element: document.getElementById('projects') },
                 { id: '#manifesto', element: document.getElementById('manifesto') },
                 { id: '#contact', element: document.getElementById('contact') }
