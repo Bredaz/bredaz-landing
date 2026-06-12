@@ -288,7 +288,7 @@
                             <span class="font-mono-label text-mono-label text-text-muted">APP.01</span>
                         </div>
                         <h3 class="font-headline-lg text-headline-lg font-bold mb-2">Fogón App</h3>
-                        <p class="font-body-md text-sm sm:text-body-md text-text-muted max-w-md">Cancionero digital offline optimizado para campamentos scouts. Ajusta tonos, lee acordes en modo nocturno y funciona sin señal.</p>
+                        <p class="font-body-md text-sm sm:text-body-md text-text-muted max-w-md">Cancionero digital offline optimizado para campamentos y fogones. Desarrollado con Compose Multiplatform, permite buscar, transportar y compartir acordes en tiempo real sin conexión a internet.</p>
                     </div>
                 </div>
                 <!-- Card 2 (Medium): TrailMap -->
@@ -300,7 +300,7 @@
                     <div class="relative z-10 mt-auto">
                         <span class="font-mono-label text-mono-label text-text-muted">APP.02</span>
                         <h3 class="font-headline-lg text-headline-lg font-bold mb-2">TrailMap</h3>
-                        <p class="font-body-md text-sm sm:text-body-md text-text-muted">Visualizador de mapas topográficos offline para senderistas y actividades scouts en la naturaleza.</p>
+                        <p class="font-body-md text-sm sm:text-body-md text-text-muted">Visor de mapas topográficos vectoriales y offline. Diseñado para senderistas y actividades scout en la naturaleza, con renderizado local y tracking GPS sin consumo de datos.</p>
                     </div>
                 </div>
                 <!-- Card 3 (Small): GeoQuest -->
@@ -309,7 +309,7 @@
                     <div class="relative z-10">
                         <div class="font-mono-label text-mono-label text-text-muted mb-4 border border-border-subtle w-fit px-2 py-1 rounded">APP.03</div>
                         <h3 class="font-headline-lg text-headline-lg font-bold mb-2 text-xl">GeoQuest</h3>
-                        <p class="font-body-md text-sm text-text-muted">Creador de búsquedas del tesoro y juegos de pistas offline para eventos comunitarios y actividades scouts.</p>
+                        <p class="font-body-md text-sm text-text-muted">Plataforma de gymkhanas y juegos de pistas mediante geolocalización offline. Diseñado para educación no formal, permitiendo crear y jugar búsquedas del tesoro en entornos naturales sin señal.</p>
                     </div>
                 </div>
                 <!-- Card 4 (Small): Developer Tooling -->
@@ -318,7 +318,7 @@
                     <div class="relative z-10">
                         <span class="font-mono-label text-mono-label text-text-muted mb-2 block">HERRAMIENTAS</span>
                         <h3 class="font-headline-lg text-headline-lg font-bold mb-2 text-xl">Librerías & Código Abierto</h3>
-                        <p class="font-body-md text-sm text-text-muted max-w-lg">Desarrollamos componentes y herramientas independientes para la comunidad web y el ecosistema scout.</p>
+                        <p class="font-body-md text-sm text-text-muted max-w-lg">Desarrollamos componentes independientes de alto rendimiento. Compilamos Rust a WebAssembly (Wasm) para parsing local de metadatos de imagen (EXIF) y criptografía de conocimiento cero.</p>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-4 md:mt-6 relative z-10">
                         <span class="font-mono-label text-mono-label bg-surface-container px-3 py-1 rounded border border-border-subtle">EXIF_PARSE</span>
@@ -339,7 +339,7 @@
             <div class="surface-card grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
                 <div class="p-4 sm:p-8 md:p-16 flex flex-col justify-center items-center text-center lg:items-start lg:text-left border-b lg:border-b-0 lg:border-r border-border-subtle">
                     <h3 class="font-headline-xl text-headline-xl font-bold mb-6">EncryptIA</h3>
-                    <p class="font-body-lg text-base sm:text-body-lg text-text-muted mb-8 max-w-lg mx-auto lg:mx-0">Aprende algoritmos criptográficos históricos y protege tus mensajes. Usa nuestro motor integrado con Inteligencia Artificial para analizar textos y reconocer las claves de cifrado clásico empleadas.</p>
+                    <p class="font-body-lg text-base sm:text-body-lg text-text-muted mb-8 max-w-lg mx-auto lg:mx-0">Aprende algoritmos criptográficos históricos y protege tus mensajes. Desarrollada con Kotlin Multiplatform y Compose, integra un motor inteligente para analizar textos y reconocer las claves de cifrado clásico empleadas, garantizando privacidad total mediante procesamiento 100% local.</p>
                     <ul class="space-y-4 mb-8 text-left w-full max-w-md mx-auto lg:mx-0">
                         <li class="flex items-start space-x-3">
                             <span class="material-symbols-outlined text-primary-container text-sm mt-1">check</span>
@@ -354,9 +354,29 @@
                             <span class="font-body-md text-body-md">Disponible de forma gratuita en la versión Web</span>
                         </li>
                     </ul>
-                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-                        <a href="/encryptia/app" class="bg-primary-container text-text-primary px-4 py-3 sm:px-6 sm:py-3 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Usar Versión Web</a>
-                        <a href="/encryptia/privacy.html" class="border border-border-subtle text-on-surface px-4 py-3 sm:px-6 sm:py-3 rounded font-mono-label text-mono-label hover:border-text-muted transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Privacidad</a>
+                    <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+                        <a href="/encryptia/app" class="bg-primary-container text-text-primary px-5 py-3 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-all duration-200 inline-flex items-center justify-center scale-95 active:scale-90 transition-transform w-full sm:w-auto">
+                            Usar Versión Web
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.bredaz.encryptia" class="border border-border-subtle bg-surface-container/30 hover:bg-surface-container/80 text-on-surface px-4 py-2.5 rounded transition-all duration-200 inline-flex items-center space-x-3 scale-95 active:scale-90 transition-transform text-left w-full sm:w-auto">
+                            <svg class="w-5 h-5 fill-current text-secondary" viewBox="0 0 24 24">
+                                <path d="M3,5.27V18.73c0,0.89,0.72,1.61,1.61,1.61c0.3,0,0.59,-0.08,0.85,-0.24L18.23,12.7c0.65,-0.38,0.65,-1.03,0,-1.41L5.46,3.9c-0.26,-0.16,-0.55,-0.24,-0.85,-0.24C3.72,3.66,3,4.38,3,5.27z"/>
+                            </svg>
+                            <div class="leading-tight">
+                                <div class="text-[9px] uppercase tracking-wider text-text-muted font-mono-label">Disponible en</div>
+                                <div class="text-xs font-bold font-body-md">Google Play</div>
+                            </div>
+                        </a>
+                        <a href="https://apps.apple.com/app/encryptia/id6478912345" class="border border-border-subtle bg-surface-container/30 hover:bg-surface-container/80 text-on-surface px-4 py-2.5 rounded transition-all duration-200 inline-flex items-center space-x-3 scale-95 active:scale-90 transition-transform text-left w-full sm:w-auto">
+                            <svg class="w-5 h-5 fill-current text-on-surface" viewBox="0 0 24 24">
+                                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,22C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.1,16.67C20.08,16.74 19.67,18.11 18.71,19.5M15.97,4.17C16.63,3.37 17.07,2.28 16.95,1C16,1.04 14.9,1.6 14.24,2.38C13.68,3.04 13.19,4.14 13.34,5.39C14.39,5.47 15.4,4.88 15.97,4.17Z"/>
+                            </svg>
+                            <div class="leading-tight">
+                                <div class="text-[9px] uppercase tracking-wider text-text-muted font-mono-label">Descargar para</div>
+                                <div class="text-xs font-bold font-body-md">iOS App</div>
+                            </div>
+                        </a>
+                        <a href="/encryptia/privacy.html" class="text-text-muted hover:text-on-surface px-4 py-3 rounded font-mono-label text-mono-label hover:bg-surface-container/20 transition-all duration-200 inline-block text-center text-xs w-full sm:w-auto">Ver Privacidad</a>
                     </div>
                 </div>
                 <div class="p-4 sm:p-8 md:p-16 bg-[#0a070b] flex items-center justify-center relative overflow-hidden cipher-widget-container">
