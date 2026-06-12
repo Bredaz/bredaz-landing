@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Bredaz</title>
+    <title>Bredaz - Estudio de Software para la Web Independiente</title>
     
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
@@ -144,7 +144,20 @@
             .spotlight-card:hover::before {
                 opacity: 1;
             }
-
+            .cipher-widget-container {
+                perspective: 1200px;
+            }
+            .cipher-widget-screen {
+                transform: rotateX(20deg) scale(0.88) translateY(40px);
+                transform-origin: bottom center;
+                opacity: 0.6;
+                transition: transform 1.2s cubic-bezier(0.32, 0.72, 0, 1), opacity 1.2s cubic-bezier(0.32, 0.72, 0, 1);
+                will-change: transform, opacity;
+            }
+            .cipher-widget-screen.screen-open {
+                transform: rotateX(0deg) scale(1) translateY(0);
+                opacity: 1;
+            }
             .site-header {
                 transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease, padding 0.3s ease;
             }
@@ -224,25 +237,23 @@
                 <span>Bredaz</span>
             </a>
             <div class="hidden md:flex space-x-8 items-center font-mono-label text-mono-label">
-                <a class="nav-link-item active" href="#">Nosotros</a>
-                <a class="nav-link-item" href="#encryptia">EncryptIA</a>
+                <a class="nav-link-item active" href="#">Estudio</a>
                 <a class="nav-link-item" href="#projects">Proyectos</a>
                 <a class="nav-link-item" href="#manifesto">Manifiesto</a>
                 <a class="nav-link-item" href="#contact">Contacto</a>
             </div>
-            <button class="hidden md:block bg-primary-container text-text-primary font-mono-label text-mono-label px-6 py-3 rounded hover:bg-inverse-primary transition-colors scale-95 active:scale-90" id="nav-contact-btn">Contactanos</button>
+            <button onclick="location.href='mailto:support@bredaz.com'" class="hidden md:block bg-primary-container text-text-primary font-mono-label text-mono-label px-6 py-3 rounded hover:bg-inverse-primary transition-colors scale-95 active:scale-90">Contratarnos</button>
             <button class="md:hidden text-on-surface flex items-center justify-center" id="menu-toggle">
                 <span class="material-symbols-outlined">menu</span>
             </button>
         </div>
         <!-- Mobile Dropdown Menu (Animated via height and opacity in CSS) -->
         <div class="md:hidden bg-background border-t border-border-subtle px-5 py-6 flex flex-col items-center space-y-4 font-mono-label text-mono-label" id="mobile-menu">
-            <a class="nav-link-item block w-fit active" href="#">Nosotros</a>
-            <a class="nav-link-item block w-fit" href="#encryptia">EncryptIA</a>
+            <a class="nav-link-item block w-fit active" href="#">Estudio</a>
             <a class="nav-link-item block w-fit" href="#projects">Proyectos</a>
             <a class="nav-link-item block w-fit" href="#manifesto">Manifiesto</a>
             <a class="nav-link-item block w-fit" href="#contact">Contacto</a>
-            <button class="block w-full max-w-xs text-center bg-primary-container text-text-primary py-2 rounded" id="mobile-contact-btn">Contactanos</button>
+            <a href="mailto:support@bredaz.com" class="block w-full max-w-xs text-center bg-primary-container text-text-primary py-2 rounded">Contratarnos</a>
         </div>
         <!-- Scroll Progress Bar -->
         <div id="scroll-progress" class="absolute bottom-0 left-0 h-[2px] bg-primary-container w-0 transition-all duration-100"></div>
@@ -252,104 +263,11 @@
         <!-- Hero Section -->
         <section class="hero px-5 md:px-20 max-w-[1440px] mx-auto mb-[80px] md:mb-[160px]">
             <div class="flex flex-col items-center justify-center text-center min-h-[66vh] md:min-h-[74vh] py-12 md:py-16 max-w-3xl mx-auto">
-                <h1 class="font-display-lg text-display-lg font-bold tracking-tight mb-8">Software con <br class="hidden sm:inline"/>proposito real</h1>
-                <p class="font-body-lg text-base sm:text-body-lg text-text-muted mb-10 max-w-xl">Somos Bredaz, un equipo de 2 personas dedicado al desarrollo de software para crear aplicaciones innovadoras que combinan tradición con los avances de la Inteligencia Artificial.</p>
+                <h1 class="font-display-lg text-display-lg font-bold tracking-tight mb-8">Software para la <br class="hidden sm:inline"/>Web Independiente</h1>
+                <p class="font-body-lg text-base sm:text-body-lg text-text-muted mb-10 max-w-xl">Soluciones técnicas a medida diseñadas con precisión. Construimos aplicaciones de alta fidelidad centradas en la privacidad para clientes que exigen artesanía sobre convención.</p>
                 <div class="flex flex-wrap gap-4 justify-center">
-                    <a href="#projects" class="border border-border-subtle text-on-surface px-6 py-3 sm:px-8 sm:py-4 rounded font-mono-label text-mono-label hover:border-text-muted transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Explorar Bredaz</a>
-                    <a href="#encryptia" class="bg-primary-container text-text-primary px-6 py-3 sm:px-8 sm:py-4 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Descargar Encryptia</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Flagship Feature Card: EncryptIA -->
-        <section class="px-5 md:px-20 max-w-[1440px] mx-auto mb-[80px] md:mb-[160px]" id="encryptia">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-2 mb-12 text-center md:text-left">
-                <h2 class="font-headline-xl text-headline-xl font-bold">Producto Estrella</h2>
-                <div class="font-mono-label text-mono-label text-text-muted">[01]</div>
-            </div>
-            <div class="surface-card grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
-                <div class="p-4 sm:p-8 md:p-16 flex flex-col justify-center items-center text-center lg:items-start lg:text-left border-b lg:border-b-0 lg:border-r border-border-subtle">
-                    <h3 class="font-headline-xl text-headline-xl font-bold mb-6">EncryptIA</h3>
-                    <p class="font-body-lg text-base sm:text-body-lg text-text-muted mb-8 max-w-lg mx-auto lg:mx-0">Bredaz presenta EncryptIA, nacida en el mundo scout. Aprende métodos de encriptación clásicos, cifra mensajes con tu patrulla, y usa nuestra Inteligencia Artificial para detectar que clave se utilizó.</p>
-                    <ul class="space-y-4 mb-8 text-left w-full max-w-md mx-auto lg:mx-0">
-                        <li class="flex items-start space-x-3">
-                            <span class="material-symbols-outlined text-primary-container text-sm mt-1">check</span>
-                            <span class="font-body-md text-body-md">Aprende Métodos de Encriptación</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <span class="material-symbols-outlined text-primary-container text-sm mt-1">check</span>
-                            <span class="font-body-md text-body-md">Cifra tus Textos</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <span class="material-symbols-outlined text-primary-container text-sm mt-1">check</span>
-                            <span class="font-body-md text-body-md">Disponible de forma gratuita</span>
-                        </li>
-                    </ul>
-                    <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-                        <a href="https://play.google.com/store/apps/details?id=com.bredaz.encryptia" class="bg-primary-container text-text-primary px-4 py-2.5 rounded transition-all duration-200 inline-flex items-center space-x-3 scale-95 active:scale-90 transition-transform text-left w-full sm:w-auto hover:bg-inverse-primary">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                                <path d="M3,5.27V18.73c0,0.89,0.72,1.61,1.61,1.61c0.3,0,0.59,-0.08,0.85,-0.24L18.23,12.7c0.65,-0.38,0.65,-1.03,0,-1.41L5.46,3.9c-0.26,-0.16,-0.55,-0.24,-0.85,-0.24C3.72,3.66,3,4.38,3,5.27z"/>
-                            </svg>
-                            <div class="leading-tight">
-                                <div class="text-[9px] uppercase tracking-wider opacity-70 font-mono-label">Disponible en</div>
-                                <div class="text-xs font-bold font-body-md">Google Play</div>
-                            </div>
-                        </a>
-                        <a href="/encryptia/app" class="border border-border-subtle bg-surface-container/30 hover:bg-surface-container/80 text-on-surface px-4 py-2.5 rounded transition-all duration-200 inline-flex items-center space-x-3 scale-95 active:scale-90 transition-transform text-left w-full sm:w-auto">
-                            <svg class="w-5 h-5 fill-current text-on-surface" viewBox="0 0 24 24">
-                                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,22C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.1,16.67C20.08,16.74 19.67,18.11 18.71,19.5M15.97,4.17C16.63,3.37 17.07,2.28 16.95,1C16,1.04 14.9,1.6 14.24,2.38C13.68,3.04 13.19,4.14 13.34,5.39C14.39,5.47 15.4,4.88 15.97,4.17Z"/>
-                            </svg>
-                            <div class="leading-tight">
-                                <div class="text-[9px] uppercase tracking-wider text-text-muted font-mono-label">iPhone</div>
-                                <div class="text-xs font-bold font-body-md">Usar Web</div>
-                            </div>
-                        </a>
-                        <a href="/encryptia/app" class="bg-primary-container/10 text-text-primary px-5 py-3 rounded font-mono-label text-mono-label hover:bg-primary-container/20 transition-all duration-200 inline-flex items-center justify-center scale-95 active:scale-90 transition-transform w-full sm:w-auto">
-                            Usar Versión Web
-                        </a>
-                        <a href="/encryptia/privacy.html" class="text-text-muted hover:text-on-surface px-4 py-3 rounded font-mono-label text-mono-label hover:bg-surface-container/20 transition-all duration-200 inline-block text-center text-xs w-full sm:w-auto">Ver Privacidad</a>
-                    </div>
-                </div>
-                <!-- Right Panel: EncryptIA Feature Visual -->
-                <div class="py-12 px-6 sm:p-8 md:p-16 bg-[#0a070b] flex flex-col items-center justify-center relative overflow-hidden">
-                    <!-- Ambient glow -->
-                    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(214,34,70,0.06)_0%,transparent_70%)]"></div>
-                    <!-- Algorithm cards -->
-                    <div class="relative z-10 w-full max-w-sm space-y-3">
-                        <div class="text-center mb-8">
-                            <span class="material-symbols-outlined text-primary-container text-5xl mb-3 block" style="font-variation-settings: 'wght' 200;">enhanced_encryption</span>
-                            <div class="font-mono-label text-[10px] text-text-muted tracking-widest">ALGORITMOS SOPORTADOS</div>
-                        </div>
-                        <div class="grid grid-cols-3 gap-2">
-                            <div class="bg-surface border border-border-subtle rounded p-3 text-center group/algo hover:border-primary-container/30 transition-colors">
-                                <div class="font-mono-stat text-lg text-primary-container mb-1">C</div>
-                                <div class="font-mono-label text-[9px] text-text-muted">CÉSAR</div>
-                            </div>
-                            <div class="bg-surface border border-border-subtle rounded p-3 text-center group/algo hover:border-secondary/30 transition-colors">
-                                <div class="font-mono-stat text-lg text-secondary mb-1">V</div>
-                                <div class="font-mono-label text-[9px] text-text-muted">VIGENÈRE</div>
-                            </div>
-                            <div class="bg-surface border border-border-subtle rounded p-3 text-center group/algo hover:border-cyan-400/30 transition-colors">
-                                <div class="font-mono-stat text-lg text-cyan-glow mb-1">M</div>
-                                <div class="font-mono-label text-[9px] text-text-muted">MORSE</div>
-                            </div>
-                        </div>
-                        <div class="border border-border-subtle rounded p-4 bg-surface/50 mt-4">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="font-mono-label text-[10px] text-text-muted">DETECCIÓN IA</span>
-                                <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-                            </div>
-                            <div class="font-mono-stat text-xs text-on-surface opacity-70 leading-relaxed" id="cipher-text">
-                                <span class="text-text-muted">INPUT →</span> <span class="text-primary-container">KHOOR ZRUOG</span><br/>
-                                <span class="text-text-muted">ALGO  →</span> <span class="text-secondary">CÉSAR (ROT-3)</span><br/>
-                                <span class="text-text-muted">OUT   →</span> <span class="text-cyan-glow">HELLO WORLD</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between pt-3">
-                            <div class="font-mono-label text-[10px] text-text-muted">100% LOCAL · ZERO DATA</div>
-                            <span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'wght' 200;">verified_user</span>
-                        </div>
-                    </div>
+                    <a href="#projects" class="bg-primary-container text-text-primary px-6 py-3 sm:px-8 sm:py-4 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Explorar Estudio</a>
+                    <a href="#manifesto" class="border border-border-subtle text-on-surface px-6 py-3 sm:px-8 sm:py-4 rounded font-mono-label text-mono-label hover:border-text-muted transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Leer Manifiesto</a>
                 </div>
             </div>
         </section>
@@ -357,51 +275,113 @@
         <!-- Bento Product Showcase -->
         <section class="px-5 md:px-20 max-w-[1440px] mx-auto mb-[80px] md:mb-[160px]" id="projects">
             <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-2 mb-12 text-center md:text-left">
-                <h2 class="font-headline-xl text-headline-xl font-bold">Nuestros Proyectos</h2>
-                <div class="font-mono-label text-mono-label text-text-muted">[02]</div>
+                <h2 class="font-headline-xl text-headline-xl font-bold">Trabajos Destacados</h2>
+                <div class="font-mono-label text-mono-label text-text-muted">[01]</div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
-                <!-- Card 1 (Large): EncryptIA -->
+                <!-- Card 1 (Large): Fogón App -->
                 <div class="md:col-span-8 surface-card p-5 md:p-8 lg:p-12 min-h-[280px] md:min-h-[360px] flex flex-col justify-end relative group overflow-hidden">
                     <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
                     <div class="relative z-10">
-                        <div class="flex items-center justify-between w-full mb-4">
-                            <div class="flex items-center space-x-3">
-                                <span class="material-symbols-outlined text-primary-container font-light" style="font-variation-settings: 'wght' 200;">lock</span>
-                                <span class="font-mono-label text-mono-label text-text-muted">APP.01</span>
-                            </div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="material-symbols-outlined text-primary-container font-light" style="font-variation-settings: 'wght' 200;">flame</span>
+                            <span class="font-mono-label text-mono-label text-text-muted">APP.01</span>
                         </div>
-                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2">EncryptIA</h3>
-                        <p class="font-body-md text-sm sm:text-body-md text-text-muted max-w-md">Aprende métodos de encriptación clásicos, cifra mensajes con tu patrulla, y usa nuestra Inteligencia Artificial para detectar que clave se utilizó.</p>
-                        <div class="mt-6 flex flex-wrap gap-3">
-                            <a href="#encryptia" class="border border-border-subtle hover:border-text-muted text-on-surface px-4 py-2 rounded font-mono-label text-xs transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Ver Detalles</a>
-                            <a href="/encryptia/app" class="bg-primary-container text-text-primary hover:bg-inverse-primary px-4 py-2 rounded font-mono-label text-xs transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Usar Versión Web</a>
-                        </div>
+                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2">Fogón App</h3>
+                        <p class="font-body-md text-sm sm:text-body-md text-text-muted max-w-md">Cancionero digital offline optimizado para campamentos scouts. Ajusta tonos, lee acordes en modo nocturno y funciona sin señal.</p>
                     </div>
                 </div>
-                <!-- Card 2 (Medium): Tu Proyecto Aquí -->
-                <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[280px] md:min-h-[360px] flex flex-col justify-center items-center text-center relative group overflow-hidden">
+                <!-- Card 2 (Medium): TrailMap -->
+                <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[280px] md:min-h-[360px] flex flex-col justify-between relative group overflow-hidden">
                     <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                    <h3 class="font-headline-lg text-headline-lg font-bold relative z-10 mb-4">Tu Proyecto Aquí</h3>
-                    <button class="contact-trigger-btn bg-primary-container text-text-primary hover:bg-inverse-primary px-8 py-3 rounded font-mono-label text-xs transition-colors scale-95 active:scale-90 transition-transform relative z-10">
-                        Contactanos
-                    </button>
+                    <div class="flex justify-end w-full relative z-10">
+                        <span class="material-symbols-outlined text-on-surface-variant font-light" style="font-variation-settings: 'wght' 200;">map</span>
+                    </div>
+                    <div class="relative z-10 mt-auto">
+                        <span class="font-mono-label text-mono-label text-text-muted">APP.02</span>
+                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2">TrailMap</h3>
+                        <p class="font-body-md text-sm sm:text-body-md text-text-muted">Visualizador de mapas topográficos offline para senderistas y actividades scouts en la naturaleza.</p>
+                    </div>
                 </div>
-                <!-- Card 3 (Small): Tu Proyecto Aquí -->
-                <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[160px] md:min-h-[200px] flex flex-col justify-center items-center text-center relative group overflow-hidden">
+                <!-- Card 3 (Small): GeoQuest -->
+                <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[220px] md:min-h-[260px] flex flex-col justify-end relative group overflow-hidden">
                     <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                    <h3 class="font-headline-lg text-headline-lg font-bold relative z-10 mb-4">Tu Proyecto Aquí</h3>
-                    <button class="contact-trigger-btn bg-primary-container text-text-primary hover:bg-inverse-primary px-8 py-3 rounded font-mono-label text-xs transition-colors scale-95 active:scale-90 transition-transform relative z-10">
-                        Contactanos
-                    </button>
+                    <div class="relative z-10">
+                        <div class="font-mono-label text-mono-label text-text-muted mb-4 border border-border-subtle w-fit px-2 py-1 rounded">APP.03</div>
+                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2 text-xl">GeoQuest</h3>
+                        <p class="font-body-md text-sm text-text-muted">Creador de búsquedas del tesoro y juegos de pistas offline para eventos comunitarios y actividades scouts.</p>
+                    </div>
                 </div>
-                <!-- Card 4 (Large): Tu Proyecto Aquí -->
-                <div class="md:col-span-8 surface-card p-5 md:p-8 lg:p-12 min-h-[160px] md:min-h-[200px] flex flex-col justify-center items-center text-center relative group overflow-hidden">
+                <!-- Card 4 (Small): Developer Tooling -->
+                <div class="md:col-span-8 surface-card p-5 lg:p-8 min-h-[260px] md:min-h-[260px] flex flex-col justify-between items-start relative group overflow-hidden">
                     <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                    <h3 class="font-headline-lg text-headline-lg font-bold relative z-10 mb-4">Tu Proyecto Aquí</h3>
-                    <button class="contact-trigger-btn bg-primary-container text-text-primary hover:bg-inverse-primary px-8 py-3 rounded font-mono-label text-xs transition-colors scale-95 active:scale-90 transition-transform relative z-10">
-                        Contactanos
-                    </button>
+                    <div class="relative z-10">
+                        <span class="font-mono-label text-mono-label text-text-muted mb-2 block">HERRAMIENTAS</span>
+                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2 text-xl">Librerías & Código Abierto</h3>
+                        <p class="font-body-md text-sm text-text-muted max-w-lg">Desarrollamos componentes y herramientas independientes para la comunidad web y el ecosistema scout.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4 md:mt-6 relative z-10">
+                        <span class="font-mono-label text-mono-label bg-surface-container px-3 py-1 rounded border border-border-subtle">EXIF_PARSE</span>
+                        <span class="font-mono-label text-mono-label bg-surface-container px-3 py-1 rounded border border-border-subtle">WASM_CORE</span>
+                        <span class="font-mono-label text-mono-label bg-surface-container px-3 py-1 rounded border border-border-subtle">RUST</span>
+                        <span class="font-mono-label text-mono-label bg-surface-container px-3 py-1 rounded border border-border-subtle">ZERO_KNOWLEDGE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flagship Feature Card: EncryptIA -->
+        <section class="px-5 md:px-20 max-w-[1440px] mx-auto mb-[80px] md:mb-[160px]">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-2 mb-12 text-center md:text-left">
+                <h2 class="font-headline-xl text-headline-xl font-bold">Tecnología Insignia</h2>
+                <div class="font-mono-label text-mono-label text-text-muted">[02]</div>
+            </div>
+            <div class="surface-card grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+                <div class="p-4 sm:p-8 md:p-16 flex flex-col justify-center items-center text-center lg:items-start lg:text-left border-b lg:border-b-0 lg:border-r border-border-subtle">
+                    <h3 class="font-headline-xl text-headline-xl font-bold mb-6">EncryptIA</h3>
+                    <p class="font-body-lg text-base sm:text-body-lg text-text-muted mb-8 max-w-lg mx-auto lg:mx-0">Aprende algoritmos criptográficos históricos y protege tus mensajes. Usa nuestro motor integrado con Inteligencia Artificial para analizar textos y reconocer las claves de cifrado clásico empleadas.</p>
+                    <ul class="space-y-4 mb-8 text-left w-full max-w-md mx-auto lg:mx-0">
+                        <li class="flex items-start space-x-3">
+                            <span class="material-symbols-outlined text-primary-container text-sm mt-1">check</span>
+                            <span class="font-body-md text-body-md">Cifrado interactivo César, Vigenère y Morse</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="material-symbols-outlined text-primary-container text-sm mt-1">check</span>
+                            <span class="font-body-md text-body-md">Detector inteligente de algoritmos de cifrado</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="material-symbols-outlined text-primary-container text-sm mt-1">check</span>
+                            <span class="font-body-md text-body-md">Disponible de forma gratuita en la versión Web</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <a href="/encryptia/app" class="bg-primary-container text-text-primary px-4 py-3 sm:px-6 sm:py-3 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Usar Versión Web</a>
+                        <a href="/encryptia/privacy.html" class="border border-border-subtle text-on-surface px-4 py-3 sm:px-6 sm:py-3 rounded font-mono-label text-mono-label hover:border-text-muted transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Privacidad</a>
+                    </div>
+                </div>
+                <div class="p-4 sm:p-8 md:p-16 bg-[#0a070b] flex items-center justify-center relative overflow-hidden cipher-widget-container">
+                    <!-- Interactive Cipher Widget Mock -->
+                    <div class="w-full max-w-sm border border-[#2c292d] bg-surface rounded-lg p-4 sm:p-6 relative z-10 shadow-2xl cipher-widget-screen">
+                        <div class="flex justify-between items-center mb-6 border-b border-border-subtle pb-4">
+                            <div class="font-mono-label text-mono-label text-text-muted">CIPHER_STREAM</div>
+                            <div class="flex space-x-2">
+                                <div class="w-2 h-2 rounded-full bg-primary-container"></div>
+                                <div class="w-2 h-2 rounded-full bg-surface-container-high"></div>
+                            </div>
+                        </div>
+                        <div class="font-mono-stat text-xs md:text-mono-stat text-on-surface break-all leading-relaxed tracking-wider h-48 overflow-hidden opacity-80" id="cipher-text">
+                            0xFA1B 0x77C3 0x90A1 0x22DD<br/>
+                            <span class="text-primary-container">0x88F1</span> 0xBB20 0x11CC 0x44EE<br/>
+                            0xAA33 0x99FF <span class="text-cyan-glow">0x22BB</span> 0x88CC<br/>
+                            0x77DD 0x11AA 0x33FF 0x99BB<br/>
+                            <span class="text-primary-container">0x44CC</span> 0x22EE 0x55AA 0x11FF<br/>
+                            0x88BB 0x33CC 0x77DD 0x99EE
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-border-subtle flex justify-between items-center">
+                            <div class="font-mono-label text-mono-label text-text-muted">ESTADO: <span class="text-cyan-glow">ACTIVO</span></div>
+                            <button class="text-on-surface font-mono-label border border-border-subtle px-3 py-1 rounded hover:bg-surface-container transition-colors text-xs" id="widget-cipher-btn">RE-CLAVE</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -416,14 +396,23 @@
                 <!-- Timeline Item 1 -->
                 <div class="relative">
                     <div class="absolute -left-[38px] md:-left-[70px] top-1 w-3 h-3 rounded-full bg-[#22d3ee] shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
-                    <h3 class="font-headline-lg text-headline-lg font-bold mb-4">Software innovador con propósito</h3>
-                    <p class="font-body-md text-body-md text-text-muted max-w-2xl">Nos dedicamos a crear software innovador que lleve el futuro de la tecnología a nuestros problemas cotidianos del entorno.</p>
+                    <div class="font-mono-label text-mono-label text-text-muted mb-4">2021</div>
+                    <h3 class="font-headline-lg text-headline-lg font-bold mb-4">La Privacidad Primero</h3>
+                    <p class="font-body-md text-body-md text-text-muted max-w-2xl">Reconocimos un fallo crítico en la arquitectura de aplicaciones modernas: la suposición de que los datos del usuario pertenecen al servidor. Reconstruimos todo nuestro stack para asegurar entornos de conocimiento cero como base, no como característica premium.</p>
                 </div>
                 <!-- Timeline Item 2 -->
                 <div class="relative">
                     <div class="absolute -left-[38px] md:-left-[70px] top-1 w-3 h-3 rounded-full bg-[#22d3ee] shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
-                    <h3 class="font-headline-lg text-headline-lg font-bold mb-4">IA al servicio de las personas</h3>
-                    <p class="font-body-md text-body-md text-text-muted max-w-2xl">Con EncryptIA, reimaginamos cómo los entusiastas viven su pasión por la criptografía, combinando encriptación clásica con los avances de la Inteligencia Artificial.</p>
+                    <div class="font-mono-label text-mono-label text-text-muted mb-4">2022</div>
+                    <h3 class="font-headline-lg text-headline-lg font-bold mb-4">Resiliencia Primero sin Conexión</h3>
+                    <p class="font-body-md text-body-md text-text-muted max-w-2xl">El software no debería romperse cuando se pierde la conexión. Al implementar estrategias agresivas de prioridad local y tipos de datos replicados libres de conflictos (CRDTs), aseguramos que nuestras aplicaciones funcionen sin problemas independientemente de la estabilidad de la infraestructura.</p>
+                </div>
+                <!-- Timeline Item 3 -->
+                <div class="relative">
+                    <div class="absolute -left-[38px] md:-left-[70px] top-1 w-3 h-3 rounded-full bg-[#22d3ee] shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
+                    <div class="font-mono-label text-mono-label text-text-muted mb-4">2024</div>
+                    <h3 class="font-headline-lg text-headline-lg font-bold mb-4">Crecimiento Independiente</h3>
+                    <p class="font-body-md text-body-md text-text-muted max-w-2xl">Rechazamos el capital de riesgo para mantener una autonomía técnica absoluta. Nuestra lealtad es hacia el oficio, la web independiente y nuestros socios que valoran la ingeniería a medida por encima de las plataformas SaaS homogéneas.</p>
                 </div>
             </div>
         </section>
@@ -434,50 +423,18 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 px-5 md:px-20 max-w-[1440px] mx-auto">
             <div class="md:col-span-6 flex flex-col items-center text-center md:items-start md:text-left mb-8 md:mb-0">
                 <a class="text-headline-lg font-headline-lg text-on-surface font-bold mb-4 block" href="#">Bredaz</a>
-                <p class="font-mono-label text-mono-label text-tertiary mb-4">© 2026 Bredaz</p>
-                <div class="flex space-x-6 font-mono-label text-mono-label">
-                    <a href="https://www.instagram.com/somosbredaz?igsh=NDNvd2h2MjlibGo1" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-secondary transition-colors">Instagram</a>
-                    <a href="https://x.com/somosbredaz" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-secondary transition-colors">X</a>
-                    <a href="https://www.tiktok.com/@somosbredaz?_r=1&_t=ZS-96t6xNL6aIe" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-secondary transition-colors">TikTok</a>
-                </div>
+                <p class="font-mono-label text-mono-label text-tertiary mb-8">© 2026 Bredaz Studio. Construido para la web independiente.</p>
             </div>
             <div class="md:col-span-6 flex flex-col items-center md:items-end justify-between font-body-md text-body-md text-center md:text-right">
                 <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 mb-8">
                     <a class="text-text-muted hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="/encryptia/privacy.html">Privacidad</a>
+                    <a class="text-text-muted hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="#">Términos</a>
+                    <a class="text-text-muted hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="https://github.com">Fuente</a>
                 </div>
-                <button class="font-mono-label text-mono-label border border-border-subtle px-4 py-2 rounded text-on-surface hover:bg-surface-container transition-colors w-fit inline-block text-center scale-95 active:scale-90 transition-transform mx-auto md:mx-0" id="footer-contact-btn">support@bredaz.com</button>
+                <a href="mailto:support@bredaz.com" class="font-mono-label text-mono-label border border-border-subtle px-4 py-2 rounded text-on-surface hover:bg-surface-container transition-colors w-fit inline-block text-center scale-95 active:scale-90 transition-transform mx-auto md:mx-0">support@bredaz.com</a>
             </div>
         </div>
     </footer>
-
-    <!-- Contact Modal Overlay -->
-    <div id="contact-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500">
-        <!-- Modal Card Container -->
-        <div class="relative w-full max-w-md bg-surface border border-border-subtle p-6 md:p-8 rounded-lg shadow-2xl transform scale-95 opacity-0 transition-all duration-500" id="contact-modal-card">
-            <!-- Close Button -->
-            <button class="absolute top-4 right-4 text-text-muted hover:text-on-surface transition-colors" id="close-modal-btn">
-                <span class="material-symbols-outlined text-2xl">close</span>
-            </button>
-            
-            <div class="flex flex-col items-center text-center py-4">
-                <!-- Glowing Mail Icon -->
-                <div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center border border-primary-container/20 mb-6 shadow-[0_0_15px_rgba(214,34,70,0.15)]">
-                    <span class="material-symbols-outlined text-primary-container text-3xl" style="font-variation-settings: 'wght' 200;">mail</span>
-                </div>
-                <h3 class="font-headline-lg text-headline-lg font-bold mb-3">Enviar Correo</h3>
-                <p class="font-body-md text-text-muted mb-8 max-w-xs">Escribinos a <span class="text-[#22d3ee] font-mono-label">support@bredaz.com</span></p>
-                
-                <div class="flex flex-col sm:flex-row gap-3 w-full">
-                    <button id="open-mail-btn" class="bg-primary-container text-text-primary px-6 py-3 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-colors flex-grow text-center scale-95 active:scale-90 transition-transform">
-                        Abrir Correo
-                    </button>
-                    <button id="cancel-mail-btn" class="border border-border-subtle text-on-surface px-6 py-3 rounded font-mono-label text-mono-label hover:bg-surface-container transition-colors flex-grow text-center scale-95 active:scale-90 transition-transform">
-                        Cerrar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -520,7 +477,55 @@
                 });
             });
 
+            // ─────────────────────────────────────────
+            // 3. MATRIX CIPHER STREAM DECRYPTOR
+            // ─────────────────────────────────────────
+            const cipherText = document.getElementById('cipher-text');
+            const widgetBtn = document.getElementById('widget-cipher-btn');
 
+            const secretPhrases = [
+                "BREDAZ{ALWAYS_BE_PREPARED}<br/>0x77DD 0x11AA 0x33FF 0x99BB<br/>ESTADO: CONEXIÓN_SEGURA",
+                "ENCRYPTIA{DECRYPTED_OK_2026}<br/>0x88F1 0xBB20 0x11CC 0x44EE<br/>MÉTODO: CÉSAR_SHIFT_3",
+                "FOGON{LOCAL_OFFLINE_SONGS}<br/>0xAA33 0x99FF 0x22BB 0x88CC<br/>BASE_DATOS: CARGADA_CORRECTO",
+                "TRAILMAP{GPS_ACTIVE_ZERO_DATA}<br/>0xFA1B 0x77C3 0x90A1 0x22DD<br/>COORD: 34.6037_S_58.3816_W"
+            ];
+            let currentPhraseIdx = 0;
+
+            function scrambleDecodeText(targetText) {
+                const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ{}[_]:';
+                let iteration = 0;
+                const interval = setInterval(() => {
+                    cipherText.innerHTML = targetText
+                        .split('')
+                        .map((char, index) => {
+                            if (char === '<' || char === 'b' || char === 'r' || char === '/' || char === '>') {
+                                return char; // Skip HTML tags to avoid breaking markup
+                            }
+                            if (index < iteration) {
+                                return targetText[index];
+                            }
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        })
+                        .join('');
+                    
+                    if (iteration >= targetText.length) {
+                        clearInterval(interval);
+                    }
+                    iteration += 2;
+                }, 30);
+            }
+
+            if (cipherText) {
+                // Initial load decrypt scramble
+                scrambleDecodeText(secretPhrases[0]);
+            }
+
+            if (widgetBtn) {
+                widgetBtn.addEventListener('click', () => {
+                    currentPhraseIdx = (currentPhraseIdx + 1) % secretPhrases.length;
+                    scrambleDecodeText(secretPhrases[currentPhraseIdx]);
+                });
+            }
 
             // ─────────────────────────────────────────
             // 4. HERO PHONE MOCKUP PARALLAX
@@ -547,6 +552,26 @@
                 });
             }
 
+            // ─────────────────────────────────────────
+            // 4b. ENCRYPTIA CIPHER WIDGET 3D ZOOM REVEAL
+            // ─────────────────────────────────────────
+            const widgetScreen = document.querySelector('.cipher-widget-screen');
+            if (widgetScreen) {
+                const widgetObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('screen-open');
+                        } else {
+                            entry.target.classList.remove('screen-open');
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+                widgetObserver.observe(widgetScreen);
+            }
+
 
 
             let isClickScrolling = null; // Stores targetId (string) or null
@@ -555,7 +580,6 @@
             // Scroll spy sections configuration
             const spySections = [
                 { id: '#', element: document.querySelector('main') },
-                { id: '#encryptia', element: document.getElementById('encryptia') },
                 { id: '#projects', element: document.getElementById('projects') },
                 { id: '#manifesto', element: document.getElementById('manifesto') },
                 { id: '#contact', element: document.getElementById('contact') }
@@ -752,62 +776,6 @@
                     });
                 });
             }
-
-            // ─────────────────────────────────────────
-            // 8. CONTACT MODAL SYSTEM
-            // ─────────────────────────────────────────
-            const modal = document.getElementById('contact-modal');
-            const modalCard = document.getElementById('contact-modal-card');
-            const openBtns = [
-                document.getElementById('nav-contact-btn'),
-                document.getElementById('mobile-contact-btn'),
-                document.getElementById('footer-contact-btn'),
-                ...document.querySelectorAll('.contact-trigger-btn')
-            ].filter(Boolean);
-            const closeBtn = document.getElementById('close-modal-btn');
-            const cancelBtn = document.getElementById('cancel-mail-btn');
-            const openMailBtn = document.getElementById('open-mail-btn');
-
-            const openModal = (e) => {
-                if (e) e.preventDefault();
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                modalCard.classList.remove('scale-95', 'opacity-0');
-                modalCard.classList.add('scale-100', 'opacity-100');
-                document.body.style.overflow = 'hidden';
-            };
-
-            const closeModal = () => {
-                modal.classList.add('opacity-0', 'pointer-events-none');
-                modalCard.classList.remove('scale-100', 'opacity-100');
-                modalCard.classList.add('scale-95', 'opacity-0');
-                document.body.style.overflow = '';
-            };
-
-            openBtns.forEach(btn => {
-                if (btn) btn.addEventListener('click', openModal);
-            });
-
-            if (closeBtn) closeBtn.addEventListener('click', closeModal);
-            if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
-
-            if (openMailBtn) {
-                openMailBtn.addEventListener('click', () => {
-                    window.location.href = 'mailto:support@bredaz.com?subject=Propuesta%20de%20Proyecto%20-%20Bredaz';
-                    closeModal();
-                });
-            }
-
-            if (modal) {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) closeModal();
-                });
-            }
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
-                    closeModal();
-                }
-            });
         });
     </script>
 </body>
