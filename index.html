@@ -1,1479 +1,782 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="dark overflow-x-hidden" lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bredaz — Tecnología con propósito</title>
-    <meta name="description" content="Bredaz es una empresa de desarrollo de software innovador. Conocé EncryptIA, nuestra app para aprender encriptación clásica y descifrar mensajes con Inteligencia Artificial.">
-
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Bredaz - Estudio de Software para la Web Independiente</title>
+    
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
-
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <style>
-        /* ─────────────────────────────────────────
-           TOKENS
-        ───────────────────────────────────────── */
-        :root {
-            /* Backgrounds */
-            --bg:        #080508;
-            --bg-2:      #0d0709;
-            --bg-3:      #12090b;
-
-            /* Surfaces */
-            --s0: rgba(255,255,255,0.03);
-            --s1: rgba(255,255,255,0.06);
-            --s2: rgba(255,255,255,0.10);
-            --b0: rgba(255,255,255,0.07);
-            --b1: rgba(255,255,255,0.13);
-
-            /* Text */
-            --t1: #f5eef0;
-            --t2: #9a8088;
-            --t3: #554048;
-
-            /* Brand: deep burgundy / crimson */
-            --v1: #8B1A2E;   /* primary crimson */
-            --v2: #6B0F22;   /* darker */
-            --v3: #C4314B;   /* lighter / hover */
-            --vg: rgba(139,26,46,0.35);    /* glow */
-            --vs: rgba(139,26,46,0.12);    /* subtle tint */
-
-            /* Accent: rose/blush */
-            --a1: #e8777f;
-            --ag: rgba(232,119,127,0.15);
-
-            /* Radii */
-            --r-sm: 10px;
-            --r:    18px;
-            --r-lg: 28px;
-            --r-xl: 40px;
-
-            --ease: cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* ─────────────────────────────────────────
-           RESET
-        ───────────────────────────────────────── */
-        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--t1);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            line-height: 1.65;
-        }
-        img  { max-width: 100%; display: block; }
-        a    { text-decoration: none; color: inherit; }
-        button { font-family: inherit; cursor: pointer; border: none; background: none; }
-
-        /* ─────────────────────────────────────────
-           AMBIENT BACKGROUND
-        ───────────────────────────────────────── */
-        .bg-scene {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .bg-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            will-change: transform;
-        }
-
-        .bg-orb--a {
-            width: 800px; height: 800px;
-            top: -25%; right: -15%;
-            background: radial-gradient(circle, rgba(139,26,46,0.20) 0%, transparent 65%);
-            animation: orb-a 18s ease-in-out infinite alternate;
-        }
-
-        .bg-orb--b {
-            width: 600px; height: 600px;
-            bottom: -20%; left: -10%;
-            background: radial-gradient(circle, rgba(107,15,34,0.14) 0%, transparent 65%);
-            animation: orb-b 22s ease-in-out infinite alternate;
-        }
-
-        .bg-orb--c {
-            width: 400px; height: 400px;
-            top: 40%; left: 45%;
-            background: radial-gradient(circle, rgba(196,49,75,0.10) 0%, transparent 65%);
-            animation: orb-c 14s ease-in-out infinite alternate;
-        }
-
-        @keyframes orb-a {
-            from { transform: translate(0,0) scale(1); }
-            to   { transform: translate(-50px, 60px) scale(1.1); }
-        }
-        @keyframes orb-b {
-            from { transform: translate(0,0) scale(1); }
-            to   { transform: translate(40px, -50px) scale(1.08); }
-        }
-        @keyframes orb-c {
-            from { transform: translate(0,0) scale(1); opacity: 0.6; }
-            to   { transform: translate(-30px, 30px) scale(1.15); opacity: 1; }
-        }
-
-        /* Dot grid */
-        .bg-grid {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(ellipse 80% 70% at 50% 20%, #000 20%, transparent 100%);
-        }
-
-        /* ─────────────────────────────────────────
-           LAYOUT
-        ───────────────────────────────────────── */
-        main { position: relative; z-index: 1; }
-
-        .container {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* ─────────────────────────────────────────
-           HEADER
-        ───────────────────────────────────────── */
-        header {
-            position: fixed;
-            inset: 0 0 auto;
-            z-index: 200;
-            padding: 1rem 0;
-            background: rgba(8,5,8,0.55);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid var(--b0);
-            transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
-        }
-
-        header.dark {
-            background: rgba(8,5,8,0.92);
-            border-color: var(--b1);
-        }
-
-        /* CSS custom property updated by JS with real header height */
-        :root { --header-h: 65px; }
-
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* Logo */
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-img-wrap {
-            background: #fff;
-            border-radius: 10px;
-            padding: 4px 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-            transition: box-shadow 0.2s;
-        }
-
-        .logo-img-wrap:hover {
-            box-shadow: 0 4px 20px rgba(139,26,46,0.35);
-        }
-
-        .logo-img-wrap img {
-            height: 32px;
-            width: auto;
-            display: block;
-        }
-
-        /* Nav links */
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 0.15rem;
-        }
-
-        .nav-link {
-            padding: 0.45rem 0.9rem;
-            border-radius: var(--r-sm);
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--t2);
-            transition: color 0.2s, background 0.2s;
-        }
-
-        .nav-link:hover {
-            color: var(--t1);
-            background: var(--s1);
-        }
-
-        /* Nav CTA */
-        .nav-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.5rem 1.1rem;
-            background: var(--v1);
-            color: #fff;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 99px;
-            transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
-            box-shadow: 0 0 22px var(--vg);
-        }
-
-        .nav-cta:hover {
-            background: var(--v3);
-            box-shadow: 0 0 32px var(--vg);
-            transform: translateY(-1px);
-        }
-
-        /* Hamburger */
-        .hamburger {
-            display: none;
-            width: 36px; height: 36px;
-            background: var(--s1);
-            border: 1px solid var(--b0);
-            border-radius: var(--r-sm);
-            align-items: center; justify-content: center;
-            color: var(--t1);
-            transition: background 0.2s;
-        }
-
-        .hamburger:hover { background: var(--s2); }
-
-        /* Hidden on desktop; shown only inside mobile nav */
-        .nav-cta-mobile { display: none; }
-
-        /* ─────────────────────────────────────────
-           HERO
-        ───────────────────────────────────────── */
-        .hero {
-            min-height: 100dvh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: calc(var(--header-h) + 4rem);
-            padding-bottom: 5rem;
-            position: relative;
-        }
-
-        .hero-inner {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Pill */
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.35rem 1rem;
-            border-radius: 99px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            border: 1px solid var(--b0);
-            background: var(--s0);
-            color: var(--v3);
-            margin-bottom: 2.25rem;
-        }
-
-        .pill-dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: var(--v1);
-            box-shadow: 0 0 8px var(--vg);
-            animation: blink 2.5s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%,100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.75); }
-        }
-
-        /* Heading */
-        .hero-h1 {
-            font-size: clamp(2.75rem, 6vw, 5.25rem);
-            font-weight: 900;
-            line-height: 1.04;
-            letter-spacing: -0.05em;
-            color: var(--t1);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-h1 em {
-            font-style: normal;
-            background: linear-gradient(100deg, var(--v3) 0%, var(--a1) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Sub */
-        .hero-sub {
-            font-size: 1.1rem;
-            color: var(--t2);
-            line-height: 1.75;
-            max-width: 520px;
-            margin: 0 auto 2.75rem;
-        }
-
-        /* ─────────────────────────────────────────
-           BUTTONS
-        ───────────────────────────────────────── */
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .btn-row {
-            display: flex;
-            gap: 0.75rem;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.82rem 1.7rem;
-            border-radius: 99px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            transition: transform 0.22s var(--ease), box-shadow 0.25s var(--ease), background 0.2s, border-color 0.2s;
-            white-space: nowrap;
-        }
-
-        .btn:hover { transform: translateY(-2px); }
-
-        /* Primary — download */
-        .btn-download {
-            background: linear-gradient(135deg, var(--v1) 0%, var(--v2) 100%);
-            color: #fff;
-            box-shadow: 0 6px 28px var(--vg);
-            font-weight: 700;
-        }
-        .btn-download:hover {
-            background: linear-gradient(135deg, var(--v3) 0%, var(--v1) 100%);
-            box-shadow: 0 10px 38px var(--vg);
-        }
-
-        /* Secondary — ghost */
-        .btn-ghost {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.12);
-            color: var(--t1);
-            backdrop-filter: blur(8px);
-        }
-        .btn-ghost:hover {
-            background: rgba(255,255,255,0.09);
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        /* Kept for CTA section compatibility */
-        .btn-solid {
-            background: linear-gradient(135deg, var(--v1) 0%, var(--v2) 100%);
-            color: #fff;
-            box-shadow: 0 8px 30px var(--vg);
-            font-weight: 700;
-        }
-        .btn-solid:hover { box-shadow: 0 12px 40px var(--vg); }
-
-        /* Text link below buttons */
-        .btn-link {
-            font-size: 0.85rem;
-            color: var(--t2);
-            font-weight: 500;
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            padding-bottom: 1px;
-            transition: color 0.2s, border-color 0.2s;
-        }
-        .btn-link:hover {
-            color: var(--t1);
-            border-color: var(--t2);
-        }
-
-        /* Stats row */
-        .hero-stats {
-            display: flex;
-            align-items: stretch;
-            justify-content: center;
-            gap: 0;
-            margin-top: 4.5rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--b0);
-            width: 100%;
-        }
-
-        .stat {
-            flex: 1;
-            text-align: center;
-            padding: 0 1rem;
-        }
-
-        .stat + .stat {
-            border-left: 1px solid var(--b0);
-        }
-
-        .stat-val {
-            display: block;
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: -0.04em;
-            color: var(--t1);
-            line-height: 1;
-            margin-bottom: 0.4rem;
-        }
-
-        .stat-lbl {
-            font-size: 0.8rem;
-            color: var(--t3);
-            font-weight: 500;
-        }
-
-        /* ─────────────────────────────────────────
-           SECTION COMMON
-        ───────────────────────────────────────── */
-        section { padding: 7rem 0; }
-
-        .label {
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-            margin-bottom: 0.85rem;
-        }
-
-        .label-bar {
-            width: 20px; height: 2px;
-            border-radius: 2px;
-            background: var(--v1);
-        }
-
-        .label-txt {
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--v3);
-        }
-
-        .section-h {
-            font-size: clamp(1.9rem, 3.5vw, 3rem);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 1.1;
-            margin-bottom: 0.75rem;
-        }
-
-        .section-sub {
-            font-size: 1rem;
-            color: var(--t2);
-            line-height: 1.7;
-            max-width: 500px;
-        }
-
-        /* ─────────────────────────────────────────
-           PRODUCTS SECTION
-        ───────────────────────────────────────── */
-
-        /* ── Flagship card ── */
-        .flagship {
-            margin-top: 2rem;
-            border-radius: var(--r-xl);
-            border: 1px solid var(--b0);
-            background: var(--s0);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* top shimmer line */
-        .flagship::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 10%, var(--v1) 40%, var(--a1) 60%, transparent 90%);
-        }
-
-        /* inner glow */
-        .flagship::after {
-            content: '';
-            position: absolute;
-            top: -120px; left: 50%;
-            transform: translateX(-50%);
-            width: 600px; height: 350px;
-            background: radial-gradient(ellipse at center, rgba(139,26,46,0.22) 0%, transparent 65%);
-            filter: blur(50px);
-            pointer-events: none;
-        }
-
-        .flagship-body {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .flagship-left {
-            padding: 3.5rem;
-            border-right: 1px solid var(--b0);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .flagship-right {
-            padding: 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(139,26,46,0.08) 0%, transparent 60%);
-        }
-
-        /* Star badge */
-        .star-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            padding: 0.3rem 0.9rem;
-            border-radius: 99px;
-            border: 1px solid var(--b1);
-            background: var(--vs);
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--v3);
-            margin-bottom: 1.75rem;
-        }
-
-        .flagship-h {
-            font-size: clamp(1.9rem, 3vw, 2.75rem);
-            font-weight: 900;
-            letter-spacing: -0.045em;
-            line-height: 1.08;
-            margin-bottom: 1.25rem;
-        }
-
-        .flagship-h span {
-            background: linear-gradient(110deg, var(--v3) 0%, var(--a1) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .flagship-desc {
-            font-size: 0.975rem;
-            color: var(--t2);
-            line-height: 1.75;
-            margin-bottom: 1.75rem;
-        }
-
-        /* Feature tags */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.3rem 0.8rem;
-            border-radius: 99px;
-            border: 1px solid var(--b0);
-            background: var(--s1);
-            font-size: 0.78rem;
-            font-weight: 500;
-            color: var(--t2);
-        }
-
-        .tag svg { color: var(--v3); flex-shrink: 0; }
-
-        /* Download button */
-        .btn-dl {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.9rem 1.6rem;
-            background: var(--bg-2, #0b0b12);
-            border: 1px solid var(--b1);
-            border-radius: var(--r);
-            color: var(--t1);
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: transform 0.2s var(--ease), border-color 0.25s, box-shadow 0.25s, background 0.25s;
-            align-self: flex-start;
-        }
-
-        .btn-dl:hover {
-            transform: translateY(-2px);
-            border-color: var(--v1);
-            box-shadow: 0 8px 30px rgba(139,26,46,0.25);
-            background: var(--bg-3, #12090b);
-        }
-
-        .btn-dl-icon {
-            width: 36px; height: 36px;
-            background: linear-gradient(135deg, var(--v1), var(--v2));
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            color: #fff;
-            flex-shrink: 0;
-            box-shadow: 0 0 12px var(--vg);
-        }
-
-        .btn-dl-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
-        .btn-dl-text small { font-size: 0.65rem; font-weight: 500; color: var(--t2); letter-spacing: 0.05em; text-transform: uppercase; }
-        .btn-dl-text strong { font-size: 1.05rem; font-weight: 700; }
-
-        /* Product image */
-        .flagship-img {
-            width: 100%;
-            max-width: 420px;
-            border-radius: var(--r-lg);
-            border: 1px solid var(--b0);
-            box-shadow:
-                0 40px 80px -20px rgba(0,0,0,0.7),
-                0 0 0 1px rgba(255,255,255,0.03);
-            transition: transform 0.6s var(--ease);
-        }
-
-        .flagship-right:hover .flagship-img {
-            transform: translateY(-6px) scale(1.01);
-        }
-
-        /* ── Coming soon ── */
-        .soon-header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 2rem;
-            margin-top: 6rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .soon-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--b0);
-            border-radius: var(--r-lg);
-            overflow: hidden;
-            border: 1px solid var(--b0);
-        }
-
-        .soon-card {
-            padding: 2.25rem 2rem;
-            background: var(--bg-2);
-            position: relative;
-            transition: background 0.25s;
-        }
-
-        .soon-card:hover { background: var(--bg-3); }
-
-        .soon-icon {
-            width: 44px; height: 44px;
-            border-radius: 12px;
-            border: 1px solid var(--b0);
-            background: var(--vs);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--v3);
-            margin-bottom: 1.25rem;
-        }
-
-        .soon-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-
-        .soon-card p {
-            font-size: 0.875rem;
-            color: var(--t2);
-            line-height: 1.65;
-        }
-
-        .soon-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            margin-top: 1.25rem;
-            padding: 0.22rem 0.65rem;
-            border-radius: 99px;
-            border: 1px solid rgba(139,26,46,0.30);
-            background: var(--vs);
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--v3);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        /* ─────────────────────────────────────────
-           ABOUT SECTION
-        ───────────────────────────────────────── */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-
-        .about-left { display: flex; flex-direction: column; gap: 0; }
-
-        .about-left .section-sub { margin-bottom: 2.5rem; }
-
-        .checkpoints { display: flex; flex-direction: column; gap: 0; }
-
-        .cp {
-            display: flex;
-            gap: 1rem;
-            padding: 1.25rem 0;
-            border-bottom: 1px solid var(--b0);
-        }
-
-        .cp:first-child { border-top: 1px solid var(--b0); }
-
-        .cp-num {
-            font-size: 0.72rem;
-            font-weight: 700;
-            color: var(--v3);
-            min-width: 1.5rem;
-            padding-top: 0.2rem;
-            letter-spacing: 0.05em;
-        }
-
-        .cp-body h4 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.3rem;
-        }
-
-        .cp-body p {
-            font-size: 0.855rem;
-            color: var(--t2);
-            line-height: 1.65;
-        }
-
-        /* Right side: photo + card */
-        .about-right { position: relative; }
-
-        .about-photo {
-            width: 100%;
-            border-radius: var(--r-lg);
-            border: 1px solid var(--b0);
-            overflow: hidden;
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
-        }
-
-        .about-photo img {
-            width: 100%;
-            height: 420px;
-            object-fit: cover;
-            filter: brightness(0.7) saturate(0.5);
-            transition: filter 0.4s;
-        }
-
-        .about-photo:hover img {
-            filter: brightness(0.8) saturate(0.65);
-        }
-
-        /* Floating info card */
-        .info-card {
-            position: absolute;
-            bottom: -1.25rem;
-            left: -1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.1rem 1.5rem;
-            background: var(--bg-2);
-            border: 1px solid var(--b1);
-            border-radius: var(--r);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
-        }
-
-        .info-card-icon {
-            width: 42px; height: 42px;
-            background: linear-gradient(135deg, var(--v1), var(--v2));
-            border-radius: 11px;
-            display: flex; align-items: center; justify-content: center;
-            color: #fff;
-            flex-shrink: 0;
-            box-shadow: 0 0 14px var(--vg);
-        }
-
-        .info-card-text h5 {
-            font-size: 0.875rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-
-        .info-card-text p {
-            font-size: 0.76rem;
-            color: var(--t2);
-        }
-
-        /* ─────────────────────────────────────────
-           CTA SECTION
-        ───────────────────────────────────────── */
-        .cta-section { padding-bottom: 8rem; }
-
-        .cta-box {
-            border-radius: var(--r-xl);
-            border: 1px solid var(--b0);
-            background: var(--s0);
-            padding: 6rem 3rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 5%, var(--v1) 35%, var(--a1) 65%, transparent 95%);
-        }
-
-        .cta-box::after {
-            content: '';
-            position: absolute;
-            top: -200px; left: 50%;
-            transform: translateX(-50%);
-            width: 700px; height: 500px;
-            background: radial-gradient(ellipse at center, rgba(139,26,46,0.20) 0%, transparent 65%);
-            filter: blur(60px);
-            pointer-events: none;
-        }
-
-        .cta-box h2 {
-            font-size: clamp(1.9rem, 4vw, 3.25rem);
-            font-weight: 900;
-            letter-spacing: -0.045em;
-            margin-bottom: 1.25rem;
-            position: relative; z-index: 1;
-        }
-
-        .cta-box p {
-            font-size: 1.05rem;
-            color: var(--t2);
-            max-width: 440px;
-            margin: 0 auto 2.75rem;
-            line-height: 1.7;
-            position: relative; z-index: 1;
-        }
-
-        .cta-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative; z-index: 1;
-        }
-
-        /* ─────────────────────────────────────────
-           FOOTER
-        ───────────────────────────────────────── */
-        footer {
-            border-top: 1px solid var(--b0);
-            padding: 2.25rem 0;
-        }
-
-        .footer-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .footer-logo .logo-img-wrap img {
-            height: 26px;
-        }
-
-        .footer-copy {
-            font-size: 0.78rem;
-            color: var(--t3);
-            margin-top: 0.25rem;
-        }
-
-        .footer-links {
-            display: flex;
-            align-items: center;
-            gap: 1.75rem;
-        }
-
-        .footer-links a {
-            font-size: 0.8rem;
-            color: var(--t3);
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover { color: var(--t2); }
-
-        /* ─────────────────────────────────────────
-           ANIMATIONS
-        ───────────────────────────────────────── */
-        @keyframes rise {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-inner > * { animation: rise 0.9s var(--ease) both; }
-        .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
-        .hero-inner > *:nth-child(2) { animation-delay: 0.18s; }
-        .hero-inner > *:nth-child(3) { animation-delay: 0.3s; }
-        .hero-inner > *:nth-child(4) { animation-delay: 0.42s; }
-        .hero-inner > *:nth-child(5) { animation-delay: 0.55s; }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: none;
-        }
-
-        /* ─────────────────────────────────────────
-           RESPONSIVE
-        ───────────────────────────────────────── */
-
-        /* ── Tablet (≤1024px) ── */
-        @media (max-width: 1024px) {
-            section { padding: 5rem 0; }
-
-            .flagship-body { grid-template-columns: 1fr; }
-            .flagship-left {
-                border-right: none;
-                border-bottom: 1px solid var(--b0);
-                padding: 2.5rem 2rem;
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#690005",
+                        "inverse-on-surface": "#332f33",
+                        "tertiary-fixed-dim": "#77d8be",
+                        "on-primary-container": "#fff0f0",
+                        "on-secondary-container": "#00515d",
+                        "on-tertiary-fixed-variant": "#005142",
+                        "primary": "#ffb3b6",
+                        "text-muted": "rgba(232, 230, 220, 0.6)",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#151216",
+                        "on-surface": "#e8e0e6",
+                        "surface-container-lowest": "#100d11",
+                        "text-primary": "#E8E6DC",
+                        "border-subtle": "rgba(255,255,255,0.05)",
+                        "on-secondary-fixed": "#001f25",
+                        "background": "#080609",
+                        "surface-dim": "#151216",
+                        "surface-tint": "#ffb3b6",
+                        "inverse-surface": "#e8e0e6",
+                        "secondary": "#5de6ff",
+                        "tertiary-fixed": "#93f5d9",
+                        "surface-container-highest": "#373438",
+                        "on-surface-variant": "#e4bdbe",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "primary-container": "#d62246",
+                        "inverse-primary": "#be0437",
+                        "on-background": "#e8e0e6",
+                        "on-tertiary-container": "#c9ffed",
+                        "outline-variant": "#5b4041",
+                        "tertiary": "#77d8be",
+                        "surface-container": "#221f23",
+                        "primary-fixed-dim": "#ffb3b6",
+                        "surface-variant": "#373438",
+                        "secondary-fixed-dim": "#2fd9f4",
+                        "secondary-container": "#00cbe6",
+                        "on-tertiary-fixed": "#002019",
+                        "on-primary-fixed-variant": "#920028",
+                        "on-secondary": "#00363e",
+                        "surface-deep": "#0e0a0f",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#40000c",
+                        "tertiary-container": "#007e68",
+                        "on-tertiary": "#00382d",
+                        "on-primary": "#680019",
+                        "surface-bright": "#3c383c",
+                        "secondary-fixed": "#a2eeff",
+                        "primary-fixed": "#ffdada",
+                        "surface-container-low": "#1e1b1e",
+                        "surface-container-high": "#2c292d",
+                        "outline": "#ab8889"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "margin-desktop": "80px",
+                        "unit": "4px",
+                        "bento": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Outfit", "sans-serif"],
+                        "display-lg": ["Outfit", "sans-serif"],
+                        "headline-lg-mobile": ["Outfit", "sans-serif"],
+                        "headline-xl": ["Outfit", "sans-serif"],
+                        "mono-label": ["JetBrains Mono", "monospace"],
+                        "mono-stat": ["JetBrains Mono", "monospace"],
+                        "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-md": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+                        "mono-label": ["13px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "mono-stat": ["14px", { "lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
             }
-            .flagship-right { padding: 2rem; }
-            .flagship-img { max-width: 380px; margin: 0 auto; }
-
-            .soon-grid { grid-template-columns: 1fr; }
-            .soon-card + .soon-card { border-top: 1px solid var(--b0); }
-
-            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .about-right { max-width: 520px; }
         }
-
-        /* ── Mobile (≤768px) ── */
-        @media (max-width: 768px) {
-
-            /* ── Nav mobile dropdown ── */
-            .nav-links {
-                position: fixed;
-                top: var(--header-h);
-                left: 0;
-                right: 0;
-                background: rgba(8,5,8,0.98);
-                backdrop-filter: blur(24px);
-                -webkit-backdrop-filter: blur(24px);
-                border-bottom: 1px solid var(--b1);
-                flex-direction: column;
-                gap: 0.25rem;
-                padding: 1rem 1.25rem 1.5rem;
-                transform: translateY(-110%);
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .surface-card {
+                @apply bg-surface-deep border border-border-subtle rounded relative overflow-hidden;
+            }
+            .text-crimson {
+                color: #d62246;
+            }
+            .text-cyan-glow {
+                color: #22d3ee;
+                text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+            }
+            .reveal-item {
                 opacity: 0;
-                pointer-events: none;
-                transition: transform 0.35s var(--ease), opacity 0.3s var(--ease);
-                z-index: 199;
+                transform: translateY(24px);
+                transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
             }
-
-            .nav-links.open {
-                transform: translateY(0);
+            .reveal-item.reveal-visible {
                 opacity: 1;
-                pointer-events: auto;
+                transform: translateY(0);
             }
-
-            .nav-link {
+            .spotlight-card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(300px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(214, 34, 70, 0.12) 0%, transparent 80%);
+                z-index: 0;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .spotlight-card:hover::before {
+                opacity: 1;
+            }
+            .cipher-widget-container {
+                perspective: 1200px;
+            }
+            .cipher-widget-screen {
+                transform: rotateX(20deg) scale(0.88) translateY(40px);
+                transform-origin: bottom center;
+                opacity: 0.6;
+                transition: transform 1.2s cubic-bezier(0.32, 0.72, 0, 1), opacity 1.2s cubic-bezier(0.32, 0.72, 0, 1);
+                will-change: transform, opacity;
+            }
+            .cipher-widget-screen.screen-open {
+                transform: rotateX(0deg) scale(1) translateY(0);
+                opacity: 1;
+            }
+            .site-header {
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease, padding 0.3s ease;
+            }
+            .site-header-hidden {
+                transform: translateY(-100%);
+            }
+            .site-header-scrolled {
+                @apply bg-background/90 backdrop-blur-lg border-b border-border-subtle;
+            }
+            .site-header-scrolled #nav-container {
+                @apply py-3 md:py-4;
+            }
+            #mobile-menu {
+                max-height: 0px;
+                overflow: hidden;
+                transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, padding 0.4s ease;
+                opacity: 0;
+                padding-top: 0px !important;
+                padding-bottom: 0px !important;
+                border-top-width: 0px !important;
+            }
+            #mobile-menu.menu-open {
+                max-height: 400px;
+                opacity: 1;
+                padding-top: 1.5rem !important; /* py-6 */
+                padding-bottom: 1.5rem !important;
+                border-top-width: 1px !important;
+            }
+            /* Fluid Typography Sizing Overrides */
+            .text-display-lg {
+                font-size: clamp(1.8rem, 6vw, 4.5rem) !important;
+                line-height: 1.05 !important;
+            }
+            .text-headline-xl {
+                font-size: clamp(1.45rem, 5vw, 3.0rem) !important;
+                line-height: 1.1 !important;
+            }
+            .text-headline-lg {
+                font-size: clamp(1.15rem, 3.5vw, 2.0rem) !important;
+                line-height: 1.2 !important;
+            }
+            .nav-link-item {
+                @apply text-on-surface-variant hover:text-primary transition-all duration-300 pb-1 relative;
+            }
+            .nav-link-item::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
                 width: 100%;
-                font-size: 1rem;
-                padding: 0.8rem 1rem;
-                border-radius: var(--r-sm);
+                height: 2px;
+                background-color: currentColor;
+                transform: scaleX(0);
+                transform-origin: center;
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             }
-
-            /* Mobile download CTA inside menu */
-            .nav-cta-mobile {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                width: 100%;
-                margin-top: 0.5rem;
-                padding: 0.85rem 1rem;
-                background: var(--v1);
-                color: #fff;
-                font-size: 0.95rem;
-                font-weight: 600;
-                border-radius: var(--r-sm);
-                justify-content: center;
-                transition: background 0.2s;
+            .nav-link-item:hover::after {
+                transform: scaleX(1);
             }
-
-            .nav-cta-mobile:hover { background: var(--v3); }
-
-            /* Hide desktop CTA, show hamburger */
-            .nav-cta { display: none; }
-            .hamburger { display: flex; }
-
-            /* ── Hero ── */
-            .hero {
-                padding-top: calc(var(--header-h) + 3rem);
-                padding-bottom: 4rem;
+            .nav-link-item.active {
+                @apply text-primary font-bold;
             }
-            .hero-h1 { font-size: 3rem; }
-            .hero-sub { font-size: 1rem; }
-            .stat-val { font-size: 1.5rem; }
-            .stat-lbl { font-size: 0.75rem; }
-
-            /* ── Flagship ── */
-            .flagship { border-radius: var(--r-lg); }
-
-            /* ── About ── */
-            .info-card {
-                position: relative;
-                bottom: auto;
-                left: auto;
-                margin-top: 1.25rem;
-                width: 100%;
+            .nav-link-item.active::after {
+                transform: scaleX(1);
             }
-
-            /* ── CTA ── */
-            .cta-box { padding: 4rem 1.75rem; border-radius: var(--r-lg); }
-
-            /* ── Footer ── */
-            .footer-row { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
-        }
-
-        /* ── Small mobile (≤480px) ── */
-        @media (max-width: 480px) {
-            .container { padding: 0 1.1rem; }
-            section { padding: 4rem 0; }
-
-            .hero {
-                padding-top: calc(var(--header-h) + 2rem);
-                padding-bottom: 3.5rem;
-            }
-            .hero-h1 { font-size: 2.6rem; letter-spacing: -0.04em; }
-            .hero-sub { font-size: 0.95rem; }
-            .hero-stats { margin-top: 3rem; padding-top: 2rem; }
-            .stat { padding: 0 0.5rem; }
-            .stat-val { font-size: 1.35rem; }
-            .stat-lbl { font-size: 0.7rem; }
-
-            .btn-group { gap: 0.75rem; }
-            .btn-row { gap: 0.5rem; }
-            .btn-download { padding: 0.8rem 1.4rem; font-size: 0.9rem; }
-            .btn-ghost { padding: 0.78rem 1.2rem; font-size: 0.875rem; }
-            .cta-actions { flex-direction: column; }
-            .btn-dl { width: 100%; }
-
-            .flagship { border-radius: var(--r-lg); }
-            .flagship-left { padding: 1.75rem 1.25rem; }
-
-            .soon-grid { border-radius: var(--r); }
-            .soon-header { margin-top: 4rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-
-            .footer-links { flex-direction: column; gap: 0.75rem; }
-            .cta-box { padding: 3rem 1.25rem; }
         }
     </style>
 </head>
-<body>
-
-    <!-- Background scene -->
-    <div class="bg-scene" aria-hidden="true">
-        <div class="bg-orb bg-orb--a"></div>
-        <div class="bg-orb bg-orb--b"></div>
-        <div class="bg-orb bg-orb--c"></div>
-    </div>
-    <div class="bg-grid" aria-hidden="true"></div>
-
-    <!-- ══════════════════════
-         HEADER
-    ══════════════════════ -->
-    <header id="site-header">
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">
-                    <div class="logo-img-wrap">
-                        <img src="./assets/logo.png" alt="Bredaz">
-                    </div>
-                </a>
-
-                <div class="nav-links" id="nav-links">
-                    <a href="#products" class="nav-link">Productos</a>
-                    <a href="#about" class="nav-link">Bredaz</a>
-                    <a href="/encryptia/privacy.html" class="nav-link">Privacidad EncryptIA</a>
-                    <a href="#download" class="nav-cta-mobile">
-                        <i data-lucide="download" size="15"></i>
-                        Descargar EncryptIA
-                    </a>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-text-primary overflow-x-hidden">
+    <!-- TopNavBar -->
+    <header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border-subtle transition-all duration-300 site-header">
+        <div class="flex justify-between items-center px-5 md:px-20 py-4 md:py-6 max-w-[1440px] mx-auto transition-all duration-300" id="nav-container">
+            <a class="flex items-center gap-3 font-headline-lg text-headline-lg md:font-display-lg md:text-headline-xl font-bold text-on-surface tracking-tighter hover:opacity-90 transition-opacity" href="#">
+                <div class="h-9 w-9 md:h-11 md:w-11 p-1 bg-white rounded-md flex items-center justify-center border border-white/10 shadow-sm transition-transform hover:scale-105 duration-300 animate-logo">
+                    <img src="./assets/logo.png" alt="Bredaz Logo" onerror="this.src='./assets/logo.jpeg'" class="h-full w-auto block object-contain">
                 </div>
-
-                <div style="display:flex;gap:.6rem;align-items:center;">
-                    <a href="#download" class="nav-cta" id="header-cta">
-                        <i data-lucide="download" size="14"></i>
-                        Descargar EncryptIA
-                    </a>
-                    <button class="hamburger" id="hamburger" aria-label="Menú">
-                        <i data-lucide="menu" size="20"></i>
-                    </button>
-                </div>
-            </nav>
+                <span>Bredaz</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center font-mono-label text-mono-label">
+                <a class="nav-link-item active" href="#">Estudio</a>
+                <a class="nav-link-item" href="#projects">Proyectos</a>
+                <a class="nav-link-item" href="#manifesto">Manifiesto</a>
+                <a class="nav-link-item" href="#contact">Contacto</a>
+            </div>
+            <button onclick="location.href='mailto:support@bredaz.com'" class="hidden md:block bg-primary-container text-text-primary font-mono-label text-mono-label px-6 py-3 rounded hover:bg-inverse-primary transition-colors scale-95 active:scale-90">Contratarnos</button>
+            <button class="md:hidden text-on-surface flex items-center justify-center" id="menu-toggle">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
         </div>
+        <!-- Mobile Dropdown Menu (Animated via height and opacity in CSS) -->
+        <div class="md:hidden bg-background border-t border-border-subtle px-5 py-6 flex flex-col items-center space-y-4 font-mono-label text-mono-label" id="mobile-menu">
+            <a class="nav-link-item block w-fit active" href="#">Estudio</a>
+            <a class="nav-link-item block w-fit" href="#projects">Proyectos</a>
+            <a class="nav-link-item block w-fit" href="#manifesto">Manifiesto</a>
+            <a class="nav-link-item block w-fit" href="#contact">Contacto</a>
+            <a href="mailto:support@bredaz.com" class="block w-full max-w-xs text-center bg-primary-container text-text-primary py-2 rounded">Contratarnos</a>
+        </div>
+        <!-- Scroll Progress Bar -->
+        <div id="scroll-progress" class="absolute bottom-0 left-0 h-[2px] bg-primary-container w-0 transition-all duration-100"></div>
     </header>
 
-    <main>
-
-        <!-- ══════════════════════
-             HERO
-        ══════════════════════ -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-inner">
-
-                    <h1 class="hero-h1">
-                        Software con<br>
-                        <em>propósito real</em>
-                    </h1>
-
-                    <p class="hero-sub">
-                        Somos <strong>Bredaz</strong>, un equipo de 2 personas dedicado al desarrollo de software para crear aplicaciones innovadoras que combinan tradición con los avances de la Inteligencia Artificial.
-                    </p>
-
-                    <div class="btn-group">
-                        <div class="btn-row">
-                            <a href="#download" class="btn btn-download">
-                                <i data-lucide="smartphone" size="16"></i>
-                                Descargar EncryptIA
-                            </a>
-                            <a href="#products" class="btn btn-ghost">
-                                Ver productos
-                            </a>
-                        </div>
-                        <a href="#about" class="btn-link">Conocé quiénes somos &rarr;</a>
-                    </div>
-
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-val">100%</span>
-                            <span class="stat-lbl">Software propio</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-val">IA</span>
-                            <span class="stat-lbl">Integrada en nuestros productos</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-val">Gratis</span>
-                            <span class="stat-lbl">EncryptIA en Google Play</span>
-                        </div>
-                    </div>
-
+    <main class="flex-grow pt-[100px] md:pt-[140px] pb-32">
+        <!-- Hero Section -->
+        <section class="hero px-5 md:px-20 max-w-[1440px] mx-auto mb-[80px] md:mb-[160px]">
+            <div class="flex flex-col items-center justify-center text-center min-h-[66vh] md:min-h-[74vh] py-12 md:py-16 max-w-3xl mx-auto">
+                <h1 class="font-display-lg text-display-lg font-bold tracking-tight mb-8">Software para la <br class="hidden sm:inline"/>Web Independiente</h1>
+                <p class="font-body-lg text-base sm:text-body-lg text-text-muted mb-10 max-w-xl">Soluciones técnicas a medida diseñadas con precisión. Construimos aplicaciones de alta fidelidad centradas en la privacidad para clientes que exigen artesanía sobre convención.</p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="#projects" class="bg-primary-container text-text-primary px-6 py-3 sm:px-8 sm:py-4 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Explorar Estudio</a>
+                    <a href="#manifesto" class="border border-border-subtle text-on-surface px-6 py-3 sm:px-8 sm:py-4 rounded font-mono-label text-mono-label hover:border-text-muted transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Leer Manifiesto</a>
                 </div>
             </div>
         </section>
 
-        <!-- ══════════════════════
-             PRODUCTS
-        ══════════════════════ -->
-        <section id="products">
-            <div class="container">
-
-                <div class="label reveal">
-                    <div class="label-bar"></div>
-                    <span class="label-txt">Nuestros Productos</span>
-                </div>
-                <h2 class="section-h reveal">Lo que construimos</h2>
-                <p class="section-sub reveal">
-                    Cada producto nace de una necesidad real de nuestro entorno y combina diseño, tecnología y propósito.
-                </p>
-
-                <!-- Flagship: EncryptIA -->
-                <div class="flagship reveal">
-                    <div class="flagship-body">
-
-                        <div class="flagship-left">
-
-                            <h3 class="flagship-h">
-                                <span>EncryptIA</span><br>
-                                El Secreto Está en la Clave
-                            </h3>
-
-                            <p class="flagship-desc">
-                                <strong>Bredaz</strong> presenta <strong>EncryptIA</strong>, nacida en el mundo scout. Aprende métodos de encriptación clásicos, cifra mensajes con tu patrulla, y usa nuestra Inteligencia Artificial para detectar que clave se utilizó.
-                            </p>
-
-                            <div class="tags">
-                                <span class="tag">
-                                    <i data-lucide="book-open" size="12"></i>
-                                    Aprende Métodos de Encriptación
-                                </span>
-                                <span class="tag">
-                                    <i data-lucide="message-square-dashed" size="12"></i>
-                                    Cifra tus Textos
-                                </span>
-                                <span class="tag">
-                                    <i data-lucide="brain-circuit" size="12"></i>
-                                    Detección con IA
-                                </span>
-                            </div>
-
-                            <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
-                                <a href="#download" class="btn-dl">
-                                    <div class="btn-dl-icon">
-                                        <i data-lucide="play" size="16" style="fill:white;"></i>
-                                    </div>
-                                    <div class="btn-dl-text">
-                                        <small>Descárgalo Gratis en</small>
-                                        <strong>Google Play</strong>
-                                    </div>
-                                </a>
-                                <a href="/encryptia/app" class="btn-dl" style="border-color: rgba(34, 211, 238, 0.4); background: rgba(34, 211, 238, 0.03);">
-                                    <div class="btn-dl-icon" style="background: linear-gradient(135deg, #22d3ee, #0891b2); box-shadow: 0 0 12px rgba(34, 211, 238, 0.4);">
-                                        <i data-lucide="globe" size="16" style="stroke:white; fill:none;"></i>
-                                    </div>
-                                    <div class="btn-dl-text">
-                                        <small>Usar en Navegador</small>
-                                        <strong>Versión Web</strong>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="flagship-right">
-                            <img
-                                src="./assets/hero-scout-image.png"
-                                alt="EncryptIA — App de encriptación con IA"
-                                class="flagship-img"
-                                onerror="this.src='https://images.unsplash.com/photo-1544383835-bda2bc62754a?q=80&w=2000&auto=format&fit=crop';"
-                            >
-                        </div>
-
-                    </div>
-                </div>
-
+        <!-- Bento Product Showcase -->
+        <section class="px-5 md:px-20 max-w-[1440px] mx-auto mb-[80px] md:mb-[160px]" id="projects">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-2 mb-12 text-center md:text-left">
+                <h2 class="font-headline-xl text-headline-xl font-bold">Trabajos Destacados</h2>
+                <div class="font-mono-label text-mono-label text-text-muted">[01]</div>
             </div>
-        </section>
-
-        <!-- ══════════════════════
-             ABOUT
-        ══════════════════════ -->
-        <section id="about">
-            <div class="container">
-                <div class="about-grid">
-
-                    <div class="about-left">
-                        <div class="label reveal">
-                            <div class="label-bar"></div>
-                            <span class="label-txt">Sobre Nosotros</span>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+                <!-- Card 1 (Large): Fogón App -->
+                <div class="md:col-span-8 surface-card p-5 md:p-8 lg:p-12 min-h-[280px] md:min-h-[360px] flex flex-col justify-end relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="material-symbols-outlined text-primary-container font-light" style="font-variation-settings: 'wght' 200;">flame</span>
+                            <span class="font-mono-label text-mono-label text-text-muted">APP.01</span>
                         </div>
-                        <h2 class="section-h reveal">Somos Bredaz</h2>
-                        <p class="section-sub reveal">
-                            Nacidos de la hermandad scout, en <strong>Bredaz</strong> somos un equipo de 2 personas, apasionados por aprender de la tecnología y ofrecer soluciones.
-                        </p>
-
-                        <div class="checkpoints">
-                            <div class="cp reveal">
-                                <span class="cp-num">01</span>
-                                <div class="cp-body">
-                                    <h4>Software innovador con propósito</h4>
-                                    <p>Nos dedicamos a crear software innovador que lleve el futuro de la tecnología a nuestros problemas cotidianos del entorno.</p>
-                                </div>
-                            </div>
-                            <div class="cp reveal">
-                                <span class="cp-num">02</span>
-                                <div class="cp-body">
-                                    <h4>Comunidad primero</h4>
-                                    <p>Creemos en aportar soluciones a la comunidad con aplicaciones prácticas y accesibles.</p>
-                                </div>
-                            </div>
-                            <div class="cp reveal">
-                                <span class="cp-num">03</span>
-                                <div class="cp-body">
-                                    <h4>IA al servicio de las personas</h4>
-                                    <p>Con <strong>EncryptIA</strong>, reimaginamos cómo los entusiastas viven su pasión por la criptografía, combinando encriptación clásica con los avances de la Inteligencia Artificial.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2">Fogón App</h3>
+                        <p class="font-body-md text-sm sm:text-body-md text-text-muted max-w-md">Cancionero digital offline optimizado para campamentos scouts. Ajusta tonos, lee acordes en modo nocturno y funciona sin señal.</p>
                     </div>
-
-                    <div class="about-right reveal">
-                        <div class="about-photo">
-                            <img
-                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop"
-                                alt="Equipo Bredaz trabajando juntos"
-                            >
-                        </div>
-                        <div class="info-card">
-                            <div class="info-card-icon">
-                                <i data-lucide="code-2" size="18" style="color:#fff;"></i>
-                            </div>
-                            <div class="info-card-text">
-                                <h5>Desarrolladores jovenes</h5>
-                                <p>Construyendo el futuro desde Argentina</p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-        </section>
-
-        <!-- ══════════════════════
-             CTA / DOWNLOAD
-        ══════════════════════ -->
-        <section id="download" class="cta-section">
-            <div class="container">
-                <div class="cta-box reveal">
-                    <h2>Consigue EncryptIA Ahora</h2>
-                    <p>Descárgala en tu celular o utilízala directamente desde tu navegador.</p>
-                    <div class="cta-actions">
-                        <a href="#" class="btn-dl">
-                            <div class="btn-dl-icon">
-                                <i data-lucide="play" size="16" style="fill:white;"></i>
-                            </div>
-                            <div class="btn-dl-text">
-                                <small>Descárgalo Gratis en</small>
-                                <strong>Google Play</strong>
-                            </div>
-                        </a>
-                        <a href="/encryptia/app" class="btn-dl" style="border-color: rgba(34, 211, 238, 0.4); background: rgba(34, 211, 238, 0.03);">
-                            <div class="btn-dl-icon" style="background: linear-gradient(135deg, #22d3ee, #0891b2); box-shadow: 0 0 12px rgba(34, 211, 238, 0.4);">
-                                <i data-lucide="globe" size="16" style="stroke:white; fill:none;"></i>
-                            </div>
-                            <div class="btn-dl-text">
-                                <small>Pruébalo al instante</small>
-                                <strong>Versión Web</strong>
-                            </div>
-                        </a>
-                        <a href="#products" class="btn btn-ghost" style="border-radius:var(--r); display: inline-flex; align-items: center; justify-content: center; height: 58px; box-sizing: border-box;">
-                            Ver todos los productos
-                        </a>
+                <!-- Card 2 (Medium): TrailMap -->
+                <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[280px] md:min-h-[360px] flex flex-col justify-between relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <div class="flex justify-end w-full relative z-10">
+                        <span class="material-symbols-outlined text-on-surface-variant font-light" style="font-variation-settings: 'wght' 200;">map</span>
+                    </div>
+                    <div class="relative z-10 mt-auto">
+                        <span class="font-mono-label text-mono-label text-text-muted">APP.02</span>
+                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2">TrailMap</h3>
+                        <p class="font-body-md text-sm sm:text-body-md text-text-muted">Visualizador de mapas topográficos offline para senderistas y actividades scouts en la naturaleza.</p>
+                    </div>
+                </div>
+                <!-- Card 3 (Small): GeoQuest -->
+                <div class="md:col-span-4 surface-card p-5 lg:p-8 min-h-[220px] md:min-h-[260px] flex flex-col justify-end relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="font-mono-label text-mono-label text-text-muted mb-4 border border-border-subtle w-fit px-2 py-1 rounded">APP.03</div>
+                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2 text-xl">GeoQuest</h3>
+                        <p class="font-body-md text-sm text-text-muted">Creador de búsquedas del tesoro y juegos de pistas offline para eventos comunitarios y actividades scouts.</p>
+                    </div>
+                </div>
+                <!-- Card 4 (Small): Developer Tooling -->
+                <div class="md:col-span-8 surface-card p-5 lg:p-8 min-h-[260px] md:min-h-[260px] flex flex-col justify-between items-start relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <div class="relative z-10">
+                        <span class="font-mono-label text-mono-label text-text-muted mb-2 block">HERRAMIENTAS</span>
+                        <h3 class="font-headline-lg text-headline-lg font-bold mb-2 text-xl">Librerías & Código Abierto</h3>
+                        <p class="font-body-md text-sm text-text-muted max-w-lg">Desarrollamos componentes y herramientas independientes para la comunidad web y el ecosistema scout.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4 md:mt-6 relative z-10">
+                        <span class="font-mono-label text-mono-label bg-surface-container px-3 py-1 rounded border border-border-subtle">EXIF_PARSE</span>
+                        <span class="font-mono-label text-mono-label bg-surface-container px-3 py-1 rounded border border-border-subtle">WASM_CORE</span>
+                        <span class="font-mono-label text-mono-label bg-surface-container px-3 py-1 rounded border border-border-subtle">RUST</span>
+                        <span class="font-mono-label text-mono-label bg-surface-container px-3 py-1 rounded border border-border-subtle">ZERO_KNOWLEDGE</span>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Flagship Feature Card: EncryptIA -->
+        <section class="px-5 md:px-20 max-w-[1440px] mx-auto mb-[80px] md:mb-[160px]">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-2 mb-12 text-center md:text-left">
+                <h2 class="font-headline-xl text-headline-xl font-bold">Tecnología Insignia</h2>
+                <div class="font-mono-label text-mono-label text-text-muted">[02]</div>
+            </div>
+            <div class="surface-card grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+                <div class="p-4 sm:p-8 md:p-16 flex flex-col justify-center items-center text-center lg:items-start lg:text-left border-b lg:border-b-0 lg:border-r border-border-subtle">
+                    <h3 class="font-headline-xl text-headline-xl font-bold mb-6">EncryptIA</h3>
+                    <p class="font-body-lg text-base sm:text-body-lg text-text-muted mb-8 max-w-lg mx-auto lg:mx-0">Aprende algoritmos criptográficos históricos y protege tus mensajes. Usa nuestro motor integrado con Inteligencia Artificial para analizar textos y reconocer las claves de cifrado clásico empleadas.</p>
+                    <ul class="space-y-4 mb-8 text-left w-full max-w-md mx-auto lg:mx-0">
+                        <li class="flex items-start space-x-3">
+                            <span class="material-symbols-outlined text-primary-container text-sm mt-1">check</span>
+                            <span class="font-body-md text-body-md">Cifrado interactivo César, Vigenère y Morse</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="material-symbols-outlined text-primary-container text-sm mt-1">check</span>
+                            <span class="font-body-md text-body-md">Detector inteligente de algoritmos de cifrado</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="material-symbols-outlined text-primary-container text-sm mt-1">check</span>
+                            <span class="font-body-md text-body-md">Disponible de forma gratuita en la versión Web</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <a href="/encryptia/app" class="bg-primary-container text-text-primary px-4 py-3 sm:px-6 sm:py-3 rounded font-mono-label text-mono-label hover:bg-inverse-primary transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Usar Versión Web</a>
+                        <a href="/encryptia/privacy.html" class="border border-border-subtle text-on-surface px-4 py-3 sm:px-6 sm:py-3 rounded font-mono-label text-mono-label hover:border-text-muted transition-colors inline-block text-center scale-95 active:scale-90 transition-transform">Privacidad</a>
+                    </div>
+                </div>
+                <div class="p-4 sm:p-8 md:p-16 bg-[#0a070b] flex items-center justify-center relative overflow-hidden cipher-widget-container">
+                    <!-- Interactive Cipher Widget Mock -->
+                    <div class="w-full max-w-sm border border-[#2c292d] bg-surface rounded-lg p-4 sm:p-6 relative z-10 shadow-2xl cipher-widget-screen">
+                        <div class="flex justify-between items-center mb-6 border-b border-border-subtle pb-4">
+                            <div class="font-mono-label text-mono-label text-text-muted">CIPHER_STREAM</div>
+                            <div class="flex space-x-2">
+                                <div class="w-2 h-2 rounded-full bg-primary-container"></div>
+                                <div class="w-2 h-2 rounded-full bg-surface-container-high"></div>
+                            </div>
+                        </div>
+                        <div class="font-mono-stat text-xs md:text-mono-stat text-on-surface break-all leading-relaxed tracking-wider h-48 overflow-hidden opacity-80" id="cipher-text">
+                            0xFA1B 0x77C3 0x90A1 0x22DD<br/>
+                            <span class="text-primary-container">0x88F1</span> 0xBB20 0x11CC 0x44EE<br/>
+                            0xAA33 0x99FF <span class="text-cyan-glow">0x22BB</span> 0x88CC<br/>
+                            0x77DD 0x11AA 0x33FF 0x99BB<br/>
+                            <span class="text-primary-container">0x44CC</span> 0x22EE 0x55AA 0x11FF<br/>
+                            0x88BB 0x33CC 0x77DD 0x99EE
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-border-subtle flex justify-between items-center">
+                            <div class="font-mono-label text-mono-label text-text-muted">ESTADO: <span class="text-cyan-glow">ACTIVO</span></div>
+                            <button class="text-on-surface font-mono-label border border-border-subtle px-3 py-1 rounded hover:bg-surface-container transition-colors text-xs" id="widget-cipher-btn">RE-CLAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Manifesto / Timeline -->
+        <section class="px-5 md:px-20 max-w-[1440px] mx-auto" id="manifesto">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-2 mb-24 border-b border-border-subtle pb-8 text-center md:text-left">
+                <h2 class="font-headline-xl text-headline-xl font-bold">El Manifiesto</h2>
+                <div class="font-mono-label text-mono-label text-text-muted">[03]</div>
+            </div>
+            <div class="relative border-l border-border-subtle ml-4 md:ml-[10%] pl-8 md:pl-16 space-y-24">
+                <!-- Timeline Item 1 -->
+                <div class="relative">
+                    <div class="absolute -left-[38px] md:-left-[70px] top-1 w-3 h-3 rounded-full bg-[#22d3ee] shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
+                    <div class="font-mono-label text-mono-label text-text-muted mb-4">2021</div>
+                    <h3 class="font-headline-lg text-headline-lg font-bold mb-4">La Privacidad Primero</h3>
+                    <p class="font-body-md text-body-md text-text-muted max-w-2xl">Reconocimos un fallo crítico en la arquitectura de aplicaciones modernas: la suposición de que los datos del usuario pertenecen al servidor. Reconstruimos todo nuestro stack para asegurar entornos de conocimiento cero como base, no como característica premium.</p>
+                </div>
+                <!-- Timeline Item 2 -->
+                <div class="relative">
+                    <div class="absolute -left-[38px] md:-left-[70px] top-1 w-3 h-3 rounded-full bg-[#22d3ee] shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
+                    <div class="font-mono-label text-mono-label text-text-muted mb-4">2022</div>
+                    <h3 class="font-headline-lg text-headline-lg font-bold mb-4">Resiliencia Primero sin Conexión</h3>
+                    <p class="font-body-md text-body-md text-text-muted max-w-2xl">El software no debería romperse cuando se pierde la conexión. Al implementar estrategias agresivas de prioridad local y tipos de datos replicados libres de conflictos (CRDTs), aseguramos que nuestras aplicaciones funcionen sin problemas independientemente de la estabilidad de la infraestructura.</p>
+                </div>
+                <!-- Timeline Item 3 -->
+                <div class="relative">
+                    <div class="absolute -left-[38px] md:-left-[70px] top-1 w-3 h-3 rounded-full bg-[#22d3ee] shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
+                    <div class="font-mono-label text-mono-label text-text-muted mb-4">2024</div>
+                    <h3 class="font-headline-lg text-headline-lg font-bold mb-4">Crecimiento Independiente</h3>
+                    <p class="font-body-md text-body-md text-text-muted max-w-2xl">Rechazamos el capital de riesgo para mantener una autonomía técnica absoluta. Nuestra lealtad es hacia el oficio, la web independiente y nuestros socios que valoran la ingeniería a medida por encima de las plataformas SaaS homogéneas.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- ══════════════════════
-         FOOTER
-    ══════════════════════ -->
-    <footer>
-        <div class="container">
-            <div class="footer-row">
-                <div>
-                    <div class="footer-logo">
-                        <div class="logo-img-wrap">
-                            <img src="./assets/logo.png" alt="Bredaz">
-                        </div>
-                    </div>
-                    <p class="footer-copy">© 2026 Bredaz — Todos los derechos reservados.</p>
+    <!-- Footer -->
+    <footer class="bg-surface-deep w-full py-20 border-t border-border-subtle" id="contact">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 px-5 md:px-20 max-w-[1440px] mx-auto">
+            <div class="md:col-span-6 flex flex-col items-center text-center md:items-start md:text-left mb-8 md:mb-0">
+                <a class="text-headline-lg font-headline-lg text-on-surface font-bold mb-4 block" href="#">Bredaz</a>
+                <p class="font-mono-label text-mono-label text-tertiary mb-8">© 2026 Bredaz Studio. Construido para la web independiente.</p>
+            </div>
+            <div class="md:col-span-6 flex flex-col items-center md:items-end justify-between font-body-md text-body-md text-center md:text-right">
+                <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 mb-8">
+                    <a class="text-text-muted hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="/encryptia/privacy.html">Privacidad</a>
+                    <a class="text-text-muted hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="#">Términos</a>
+                    <a class="text-text-muted hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="https://github.com">Fuente</a>
                 </div>
-                <div class="footer-links">
-                    <a href="/encryptia/privacy.html">Privacidad de EncryptIA</a>
-                    <a href="mailto:support@bredaz.com">support@bredaz.com</a>
-                </div>
+                <a href="mailto:support@bredaz.com" class="font-mono-label text-mono-label border border-border-subtle px-4 py-2 rounded text-on-surface hover:bg-surface-container transition-colors w-fit inline-block text-center scale-95 active:scale-90 transition-transform mx-auto md:mx-0">support@bredaz.com</a>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script>
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            // ─────────────────────────────────────────
+            // 1. DYNAMIC SCROLL REVEAL
+            // ─────────────────────────────────────────
+            const revealTargets = document.querySelectorAll('section, footer');
+            revealTargets.forEach((el, index) => {
+                el.classList.add('reveal-item');
+                // Give staggered index delay for clean visual waterfall reveals
+                el.style.transitionDelay = `${(index % 3) * 100}ms`;
+            });
 
-        // Measure real header height and expose as CSS variable
-        const header = document.getElementById('site-header');
-        function updateHeaderHeight() {
-            document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
-        }
-        updateHeaderHeight();
-        window.addEventListener('resize', updateHeaderHeight, { passive: true });
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.05,
+                rootMargin: '0px 0px -40px 0px'
+            });
 
-        // Header dark state on scroll
-        const onScroll = () => header.classList.toggle('dark', window.scrollY > 30);
-        window.addEventListener('scroll', onScroll, { passive: true });
+            revealTargets.forEach(el => revealObserver.observe(el));
 
-        // Hamburger toggle
-        const ham = document.getElementById('hamburger');
-        const nav = document.getElementById('nav-links');
+            // ─────────────────────────────────────────
+            // 2. SPOTLIGHT BORDER EFFECT FOR CARDS
+            // ─────────────────────────────────────────
+            const cards = document.querySelectorAll('.surface-card');
+            cards.forEach(card => {
+                card.classList.add('spotlight-card');
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
 
-        ham.addEventListener('click', () => {
-            const open = nav.classList.toggle('open');
-            ham.querySelector('i').setAttribute('data-lucide', open ? 'x' : 'menu');
-            lucide.createIcons();
-        });
+            // ─────────────────────────────────────────
+            // 3. MATRIX CIPHER STREAM DECRYPTOR
+            // ─────────────────────────────────────────
+            const cipherText = document.getElementById('cipher-text');
+            const widgetBtn = document.getElementById('widget-cipher-btn');
 
-        // Close menu on link click
-        document.querySelectorAll('.nav-link, .nav-cta-mobile').forEach(l => l.addEventListener('click', () => {
-            nav.classList.remove('open');
-            ham.querySelector('i').setAttribute('data-lucide', 'menu');
-            lucide.createIcons();
-        }));
+            const secretPhrases = [
+                "BREDAZ{ALWAYS_BE_PREPARED}<br/>0x77DD 0x11AA 0x33FF 0x99BB<br/>ESTADO: CONEXIÓN_SEGURA",
+                "ENCRYPTIA{DECRYPTED_OK_2026}<br/>0x88F1 0xBB20 0x11CC 0x44EE<br/>MÉTODO: CÉSAR_SHIFT_3",
+                "FOGON{LOCAL_OFFLINE_SONGS}<br/>0xAA33 0x99FF 0x22BB 0x88CC<br/>BASE_DATOS: CARGADA_CORRECTO",
+                "TRAILMAP{GPS_ACTIVE_ZERO_DATA}<br/>0xFA1B 0x77C3 0x90A1 0x22DD<br/>COORD: 34.6037_S_58.3816_W"
+            ];
+            let currentPhraseIdx = 0;
 
-        // Scroll reveal
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach((e, i) => {
-                if (e.isIntersecting) {
-                    const siblings = [...e.target.parentElement.querySelectorAll('.reveal')];
-                    const idx = siblings.indexOf(e.target);
-                    setTimeout(() => e.target.classList.add('visible'), idx * 60);
-                    io.unobserve(e.target);
+            function scrambleDecodeText(targetText) {
+                const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ{}[_]:';
+                let iteration = 0;
+                const interval = setInterval(() => {
+                    cipherText.innerHTML = targetText
+                        .split('')
+                        .map((char, index) => {
+                            if (char === '<' || char === 'b' || char === 'r' || char === '/' || char === '>') {
+                                return char; // Skip HTML tags to avoid breaking markup
+                            }
+                            if (index < iteration) {
+                                return targetText[index];
+                            }
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        })
+                        .join('');
+                    
+                    if (iteration >= targetText.length) {
+                        clearInterval(interval);
+                    }
+                    iteration += 2;
+                }, 30);
+            }
+
+            if (cipherText) {
+                // Initial load decrypt scramble
+                scrambleDecodeText(secretPhrases[0]);
+            }
+
+            if (widgetBtn) {
+                widgetBtn.addEventListener('click', () => {
+                    currentPhraseIdx = (currentPhraseIdx + 1) % secretPhrases.length;
+                    scrambleDecodeText(secretPhrases[currentPhraseIdx]);
+                });
+            }
+
+            // ─────────────────────────────────────────
+            // 4. HERO PHONE MOCKUP PARALLAX
+            // ─────────────────────────────────────────
+            const heroFrame = document.querySelector('.hero-frame');
+            const heroSection = document.querySelector('.hero');
+
+            if (heroFrame && heroSection) {
+                heroSection.addEventListener('mousemove', (e) => {
+                    const rect = heroSection.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    const rotateX = -(y / rect.height) * 20; // max 20deg tilt
+                    const rotateY = (x / rect.width) * 20;
+                    
+                    heroFrame.style.transition = 'none';
+                    heroFrame.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                heroSection.addEventListener('mouseleave', () => {
+                    heroFrame.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                    heroFrame.style.transform = `perspective(1000px) rotateX(2deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
+            }
+
+            // ─────────────────────────────────────────
+            // 4b. ENCRYPTIA CIPHER WIDGET 3D ZOOM REVEAL
+            // ─────────────────────────────────────────
+            const widgetScreen = document.querySelector('.cipher-widget-screen');
+            if (widgetScreen) {
+                const widgetObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('screen-open');
+                        } else {
+                            entry.target.classList.remove('screen-open');
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+                widgetObserver.observe(widgetScreen);
+            }
+
+
+
+            let isClickScrolling = null; // Stores targetId (string) or null
+            let scrollEndTimeout = null;
+
+            // Scroll spy sections configuration
+            const spySections = [
+                { id: '#', element: document.querySelector('main') },
+                { id: '#projects', element: document.getElementById('projects') },
+                { id: '#manifesto', element: document.getElementById('manifesto') },
+                { id: '#contact', element: document.getElementById('contact') }
+            ];
+
+            function setLinkActive(activeId) {
+                const allNavLinks = document.querySelectorAll('.nav-link-item');
+                allNavLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === activeId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            function highlightActiveNav() {
+                if (isClickScrolling) {
+                    setLinkActive(isClickScrolling);
+                    return;
+                }
+
+                const isMobile = window.innerWidth < 768;
+                const comfortGap = isMobile ? 24 : 40;
+                const navHeight = document.getElementById('nav-container').offsetHeight || 80;
+                const scrollPos = window.scrollY + navHeight + comfortGap + 20;
+                
+                // Edge case: if we hit the bottom of the document, force-highlight the last section (#contact)
+                const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 20);
+                let activeId = '#';
+
+                if (isAtBottom) {
+                    activeId = '#contact';
+                } else {
+                    spySections.forEach(sec => {
+                        if (sec.element) {
+                            const top = sec.element.offsetTop;
+                            if (scrollPos >= top) {
+                                activeId = sec.id;
+                            }
+                        }
+                    });
+                }
+
+                setLinkActive(activeId);
+            }
+
+            // ─────────────────────────────────────────
+            // 5. STICKY HEADER SCROLL TINT & PROGRESS
+            // ─────────────────────────────────────────
+            const header = document.getElementById('site-header');
+            const progressBar = document.getElementById('scroll-progress');
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                // Add scrolled background tint
+                if (currentScrollY > 50) {
+                    header.classList.add('site-header-scrolled');
+                } else {
+                    header.classList.remove('site-header-scrolled');
+                }
+
+                // Update scroll progress bar
+                const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (totalHeight > 0) {
+                    const progress = (currentScrollY / totalHeight) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+
+                // Close mobile menu on scroll
+                if (mobileMenu && mobileMenu.classList.contains('menu-open')) {
+                    mobileMenu.classList.remove('menu-open');
+                    const icon = menuToggle.querySelector('span');
+                    if (icon) {
+                        icon.textContent = 'menu';
+                    }
+                }
+
+                // If click scrolling, keep resetting fallback timeout so scroll spy doesn't kick in until silence
+                if (isClickScrolling) {
+                    if (scrollEndTimeout) clearTimeout(scrollEndTimeout);
+                    scrollEndTimeout = setTimeout(() => {
+                        isClickScrolling = null;
+                        highlightActiveNav();
+                    }, 150);
+                    setLinkActive(isClickScrolling);
+                    return;
+                }
+
+                // Scroll spy call
+                highlightActiveNav();
+            }, { passive: true });
+
+            // Close mobile menu on clicking outside
+            document.addEventListener('click', (e) => {
+                if (mobileMenu && mobileMenu.classList.contains('menu-open')) {
+                    if (!header.contains(e.target)) {
+                        mobileMenu.classList.remove('menu-open');
+                        const icon = menuToggle.querySelector('span');
+                        if (icon) {
+                            icon.textContent = 'menu';
+                        }
+                    }
                 }
             });
-        }, { threshold: 0.08 });
 
-        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+            // Initial highlight trigger
+            highlightActiveNav();
+
+            // ─────────────────────────────────────────
+            // 6. CUSTOM FLUID OFFSET SMOOTH SCROLL
+            // ─────────────────────────────────────────
+            const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+            smoothScrollLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href');
+                    e.preventDefault();
+                    
+                    let offsetPosition = 0;
+                    if (targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            const isMobile = window.innerWidth < 768;
+                            const shrinkDiff = isMobile ? 8 : 16;
+                            const comfortGap = isMobile ? 24 : 40;
+                            const headerScrolled = document.getElementById('site-header').classList.contains('site-header-scrolled');
+                            let navHeight = document.getElementById('nav-container').offsetHeight || 80;
+                            if (!headerScrolled && window.scrollY < 50) {
+                                navHeight -= shrinkDiff;
+                            }
+                            const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                            offsetPosition = elementPosition - navHeight - comfortGap;
+                        } else {
+                            return;
+                        }
+                    }
+
+                    // Lock scroll spy updates during scroll animation
+                    isClickScrolling = targetId;
+                    setLinkActive(targetId);
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Release lock when scroll completes
+                    const resetScrollLock = () => {
+                        isClickScrolling = null;
+                        highlightActiveNav();
+                    };
+
+                    const onScrollEnd = () => {
+                        window.removeEventListener('scrollend', onScrollEnd);
+                        if (scrollEndTimeout) clearTimeout(scrollEndTimeout);
+                        resetScrollLock();
+                    };
+
+                    window.addEventListener('scrollend', onScrollEnd);
+
+                    if (scrollEndTimeout) clearTimeout(scrollEndTimeout);
+                    scrollEndTimeout = setTimeout(() => {
+                        window.removeEventListener('scrollend', onScrollEnd);
+                        resetScrollLock();
+                    }, 800);
+                });
+            });
+
+            // ─────────────────────────────────────────
+            // 7. MOBILE NAV DROPDOWN TOGGLE
+            // ─────────────────────────────────────────
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    const isOpen = mobileMenu.classList.toggle('menu-open');
+                    const icon = menuToggle.querySelector('span');
+                    if (icon) {
+                        icon.textContent = isOpen ? 'close' : 'menu';
+                    }
+                });
+
+                // Close dropdown on clicking any link
+                const mobileLinks = mobileMenu.querySelectorAll('a, button');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('menu-open');
+                        const icon = menuToggle.querySelector('span');
+                        if (icon) {
+                            icon.textContent = 'menu';
+                        }
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>

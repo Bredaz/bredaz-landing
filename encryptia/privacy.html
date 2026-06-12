@@ -53,24 +53,24 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg:   #080508;
-            --bg-2: #0d0709;
-            --bg-3: #12090b;
+            --bg:   #080609;
+            --bg-2: #0e0a0f;
+            --bg-3: #161018;
             --s0: rgba(255,255,255,0.03);
             --s1: rgba(255,255,255,0.06);
-            --b0: rgba(255,255,255,0.07);
-            --b1: rgba(255,255,255,0.13);
-            --t1: #f5eef0;
-            --t2: #9a8088;
-            --t3: #554048;
-            --v1: #8B1A2E;
-            --v2: #6B0F22;
-            --v3: #C4314B;
-            --vg: rgba(139,26,46,0.30);
+            --b0: rgba(255, 255, 255, 0.05);
+            --b1: rgba(255, 255, 255, 0.12);
+            --t1: #f5f2f6;
+            --t2: #a39ba6;
+            --t3: #625966;
+            --v1: #d62246;
+            --v2: #161018;
+            --v3: #f13b5e;
+            --vg: rgba(214, 34, 70, 0.25);
             --r:  18px;
             --r-sm: 10px;
         }
@@ -79,12 +79,17 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background: var(--bg);
             color: var(--t1);
             -webkit-font-smoothing: antialiased;
             line-height: 1.7;
             min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
         }
 
         a { color: var(--v3); text-decoration: none; transition: color 0.2s; }
