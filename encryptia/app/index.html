@@ -440,6 +440,13 @@
                 </div>
             </div>
 
+            <a href="https://play.google.com/store/apps/details?id=com.bredaz.encryptia" class="install-btn" id="btn-play-store" style="display: none; text-decoration: none;" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;">
+                    <path d="M5 3.01c-.28 0-.53.11-.71.29L14.74 13.75l1.63-1.63L5 3.01zm11.45 11.45L4.29 20.7c.18.18.43.3.71.3l11.45-11.45-1.63-1.63zM3.29 4.29c-.18.18-.29.43-.29.71v14c0 .28.11.53.29.71L13.75 9.71 3.29 4.29zm17.57 6.13l-3.52-2.03-2.12 2.12 2.12 2.12 3.52-2.03c.8-.46.8-1.2 0-1.66z"/>
+                </svg>
+                Descargar en Play Store
+            </a>
+
             <button class="install-btn" id="btn-pwa-install" style="display: none;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -450,6 +457,12 @@
             </button>
             
             <button class="install-cancel-link" id="pwa-install-cancel">Continuar en el navegador</button>
+
+            <div id="android-playstore-options" style="display: none; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; margin-top: 4px; width: 100%;">
+                <button class="install-cancel-link" id="btn-pwa-install-alt">Descargar la web-app</button>
+                <span style="color: #64748b;">o</span>
+                <button class="install-cancel-link" id="pwa-install-cancel-alt">continuar en el navegador</button>
+            </div>
         </div>
     </div>
 
@@ -460,6 +473,10 @@
       const cancelLink = document.getElementById('pwa-install-cancel');
       const stepContainer = document.getElementById('pwa-steps-content');
       const instructionTitle = document.getElementById('pwa-instruction-title');
+      const playStoreBtn = document.getElementById('btn-play-store');
+      const androidOptions = document.getElementById('android-playstore-options');
+      const installBtnAlt = document.getElementById('btn-pwa-install-alt');
+      const cancelLinkAlt = document.getElementById('pwa-install-cancel-alt');
 
       function isIos() {
         const userAgent = window.navigator.userAgent.toLowerCase();
@@ -477,52 +494,76 @@
         return 'desktop';
       }
 
+      function hasPlayStore() {
+        const ua = window.navigator.userAgent.toLowerCase();
+        const isAndroid = /android/.test(ua);
+        if (!isAndroid) return false;
+        // Exclude devices without Google Play Store (e.g. Huawei, Amazon Kindle)
+        const isHuawei = /huawei|harmonyos|hms/.test(ua);
+        const isAmazon = /silk|kindle|kftt|kfot|amazon/.test(ua);
+        return !isHuawei && !isAmazon;
+      }
+
       function showInstallOverlay() {
         const platform = getPlatform();
+        const useAndroidPlayStoreFlow = platform === 'android' && hasPlayStore();
         
-        if (platform === 'ios') {
-          instructionTitle.textContent = "Instalación en iPhone / iPad";
-          stepContainer.innerHTML = `
-            <div class="install-step">
-              <div class="install-step-num">1</div>
-              <span>Toca el botón <strong>Compartir</strong> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px; display:inline-block; vertical-align:middle; margin:-2px 2px 0;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> en la barra inferior de Safari.</span>
-            </div>
-            <div class="install-step">
-              <div class="install-step-num">2</div>
-              <span>Busca y selecciona la opción <strong>"Agregar al inicio"</strong>.</span>
-            </div>
-          `;
+        if (useAndroidPlayStoreFlow) {
+          document.querySelector('.install-instruction-box').style.display = 'none';
           installBtn.style.display = 'none';
-        } else if (platform === 'android') {
-          instructionTitle.textContent = "Instalación en Android";
-          stepContainer.innerHTML = `
-            <div class="install-step">
-              <div class="install-step-num">1</div>
-              <span>Presiona el botón <strong>"Instalar Aplicación"</strong> abajo.</span>
-            </div>
-            <div class="install-step">
-              <div class="install-step-num">2</div>
-              <span>Si no se abre, toca los 3 puntos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px; display:inline-block; vertical-align:middle;"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg> arriba a la derecha en Chrome y selecciona <strong>"Instalar aplicación"</strong>.</span>
-            </div>
-          `;
-          // If deferredPrompt is already captured, show the install button
-          if (deferredPrompt) {
-            installBtn.style.display = 'flex';
-          }
+          cancelLink.style.display = 'none';
+          
+          playStoreBtn.style.display = 'flex';
+          androidOptions.style.display = 'flex';
         } else {
-          instructionTitle.textContent = "Instalación en Computadora";
-          stepContainer.innerHTML = `
-            <div class="install-step">
-              <div class="install-step-num">1</div>
-              <span>Presiona el botón <strong>"Instalar Aplicación"</strong> abajo.</span>
-            </div>
-            <div class="install-step">
-              <div class="install-step-num">2</div>
-              <span>O haz click en el icono de instalación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px; display:inline-block; vertical-align:middle;"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg> en la barra de direcciones superior.</span>
-            </div>
-          `;
-          if (deferredPrompt) {
-            installBtn.style.display = 'flex';
+          document.querySelector('.install-instruction-box').style.display = 'block';
+          playStoreBtn.style.display = 'none';
+          androidOptions.style.display = 'none';
+          cancelLink.style.display = 'inline-block';
+          
+          if (platform === 'ios') {
+            instructionTitle.textContent = "Instalación en iPhone / iPad";
+            stepContainer.innerHTML = `
+              <div class="install-step">
+                <div class="install-step-num">1</div>
+                <span>Toca el botón <strong>Compartir</strong> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px; display:inline-block; vertical-align:middle; margin:-2px 2px 0;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> en la barra inferior de Safari.</span>
+              </div>
+              <div class="install-step">
+                <div class="install-step-num">2</div>
+                <span>Busca y selecciona la opción <strong>"Agregar al inicio"</strong>.</span>
+              </div>
+            `;
+            installBtn.style.display = 'none';
+          } else if (platform === 'android') {
+            instructionTitle.textContent = "Instalación en Android";
+            stepContainer.innerHTML = `
+              <div class="install-step">
+                <div class="install-step-num">1</div>
+                <span>Presiona el botón <strong>"Instalar Aplicación"</strong> abajo.</span>
+              </div>
+              <div class="install-step">
+                <div class="install-step-num">2</div>
+                <span>Si no se abre, toca los 3 puntos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px; display:inline-block; vertical-align:middle;"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg> arriba a la derecha en Chrome y selecciona <strong>"Instalar aplicación"</strong>.</span>
+              </div>
+            `;
+            if (deferredPrompt) {
+              installBtn.style.display = 'flex';
+            }
+          } else {
+            instructionTitle.textContent = "Instalación en Computadora";
+            stepContainer.innerHTML = `
+              <div class="install-step">
+                <div class="install-step-num">1</div>
+                <span>Presiona el botón <strong>"Instalar Aplicación"</strong> abajo.</span>
+              </div>
+              <div class="install-step">
+                <div class="install-step-num">2</div>
+                <span>O haz click en el icono de instalación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px; display:inline-block; vertical-align:middle;"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg> en la barra de direcciones superior.</span>
+              </div>
+            `;
+            if (deferredPrompt) {
+              installBtn.style.display = 'flex';
+            }
           }
         }
 
@@ -532,30 +573,39 @@
       window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        if (getPlatform() !== 'ios') {
+        const platform = getPlatform();
+        if (platform !== 'ios' && !(platform === 'android' && hasPlayStore())) {
           installBtn.style.display = 'flex';
         }
       });
 
-      installBtn.addEventListener('click', async () => {
-        if (!deferredPrompt) return;
+      async function triggerPwaInstall() {
+        if (!deferredPrompt) {
+          alert('La instalación como Web App no está disponible en este momento. Puedes usar la opción "Instalar aplicación" o "Agregar a pantalla principal" del menú de tu navegador.');
+          return;
+        }
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
         if (outcome === 'accepted') {
           deferredPrompt = null;
           overlay.classList.remove('show');
         }
-      });
+      }
 
-      cancelLink.addEventListener('click', () => {
+      installBtn.addEventListener('click', triggerPwaInstall);
+      installBtnAlt.addEventListener('click', triggerPwaInstall);
+
+      function dismissOverlay() {
         overlay.classList.remove('show');
-        // Cache dismissal timestamp to avoid showing on every page reload for 1 hour
         localStorage.setItem('pwa-overlay-dismissed', Date.now());
-      });
+      }
+
+      cancelLink.addEventListener('click', dismissOverlay);
+      cancelLinkAlt.addEventListener('click', dismissOverlay);
 
       document.addEventListener('DOMContentLoaded', () => {
         const dismissedTime = localStorage.getItem('pwa-overlay-dismissed');
-        const delayPeriod = 60 * 60 * 1000; // 1 hour cooldown to not be extremely annoying, but still highly suggest
+        const delayPeriod = 60 * 60 * 1000; // 1 hour cooldown
         
         if (!isStandalone()) {
           if (!dismissedTime || (Date.now() - dismissedTime > delayPeriod)) {
