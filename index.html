@@ -3,7 +3,77 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Bredaz</title>
+    <title>Bredaz — Software con propósito real | Estudio de software en Buenos Aires</title>
+    <meta name="description" content="Bredaz es un estudio de software de dos personas con base en Buenos Aires, Argentina. Creamos EncryptIA, la app que enseña encriptación clásica y usa inteligencia artificial para identificar claves."/>
+    <meta name="keywords" content="Bredaz, EncryptIA, estudio de software, Buenos Aires, Argentina, inteligencia artificial, encriptación"/>
+    <meta name="author" content="Bredaz"/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" href="https://bredaz.com/"/>
+
+    <!-- Open Graph / Social -->
+    <meta property="og:site_name" content="Bredaz"/>
+    <meta property="og:title" content="Bredaz — Software con propósito real"/>
+    <meta property="og:description" content="Estudio de software de dos personas con base en Buenos Aires. Creadores de EncryptIA."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://bredaz.com/"/>
+    <meta property="og:image" content="https://bredaz.com/assets/hero-image.png"/>
+    <meta property="og:locale" content="es_AR"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@somosbredaz"/>
+    <meta name="twitter:title" content="Bredaz — Software con propósito real"/>
+    <meta name="twitter:description" content="Estudio de software de dos personas con base en Buenos Aires. Creadores de EncryptIA."/>
+    <meta name="twitter:image" content="https://bredaz.com/assets/hero-image.png"/>
+
+    <!-- Structured data: Organization + Website + App -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://bredaz.com/#organization",
+          "name": "Bredaz",
+          "alternateName": "Bredaz Software Studio",
+          "url": "https://bredaz.com",
+          "logo": "https://bredaz.com/assets/logo.png",
+          "email": "support@bredaz.com",
+          "description": "Estudio de software de dos personas con base en Buenos Aires, Argentina. Desarrolla EncryptIA, aplicación de encriptación clásica con inteligencia artificial.",
+          "foundingDate": "2025",
+          "numberOfEmployees": {"@type": "QuantitativeValue", "value": 2},
+          "founder": [
+            {"@type": "Person", "name": "Juan Martín Cerezo", "jobTitle": "Co-fundador y CTO"},
+            {"@type": "Person", "name": "Juan Francisco", "jobTitle": "Co-fundador"}
+          ],
+          "address": {"@type": "PostalAddress", "addressLocality": "Ciudad Autónoma de Buenos Aires", "addressCountry": "AR"},
+          "contactPoint": {"@type": "ContactPoint", "email": "support@bredaz.com", "contactType": "customer support", "availableLanguage": ["es", "en"]},
+          "sameAs": [
+            "https://github.com/Bredaz",
+            "https://www.instagram.com/somosbredaz",
+            "https://x.com/somosbredaz",
+            "https://www.tiktok.com/@somosbredaz"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://bredaz.com/#website",
+          "url": "https://bredaz.com",
+          "name": "Bredaz",
+          "inLanguage": "es",
+          "publisher": {"@id": "https://bredaz.com/#organization"}
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "EncryptIA by Bredaz",
+          "alternateName": "EncryptIA",
+          "operatingSystem": "Android, iOS, Web",
+          "applicationCategory": "EducationalApplication",
+          "url": "https://play.google.com/store/apps/details?id=com.bredaz.encryptia",
+          "author": {"@id": "https://bredaz.com/#organization"},
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ARS"}
+        }
+      ]
+    }
+    </script>
     
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
@@ -224,7 +294,7 @@
                 <span>Bredaz</span>
             </a>
             <div class="hidden md:flex space-x-8 items-center font-mono-label text-mono-label">
-                <a class="nav-link-item active" href="#">Nosotros</a>
+                <a class="nav-link-item" href="./nosotros.html">Nosotros</a>
                 <a class="nav-link-item" href="#encryptia">EncryptIA</a>
                 <a class="nav-link-item" href="#projects">Proyectos</a>
                 <a class="nav-link-item" href="#manifesto">Manifiesto</a>
@@ -237,7 +307,7 @@
         </div>
         <!-- Mobile Dropdown Menu (Animated via height and opacity in CSS) -->
         <div class="md:hidden bg-background border-t border-border-subtle px-5 py-6 flex flex-col items-center space-y-4 font-mono-label text-mono-label" id="mobile-menu">
-            <a class="nav-link-item block w-fit active" href="#">Nosotros</a>
+            <a class="nav-link-item block w-fit" href="./nosotros.html">Nosotros</a>
             <a class="nav-link-item block w-fit" href="#encryptia">EncryptIA</a>
             <a class="nav-link-item block w-fit" href="#projects">Proyectos</a>
             <a class="nav-link-item block w-fit" href="#manifesto">Manifiesto</a>
@@ -414,9 +484,11 @@
             </div>
             <div class="md:col-span-6 flex flex-col items-center md:items-end justify-between font-body-md text-body-md text-center md:text-right">
                 <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 mb-8">
+                    <a class="text-text-muted hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="./nosotros.html">Nosotros</a>
+                    <a class="text-text-muted hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="./terminos.html">Términos</a>
                     <a class="text-text-muted hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="/encryptia/privacy.html">Privacidad</a>
                 </div>
-                <button class="font-mono-label text-mono-label border border-border-subtle px-4 py-2 rounded text-on-surface hover:bg-surface-container transition-colors w-fit inline-block text-center scale-95 active:scale-90 transition-transform mx-auto md:mx-0" id="footer-contact-btn">support@bredaz.com</button>
+                <a class="font-mono-label text-mono-label border border-border-subtle px-4 py-2 rounded text-on-surface hover:bg-surface-container transition-colors w-fit inline-block text-center scale-95 active:scale-90 transition-transform mx-auto md:mx-0" href="mailto:support@bredaz.com?subject=Consulta%20-%20Bredaz" id="footer-contact-btn">support@bredaz.com</a>
             </div>
         </div>
     </footer>
@@ -732,7 +804,6 @@
             const openBtns = [
                 document.getElementById('nav-contact-btn'),
                 document.getElementById('mobile-contact-btn'),
-                document.getElementById('footer-contact-btn'),
                 ...document.querySelectorAll('.contact-trigger-btn')
             ].filter(Boolean);
             const closeBtn = document.getElementById('close-modal-btn');
