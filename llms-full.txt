@@ -17,6 +17,8 @@ Explorar Bredaz Descargar EncryptIA
 
 ## Producto Estrella
 
+[01]
+
 ### EncryptIA
 
 Bredaz presenta EncryptIA, nacida en el mundo scout. Aprende métodos de encriptación clásicos, cifra mensajes con tu patrulla, y usa nuestra Inteligencia Artificial para detectar que clave se utilizó.
@@ -27,11 +29,17 @@ Bredaz presenta EncryptIA, nacida en el mundo scout. Aprende métodos de encript
 
 [ Disponible en Google Play ](https://play.google.com/store/apps/details?id=com.bredaz.encryptia) [ iPhone Usar Web ](/encryptia/app) [ Usar Versión Web ](/encryptia/app) [Ver Privacidad](/encryptia/privacy.html)
 
+enhanced_encryption
+
 +40
 
 Métodos de Encriptación
 
+INCLUIDOS
+
 ## Nuestros Proyectos
+
+[02]
 
 lock APP.01
 
@@ -55,6 +63,8 @@ Contactanos
 
 ## El Manifiesto
 
+[03]
+
 ### Software innovador con propósito
 
 Nos dedicamos a crear software innovador que lleve el futuro de la tecnología a nuestros problemas cotidianos del entorno.
@@ -63,11 +73,656 @@ Nos dedicamos a crear software innovador que lleve el futuro de la tecnología a
 
 Con EncryptIA, reimaginamos cómo los entusiastas viven su pasión por la criptografía, combinando encriptación clásica con los avances de la Inteligencia Artificial.
 
+close
+
+mail
+
 ### Enviar Correo
 
 Escribinos a support@bredaz.com
 
 Abrir Correo  Cerrar
+
+
+---
+
+# Claves scout — guía completa
+
+URL: https://bredaz.com/claves-scout/
+
+1 Qué es una clave scout
+
+Una **clave scout** es un método de cifrado clásico que se usa para escribir mensajes que solo pueden leer quienes conocen la clave. Hay tres familias: las que **cambian letras** por otras letras (sustitución, como César o Vigenère), las que **cambian el orden** de las letras (transposición, como la escítala) y las que **cambian el símbolo** (gráficas y numéricas, como el murciélago, el chancho, los naipes o el teléfono).
+
+En el scoutismo se usan desde los primeros campamentos: sirven para mensajes entre patrullas, pruebas de técnica y para la mística de una ceremonia. Casi todas se pueden escribir y descifrar con lápiz y papel, que es justamente lo que las hace útiles en el monte.
+
+## 2 Las 10 claves más usadas
+
+Clave| Dificultad| Qué es  
+---|---|---  
+[Clave del murciélago](/claves-scout/murcielago.html)| 3/5| La clave del murciélago es una sustitución gráfica: cada letra del alfabeto se reemplaza por un símbolo propio hecho de trazos y arcos, y el alfabeto completo queda parecido a una fila de murciélagos con las alas abiertas.  
+[Clave del chancho (o del cerdito)](/claves-scout/chancho-cerdito.html)| 3/5| La clave del chancho es una sustitución geométrica: las letras se ubican en una grilla de 3×3 y cada letra se escribe como la parte de la grilla que la contiene, con un punto cuando corresponde al segundo grupo.  
+[Clave del teléfono](/claves-scout/telefono.html)| 2/5| La clave del teléfono reemplaza cada letra por dos números: el primero indica el tecla del teclado viejo (2 al 9) y el segundo la posición de la letra dentro de esa tecla.  
+[Clave de los naipes](/claves-scout/naipes.html)| 4/5| La clave de los naipes usa un mazo de cartas como tabla: se arma una grilla de cuatro palos por trece valores (52 casillas) y se le asigna una carta a cada letra del alfabeto y al espacio.  
+[Clave César (clave del correo)](/claves-scout/cesar.html)| 1/5| La clave César reemplaza cada letra por la que está un número fijo de posiciones más adelante en el alfabeto.  
+[Clave de los números (A1Z26)](/claves-scout/numeros-a1z26.html)| 1/5| La clave de los números asigna un número a cada letra: A es 1, B es 2, C es 3… y Z es 26.  
+[Clave de la escítala](/claves-scout/escitala.html)| 4/5| La clave de la escítala es una transposición: las letras no se cambian, se mezclan de lugar.  
+[Clave Morse (telégrafo)](/claves-scout/morse.html)| 2/5| La clave Morse reemplaza cada letra por una combinación de puntos y rayas (cortas y largas).  
+[Clave del revés (inversa)](/claves-scout/inverso.html)| 1/5| La clave del revés invierte el mensaje: se escribe al revés, se lee de derecha a izquierda o se cambia el orden de las palabras.  
+[Clave Vigenère](/claves-scout/vigenere.html)| 5/5| La clave Vigenère usa una palabra clave: se escribe la palabra repetida sobre el mensaje y cada letra del mensaje se corre tantas posiciones como la letra de la clave que le toca.  
+  
+Además de estas diez, en las patrullas aparecen las **claves de banderas** (semáforo), el **alfabeto griego** , la **clave binaria** , la **clave del tarro** y las variantes con palabra clave. Funcionan con la misma lógica: una tabla acordada y un mensaje que se reescribe.
+
+## 3 Cómo aprender las claves scout (paso a paso)
+
+  1. **Empezá por una clave simple.** La clave del revés o la de los números se aprenden en cinco minutos y dan una victoria rápida.
+  2. **Entendé la mecánica antes que la tabla.** ¿Cambia letras, cambia el orden o cambia el símbolo? Con esa idea, cualquier tabla se lee sin ayuda.
+  3. **Practicá con mensajes reales de la patrulla.** Un aviso, una cita, una broma: el mensaje tiene que importar para que la práctica se recuerde.
+  4. **Subí de dificultad.** Después del revés vienen César, números, teléfono, chancho y murciélago; al final escítala y Vigenère.
+  5. **Practicá con la app.** En [EncryptIA](/encryptia/) cada clave trae su tabla y el descifrado asistido por IA, así se practica sin instructor.
+
+## 4 Cómo descifrar un mensaje sin la clave
+
+El primer paso es reconocer la familia. Si el mensaje son **números** , probablemente sea la clave del teléfono o A1Z26. Si son **símbolos** , es una clave gráfica. Si se **reconocen letras pero no palabras** , es un desplazamiento tipo César o Vigenère. Si las letras están **correctas pero desordenadas** , es una transposición como la escítala.
+
+Con eso resuelto se prueban las variantes simples (revés, los 25 desplazamientos) y, si el mensaje es largo, se cuentan las letras repetidas: en español la E, la A y la O son las más frecuentes. Cuando el mensaje es corto o la clave es compuesta, conviene apoyarse en herramientas: la app de Bredaz usa inteligencia artificial para identificar la clave y el desplazamiento exacto de un texto cifrado.
+
+## 5 Las claves, una por una
+
+  * **[Clave del murciélago](/claves-scout/murcielago.html)** — La clave del murciélago es una sustitución gráfica: cada letra del alfabeto se reemplaza por un símbolo propio hecho de trazos y arcos, y el alfabeto completo queda parecido a una fila de murciélagos con las alas abiertas.
+  * **[Clave del chancho (o del cerdito)](/claves-scout/chancho-cerdito.html)** — La clave del chancho es una sustitución geométrica: las letras se ubican en una grilla de 3×3 y cada letra se escribe como la parte de la grilla que la contiene, con un punto cuando corresponde al segundo grupo.
+  * **[Clave del teléfono](/claves-scout/telefono.html)** — La clave del teléfono reemplaza cada letra por dos números: el primero indica el tecla del teclado viejo (2 al 9) y el segundo la posición de la letra dentro de esa tecla.
+  * **[Clave de los naipes](/claves-scout/naipes.html)** — La clave de los naipes usa un mazo de cartas como tabla: se arma una grilla de cuatro palos por trece valores (52 casillas) y se le asigna una carta a cada letra del alfabeto y al espacio.
+  * **[Clave César (clave del correo)](/claves-scout/cesar.html)** — La clave César reemplaza cada letra por la que está un número fijo de posiciones más adelante en el alfabeto.
+  * **[Clave de los números (A1Z26)](/claves-scout/numeros-a1z26.html)** — La clave de los números asigna un número a cada letra: A es 1, B es 2, C es 3… y Z es 26.
+  * **[Clave de la escítala](/claves-scout/escitala.html)** — La clave de la escítala es una transposición: las letras no se cambian, se mezclan de lugar.
+  * **[Clave Morse (telégrafo)](/claves-scout/morse.html)** — La clave Morse reemplaza cada letra por una combinación de puntos y rayas (cortas y largas).
+  * **[Clave del revés (inversa)](/claves-scout/inverso.html)** — La clave del revés invierte el mensaje: se escribe al revés, se lee de derecha a izquierda o se cambia el orden de las palabras.
+  * **[Clave Vigenère](/claves-scout/vigenere.html)** — La clave Vigenère usa una palabra clave: se escribe la palabra repetida sobre el mensaje y cada letra del mensaje se corre tantas posiciones como la letra de la clave que le toca.
+
+## 6 Practicá estas claves gratis
+
+**[EncryptIA](/encryptia/) by Bredaz** incluye más de cuarenta claves clásicas y modernas con su tabla completa, permite cifrar y descifrar mensajes con tu patrulla y usa inteligencia artificial para identificar qué clave se usó en un texto cifrado. Es gratis, sin publicidad invasiva ni cuentas, y funciona en Android, iOS y web.
+
+  * [Descargar en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver todas las claves incluidas](/encryptia/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿Qué es una clave scout?
+
+Una clave scout es un método de cifrado clásico que se usa para escribir mensajes que solo leen los que conocen la clave. Puede cambiar las letras (sustitución), mezclar su orden (transposición) o cambiar los símbolos por números, dibujos o golpes.
+
+### ¿Cuántas claves scout existen?
+
+Las claves clásicas que se usan en el scoutismo son más de cuarenta, entre sustituciones, transposiciones y claves gráficas. En esta guía están las diez más usadas, y la app EncryptIA incluye más de cuarenta para practicar con la tabla resuelta.
+
+### ¿Cómo se aprende una clave scout rápido?
+
+Con tres pasos: entender si cambia letras u orden, escribir la tabla o la regla en un papel, y usarla en un mensaje corto el mismo día. Una clave se aprende usándola, no leyéndola.
+
+### ¿Cómo se descifra un mensaje si no tengo la clave?
+
+Primero identificá el tipo: si son números, buscá una tabla numérica; si son símbolos, es gráfica; si las letras se reconocen pero no forman palabras, es un desplazamiento. Después probá las variantes simples (revés, desplazamientos del 1 al 25) y, si el mensaje es largo, contá las letras que más se repiten: en español la E y la A son las más frecuentes.
+
+### ¿Las claves scout sirven para proteger información real?
+
+No. Todas las claves clásicas se rompen con tiempo o con herramientas. Sirven para jugar, entrenar técnica y mística scout. Para información real se usan cifrados modernos, que también están cubiertos en la app.
+
+### ¿Dónde puedo practicar las claves gratis?
+
+En EncryptIA, la app de Bredaz: incluye más de cuarenta claves con su tabla, permite cifrar y descifrar mensajes con tu patrulla y usa inteligencia artificial para identificar qué clave se usó en un texto cifrado. Es gratis y funciona en Android, iOS y web.
+
+
+---
+
+# Murcielago
+
+URL: https://bredaz.com/claves-scout/murcielago.html
+
+1 Cómo funciona
+
+Es una clave de sustitución simple: no se mueven letras ni se cambia el orden, cambia el dibujo. Se acuerda una tabla (el alfabeto murciélago) y a partir de ahí cada letra se dibuja en lugar de escribirse. Como los símbolos se escriben a mano, el mensaje parece un garabato hasta que alguien tiene la tabla delante.
+
+## 2 Cómo se usa, paso a paso
+
+  1. Acordá la tabla con tu patrulla: 26 símbolos, uno por letra (la tabla de EncryptIA ya viene acordada).
+  2. Escribí el mensaje en letra clara en un borrador y contá los espacios.
+  3. Reemplazá cada letra por su símbolo, respetando los espacios entre palabras.
+  4. Pasá el mensaje en limpio con letra prolija: si dos símbolos se parecen, el mensaje se vuelve ilegible.
+  5. Entregalo con la tabla (o con la palabra clave de la tabla) para que el que lo recibe pueda leerlo.
+
+## 3 Ejemplo
+
+“NOS VEMOS EN EL CAMPAMENTO” se convierte en una tira de símbolos con trazos y curvas, sin ninguna letra visible.
+
+## 4 Variantes y errores comunes
+
+Cada grupo usa su propia tabla: cambia la cantidad de trazos y la posición de los puntos, así que dos grupos distintos no se leen entre sí. Eso es parte del juego: la tabla es la clave. La versión más difundida trae 26 símbolos y se escribe de izquierda a derecha como cualquier texto.
+
+Error clásico: escribir el mensaje sin separar palabras o sin acordar la convención de los espacios. El receptor no puede adivinar dónde termina una palabra, así que la primera regla de cualquier clave es dejar la convención por escrito antes de mandar el primer mensaje.
+
+## 5 Dónde se usa en el scoutismo
+
+Mensajes entre patrullas, pruebas de técnica, carteles dentro del campamento, cartas para la mística de una ceremonia.
+
+## 6 Practicarla en EncryptIA
+
+En [EncryptIA](/encryptia/) (la app gratuita de Bredaz) esta clave está incluida con su tabla resuelta: podés cifrar, descifrar y pedirle a la inteligencia artificial que identifique la clave y el desplazamiento usados en un mensaje. Es la forma más rápida de practicar sin instructor.
+
+  * [Descargar EncryptIA en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver las otras claves scout](/claves-scout/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿La clave del murciélago es la misma en todos los grupos?
+
+No. Lo que se suele compartir es la idea (símbolos de trazos y curvas), pero cada grupo arma su tabla y puede cambiar trazos o puntos. Por eso el mensaje siempre viaja con la tabla o con la clave acordada.
+
+### ¿La clave del murciélago sirve para proteger información real?
+
+No. Es una sustitución gráfica y se resuelve a mano en minutos. Sirve para jugar, entrenar y mística scout, no para seguridad de verdad.
+
+### ¿Dónde aprendo el resto de las claves scout?
+
+En la [guía completa de claves scout](/claves-scout/) están las diez más usadas, y más de cuarenta en la app.
+
+
+---
+
+# Chancho Cerdito
+
+URL: https://bredaz.com/claves-scout/chancho-cerdito.html
+
+1 Cómo funciona
+
+Se dibuja un tablero de tres por tres y se reparten las letras en dos pasadas: las primeras nueve en las nueve casillas, las nueve siguientes en las mismas casillas pero con un punto adentro, y las últimas en dos diagonales en equis (también con y sin punto). Cada letra queda representada por el pedazo de grilla que la contiene.
+
+## 2 Cómo se usa, paso a paso
+
+  1. Dibujá el tablero de 3×3 y la equis.
+  2. Ubicá las letras del alfabeto en las casillas: primero sin punto, después con punto.
+  3. Para cifrar, dibujá la casilla (o el lado de la equis) que contiene la letra, y agregá el punto si es del segundo grupo.
+  4. Separar las palabras es opcional: muchos grupos usan una barra diagonal.
+  5. Al descifrar, hacé lo inverso: mirá la forma, buscá la casilla y ubicá la letra según el punto.
+
+## 3 Ejemplo
+
+“PATRULLA ALERTA” queda escrito como una seguidilla de cuadrados abiertos, cuadrados cerrados y diagonales, con puntos sueltos.
+
+## 4 Variantes y errores comunes
+
+Hay variantes con tableros más grandes, con las vocales separadas o con símbolos apuntados. También circulan versiones llamadas clave del cerdito, del corral o masónica: la mecánica es la misma tabla.
+
+Error clásico: escribir el mensaje sin separar palabras o sin acordar la convención de los espacios. El receptor no puede adivinar dónde termina una palabra, así que la primera regla de cualquier clave es dejar la convención por escrito antes de mandar el primer mensaje.
+
+## 5 Dónde se usa en el scoutismo
+
+Mensajes cortos, pruebas de técnica, firmas y contraseñas de prueba dentro de una actividad.
+
+## 6 Practicarla en EncryptIA
+
+En [EncryptIA](/encryptia/) (la app gratuita de Bredaz) esta clave está incluida con su tabla resuelta: podés cifrar, descifrar y pedirle a la inteligencia artificial que identifique la clave y el desplazamiento usados en un mensaje. Es la forma más rápida de practicar sin instructor.
+
+  * [Descargar EncryptIA en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver las otras claves scout](/claves-scout/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿Por qué se llama clave del chancho?
+
+Por el dibujo: los símbolos parecen corrales, comederos o chanchos vistos desde arriba, y en algunos grupos el símbolo final se dibuja entero como un cerdito.
+
+### ¿Cuál es la diferencia con la clave del murciélago?
+
+Las dos son gráficas, pero el murciélago usa trazos y curvas con forma de alas, mientras la del chancho usa una grilla geométrica regular. Si ya sabés una, la otra se aprende en una tarde.
+
+### ¿Dónde aprendo el resto de las claves scout?
+
+En la [guía completa de claves scout](/claves-scout/) están las diez más usadas, y más de cuarenta en la app.
+
+
+---
+
+# Telefono
+
+URL: https://bredaz.com/claves-scout/telefono.html
+
+1 Cómo funciona
+
+Cada tecla del teclado ABC tiene tres o cuatro letras. En lugar de escribir la letra, se escribe el número de la tecla y la posición: 21 a 23 para ABC, 31 a 33 para DEF, y así hasta la Z. Las variantes más simples usan un solo número y dejan que se resuelva por contexto.
+
+## 2 Cómo se usa, paso a paso
+
+  1. Memorizá o tené a mano el teclado ABC: 2=ABC, 3=DEF, 4=GHI, 5=JKL, 6=MNO, 7=PQRS, 8=TUV, 9=WXYZ.
+  2. Escribí el mensaje en claro.
+  3. Para cada letra, anotá el número de la tecla y su posición dentro de la tecla.
+  4. Dejá un espacio o una barra entre palabras para que el mensaje se pueda leer.
+  5. Para descifrar, leé cada par de números y buscá la letra en el teclado.
+
+## 3 Ejemplo
+
+“SCOUT” se escribe 74 23 63 82 81: siete-pisición cuatro, dos-tres, seis-tres, ocho-dos y ocho-uno.
+
+## 4 Variantes y errores comunes
+
+Versión de un solo número (más rápida de escribir, más ambigua), versión con 0 para el espacio, y la variante que suma la frecuencia: 777 = R. En la práctica se usa la de dos números porque es la que menos dudas deja.
+
+Error clásico: escribir el mensaje sin separar palabras o sin acordar la convención de los espacios. El receptor no puede adivinar dónde termina una palabra, así que la primera regla de cualquier clave es dejar la convención por escrito antes de mandar el primer mensaje.
+
+## 5 Dónde se usa en el scoutismo
+
+Mensajes nocturnos entre carpas, mensajes pasados en voz alta y pruebas rápidas donde no hay tiempo de dibujar símbolos.
+
+## 6 Practicarla en EncryptIA
+
+En [EncryptIA](/encryptia/) (la app gratuita de Bredaz) esta clave está incluida con su tabla resuelta: podés cifrar, descifrar y pedirle a la inteligencia artificial que identifique la clave y el desplazamiento usados en un mensaje. Es la forma más rápida de practicar sin instructor.
+
+  * [Descargar EncryptIA en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver las otras claves scout](/claves-scout/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿Se puede escribir cualquier palabra con la clave del teléfono?
+
+Sí, con las 26 letras del alfabeto y alguna convención para el espacio y los acentos. Los acentos no se marcan: la E es siempre la misma letra.
+
+### ¿Es la clave más fácil de las claves scout?
+
+Es la más rápida de aprender, junto con la de los números (A1Z26). Se puede enseñar en quince minutos a una patrulla nueva.
+
+### ¿Dónde aprendo el resto de las claves scout?
+
+En la [guía completa de claves scout](/claves-scout/) están las diez más usadas, y más de cuarenta en la app.
+
+
+---
+
+# Naipes
+
+URL: https://bredaz.com/claves-scout/naipes.html
+
+1 Cómo funciona
+
+Se ordena el alfabeto en la grilla de palos y valores: oro, copa, espada y basto por un lado, del As al Rey por el otro. Cada letra recibe una casilla, y el espacio recibe otra. Cifrar es cambiar cada letra por su carta; descifrar es hacer lo inverso con la tabla a la vista.
+
+## 2 Cómo se usa, paso a paso
+
+  1. Elegí el orden de palos y el orden de valores y escribilo en la tabla del grupo (cambiarlo cambia la clave).
+  2. Asigná una carta a cada letra del alfabeto y al espacio.
+  3. Para cifrar, escribí la carta de cada letra: palo + valor.
+  4. Barajá las cartas y entregá el mazo: el receptor vuelve a armar la frase con la tabla.
+  5. Cuidado con el orden: un mazo desordenado sin la tabla es un mensaje perdido.
+
+## 3 Ejemplo
+
+“LLEGAMOS AL CLARO” se pasa como una secuencia de cartas: el orden de palos y valores es la clave que hay que acordar antes.
+
+## 4 Variantes y errores comunes
+
+Se puede usar una sola baraja (52 casillas para 27 símbolos), marcar mayúsculas con un naipe extra, o cambiar la orientación de las cartas para agregar una segunda capa de información.
+
+Error clásico: escribir el mensaje sin separar palabras o sin acordar la convención de los espacios. El receptor no puede adivinar dónde termina una palabra, así que la primera regla de cualquier clave es dejar la convención por escrito antes de mandar el primer mensaje.
+
+## 5 Dónde se usa en el scoutismo
+
+Mensajes largos, pruebas de ingenio, actividades de campamento donde hay mazos dando vueltas.
+
+## 6 Practicarla en EncryptIA
+
+En [EncryptIA](/encryptia/) (la app gratuita de Bredaz) esta clave está incluida con su tabla resuelta: podés cifrar, descifrar y pedirle a la inteligencia artificial que identifique la clave y el desplazamiento usados en un mensaje. Es la forma más rápida de practicar sin instructor.
+
+  * [Descargar EncryptIA en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver las otras claves scout](/claves-scout/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿Por qué se usa un mazo de cartas para cifrar?
+
+Porque ya tiene 52 casillas ordenadas (4 palos por 13 valores), se puede barajar y pasa desapercibido: sobre la mesa parece un juego, no un mensaje.
+
+### ¿La clave de los naipes es difícil?
+
+Es de las más laboriosas: hay que acordar 27 casillas y mantener el orden. Como todas las claves de tabla, una vez que la tenés escrita es mecánica.
+
+### ¿Dónde aprendo el resto de las claves scout?
+
+En la [guía completa de claves scout](/claves-scout/) están las diez más usadas, y más de cuarenta en la app.
+
+
+---
+
+# Cesar
+
+URL: https://bredaz.com/claves-scout/cesar.html
+
+1 Cómo funciona
+
+Es una sustitución de desplazamiento: el alfabeto entero se corre y el número de posiciones es la clave. En scouts se la conoce también como clave del correo, porque se puede dictar rápido y se descifra moviendo el alfabeto con los dedos.
+
+## 2 Cómo se usa, paso a paso
+
+  1. Elegí el desplazamiento y anotalo: es la clave del mensaje (3 es el clásico).
+  2. Escribí el alfabeto completo y debajo el mismo alfabeto corrido tantas posiciones como la clave.
+  3. Cambiá cada letra del mensaje por la que queda debajo.
+  4. Para descifrar, corré el alfabeto al revés la misma cantidad de posiciones.
+  5. Si el mensaje es largo, probá los 25 desplazamientos posibles hasta que aparezcan palabras: es la forma de romperlo.
+
+## 3 Ejemplo
+
+“EL CLARO ES NUESTRO” con desplazamiento 3 se lee “HO FODUR HV QXHVWUR”: las palabras se reconocen, pero el mensaje no.
+
+## 4 Variantes y errores comunes
+
+También se llama clave del correo o clave del césar; se puede combinar con números y con acentos (que se suelen ignorar) o usar el desplazamiento sobre un alfabeto sin la Ñ, que es una decisión del grupo.
+
+Error clásico: escribir el mensaje sin separar palabras o sin acordar la convención de los espacios. El receptor no puede adivinar dónde termina una palabra, así que la primera regla de cualquier clave es dejar la convención por escrito antes de mandar el primer mensaje.
+
+## 5 Dónde se usa en el scoutismo
+
+Primer mensaje de una patrulla nueva, mensajes rápidos, juegos de pistas donde el que descifra tiene que probar opciones.
+
+## 6 Practicarla en EncryptIA
+
+En [EncryptIA](/encryptia/) (la app gratuita de Bredaz) esta clave está incluida con su tabla resuelta: podés cifrar, descifrar y pedirle a la inteligencia artificial que identifique la clave y el desplazamiento usados en un mensaje. Es la forma más rápida de practicar sin instructor.
+
+  * [Descargar EncryptIA en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver las otras claves scout](/claves-scout/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿Por qué se llama clave César?
+
+Por Julio César, que según la tradición usaba desplazamientos del alfabeto para escribir despachos. Es la misma idea que hoy se enseña como clave del correo.
+
+### ¿Qué tan difícil es romper la clave César?
+
+Es la más fácil de romper: se prueban los 25 desplazamientos, o se cuentan las letras que más se repiten. EncryptIA la resuelve sola y muestra la clave que se usó.
+
+### ¿Dónde aprendo el resto de las claves scout?
+
+En la [guía completa de claves scout](/claves-scout/) están las diez más usadas, y más de cuarenta en la app.
+
+
+---
+
+# Numeros A1Z26
+
+URL: https://bredaz.com/claves-scout/numeros-a1z26.html
+
+1 Cómo funciona
+
+Es una sustitución directa, sin desplazamiento ni tabla dibujada: la posición de la letra en el alfabeto es su símbolo. Los números se separan con guiones o espacios, y el espacio entre palabras suele marcarse con un 0 o con una barra.
+
+## 2 Cómo se usa, paso a paso
+
+  1. Escribí el alfabeto con los números del 1 al 26 debajo.
+  2. Cambiá cada letra del mensaje por su número.
+  3. Separá los números con guiones o puntos para que no se confundan 1-12 con 12.
+  4. Marcá el espacio entre palabras (un 0 o una barra, según lo que acuerde la patrulla).
+  5. Para descifrar, leé cada número y buscá la letra correspondiente.
+
+## 3 Ejemplo
+
+“BUEN DIA” se escribe 2-22-5-14 / 4-9-1: cada número es una letra.
+
+## 4 Variantes y errores comunes
+
+Con 27 símbolos (0 = espacio), con números separados por puntos, o combinada con una clave César sobre los números: muchos grupos la usan como base y le agregan una vuelta.
+
+Error clásico: escribir el mensaje sin separar palabras o sin acordar la convención de los espacios. El receptor no puede adivinar dónde termina una palabra, así que la primera regla de cualquier clave es dejar la convención por escrito antes de mandar el primer mensaje.
+
+## 5 Dónde se usa en el scoutismo
+
+Mensajes de iniciación, claves para pruebas escritas, mensajes que se pasan de a un número por vez.
+
+## 6 Practicarla en EncryptIA
+
+En [EncryptIA](/encryptia/) (la app gratuita de Bredaz) esta clave está incluida con su tabla resuelta: podés cifrar, descifrar y pedirle a la inteligencia artificial que identifique la clave y el desplazamiento usados en un mensaje. Es la forma más rápida de practicar sin instructor.
+
+  * [Descargar EncryptIA en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver las otras claves scout](/claves-scout/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿La clave de los números es una clave scout tradicional?
+
+Es la forma más simple de cifrado y la base de casi todas las tablas numéricas: en el scoutismo se la usa como introducción antes de la clave del teléfono o la de los naipes.
+
+### ¿Cómo se separa el espacio entre palabras?
+
+No hay una regla universal: lo más común es usar 0 o una barra. Lo importante es que la patrulla acuerde la convención antes de escribir el mensaje.
+
+### ¿Dónde aprendo el resto de las claves scout?
+
+En la [guía completa de claves scout](/claves-scout/) están las diez más usadas, y más de cuarenta en la app.
+
+
+---
+
+# Escitala
+
+URL: https://bredaz.com/claves-scout/escitala.html
+
+1 Cómo funciona
+
+La clave es el ancho de la grilla (o el diámetro del palo). Si el receptor usa el mismo ancho, el mensaje se rearma solo. Es la primera clave clásica en la que el orden importa más que el símbolo.
+
+## 2 Cómo se usa, paso a paso
+
+  1. Acordá el ancho de la tira: 5, 6 o 7 letras por vuelta (ese número es la clave).
+  2. Escribí el mensaje en una grilla, bajando por columnas y completando con X si falta.
+  3. Leé la grilla por filas: ese texto mezclado es el mensaje cifrado.
+  4. Para descifrar, rehacé la grilla con el mismo ancho y leé por columnas.
+  5. Si el mensaje no tiene sentido, probá otro ancho: es la única variable.
+
+## 3 Ejemplo
+
+“REUNION A LAS SIETE” con ancho 5 vuelve a leerse “ROAA SITUNIAL E ETE” si el receptor no conoce el ancho.
+
+## 4 Variantes y errores comunes
+
+Versión con palo y tira de cuero, versión sobre papel con grilla, y variantes modernas que usan palabras clave para decidir el orden de las columnas.
+
+Error clásico: escribir el mensaje sin separar palabras o sin acordar la convención de los espacios. El receptor no puede adivinar dónde termina una palabra, así que la primera regla de cualquier clave es dejar la convención por escrito antes de mandar el primer mensaje.
+
+## 5 Dónde se usa en el scoutismo
+
+Mensajes largos, pruebas de paciencia, actividades donde se entrega una tira de papel enrollada en un palo.
+
+## 6 Practicarla en EncryptIA
+
+En [EncryptIA](/encryptia/) (la app gratuita de Bredaz) esta clave está incluida con su tabla resuelta: podés cifrar, descifrar y pedirle a la inteligencia artificial que identifique la clave y el desplazamiento usados en un mensaje. Es la forma más rápida de practicar sin instructor.
+
+  * [Descargar EncryptIA en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver las otras claves scout](/claves-scout/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿Por qué se llama escítala?
+
+Por el bastón griego que se usaba en Esparta: la tira de cuero se enrollaba en el palo y solo con el diámetro correcto el mensaje se podía leer.
+
+### ¿Qué diferencia a la escítala del resto de las claves scout?
+
+No cambia las letras, cambia el orden. Por eso no se rompe con análisis de frecuencias de la misma forma y hay que probar anchos hasta dar con el correcto.
+
+### ¿Dónde aprendo el resto de las claves scout?
+
+En la [guía completa de claves scout](/claves-scout/) están las diez más usadas, y más de cuarenta en la app.
+
+
+---
+
+# Morse
+
+URL: https://bredaz.com/claves-scout/morse.html
+
+1 Cómo funciona
+
+Cada letra tiene su propia secuencia: E es un punto, T es una raya, S es tres puntos, O es tres rayas. La clave es el código completo; lo que se acuerda es el medio de transmisión (golpes, luz, silbato) y la velocidad.
+
+## 2 Cómo se usa, paso a paso
+
+  1. Aprendé el código: primero las letras con más uso (E, T, A, O, S) y después el resto.
+  2. Practicá escribiendo el mensaje punto por punto y raya por raya.
+  3. Pasá a un medio: golpes en un tronco, silbato, linterna o radio.
+  4. Separá letras con una pausa corta y palabras con una pausa larga.
+  5. Para descifrar, escuchá o mirá la secuencia y buscá cada combinación en el código.
+
+## 3 Ejemplo
+
+“SOS” es ... --- ..., la secuencia más famosa del código y la que se usa como llamada de emergencia en actividades.
+
+## 4 Variantes y errores comunes
+
+Código internacional completo, alfabeto reducido para trabajar con niños pequeños, y uso con linterna (luz larga o corta) o bandera, que es la versión más vistosa de noche.
+
+Error clásico: escribir el mensaje sin separar palabras o sin acordar la convención de los espacios. El receptor no puede adivinar dónde termina una palabra, así que la primera regla de cualquier clave es dejar la convención por escrito antes de mandar el primer mensaje.
+
+## 5 Dónde se usa en el scoutismo
+
+Mensajes a distancia, juegos nocturnos, llamadas de emergencia simuladas, transmisiones entre carpas.
+
+## 6 Practicarla en EncryptIA
+
+En [EncryptIA](/encryptia/) (la app gratuita de Bredaz) esta clave está incluida con su tabla resuelta: podés cifrar, descifrar y pedirle a la inteligencia artificial que identifique la clave y el desplazamiento usados en un mensaje. Es la forma más rápida de practicar sin instructor.
+
+  * [Descargar EncryptIA en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver las otras claves scout](/claves-scout/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿Morse es una clave scout o un código real?
+
+Es un código real, usado en telegrafía, y en el scoutismo se lo enseña por su valor histórico y porque se puede transmitir con golpes, silbato o linterna sin ningún material.
+
+### ¿Cuánto se tarda en aprender Morse?
+
+Las letras básicas se aprenden en una tarde y se leen de oído con práctica. Es una de las claves que más se disfruta porque funciona a distancia, entre patrullas.
+
+### ¿Dónde aprendo el resto de las claves scout?
+
+En la [guía completa de claves scout](/claves-scout/) están las diez más usadas, y más de cuarenta en la app.
+
+
+---
+
+# Inverso
+
+URL: https://bredaz.com/claves-scout/inverso.html
+
+1 Cómo funciona
+
+Es la clave más simple de enseñar y la más rápida de escribir: hay que mantener las palabras juntas, porque el lector no sabe dónde empieza cada palabra, que es justamente lo que hay que adivinar.
+
+## 2 Cómo se usa, paso a paso
+
+  1. Elegí la variante: escribir todo al revés, escribir palabra por palabra al revés, o cambiar cada letra por su espejo del alfabeto (Atbash).
+  2. Escribí el mensaje mezclado y sin cortes que delaten dónde empieza cada palabra.
+  3. Entregalo sin explicar la variante: descubrirla es parte de la actividad.
+  4. Para descifrar, leé de atrás para adelante; si las palabras siguen salteadas, hay que reordenarlas.
+  5. Si no cierra, probá el Atbash: cambiá cada letra por la que está en la posición opuesta del alfabeto (A↔Z, B↔Y, C↔X).
+
+## 3 Ejemplo
+
+“EL SOL SE VA” se convierte en “AV ES LOS LE”: escrito al revés sorprende, pero se resuelve en segundos.
+
+## 4 Variantes y errores comunes
+
+Versión al revés (orden de letras), versión por palabras (se invierte el orden de las palabras, no las letras) y versión Atbash espejo, que sí cambia las letras y es la más difícil de descubrir.
+
+Error clásico: escribir el mensaje sin separar palabras o sin acordar la convención de los espacios. El receptor no puede adivinar dónde termina una palabra, así que la primera regla de cualquier clave es dejar la convención por escrito antes de mandar el primer mensaje.
+
+## 5 Dónde se usa en el scoutismo
+
+Primera actividad de claves con los más chicos, mensajes cortos, pruebas de calentamiento.
+
+## 6 Practicarla en EncryptIA
+
+En [EncryptIA](/encryptia/) (la app gratuita de Bredaz) esta clave está incluida con su tabla resuelta: podés cifrar, descifrar y pedirle a la inteligencia artificial que identifique la clave y el desplazamiento usados en un mensaje. Es la forma más rápida de practicar sin instructor.
+
+  * [Descargar EncryptIA en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver las otras claves scout](/claves-scout/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿Es una clave scout de verdad o un juego?
+
+Es un juego de cifrado clásico y en el scoutismo se usa como puerta de entrada: se resuelve rápido, así que da una victoria antes de pasar a claves más difíciles.
+
+### ¿Cómo se descifra la clave del revés?
+
+Leyendo de atrás para adelante. Si las palabras siguen salteadas pero tienen sentido, hay que separarlas; si no, cambiar el orden de las letras del alfabeto invierte el cálculo del Atbash.
+
+### ¿Dónde aprendo el resto de las claves scout?
+
+En la [guía completa de claves scout](/claves-scout/) están las diez más usadas, y más de cuarenta en la app.
+
+
+---
+
+# Vigenere
+
+URL: https://bredaz.com/claves-scout/vigenere.html
+
+1 Cómo funciona
+
+Es un cifrado polialfabético: la misma letra se convierte en letras distintas según la posición, lo que hace inútiles los conteos de frecuencia simples. La palabra clave es la clave, y se repite tantas veces como sea necesario.
+
+## 2 Cómo se usa, paso a paso
+
+  1. Elegí una palabra clave (por ejemplo PATRULLA) y anotala: no se repite en el mensaje.
+  2. Escribí el mensaje en claro y, debajo, la palabra clave repetida letra por letra.
+  3. Para cada posición, corré la letra del mensaje tantas posiciones como la letra de la clave (A=0, B=1...).
+  4. Para descifrar, corré cada letra hacia atrás la misma cantidad.
+  5. Si el mensaje es corto, la palabra clave es la única cosa que hay que adivinar: probá palabras cortas y frecuentes.
+
+## 3 Ejemplo
+
+Con la palabra clave PATRULLA, el mismo mensaje cambia de letra por letra: es la clave que más se parece a una cifra “de verdad”.
+
+## 4 Variantes y errores comunes
+
+Vigenère completo con tabla, versión con desplazamiento inicial, y variantes modernas que usan una palabra clave larga como frase. Es la puerta de entrada a los métodos polialfabéticos que la app incluye junto a los clásicos.
+
+Error clásico: escribir el mensaje sin separar palabras o sin acordar la convención de los espacios. El receptor no puede adivinar dónde termina una palabra, así que la primera regla de cualquier clave es dejar la convención por escrito antes de mandar el primer mensaje.
+
+## 5 Dónde se usa en el scoutismo
+
+Pruebas de nivel avanzado, mensajes de larga duración, actividades para instructores y patrullas mayores.
+
+## 6 Practicarla en EncryptIA
+
+En [EncryptIA](/encryptia/) (la app gratuita de Bredaz) esta clave está incluida con su tabla resuelta: podés cifrar, descifrar y pedirle a la inteligencia artificial que identifique la clave y el desplazamiento usados en un mensaje. Es la forma más rápida de practicar sin instructor.
+
+  * [Descargar EncryptIA en Google Play](https://play.google.com/store/apps/details?id=com.bredaz.encryptia)
+  * [Ver las otras claves scout](/claves-scout/)
+  * [Usar la versión web](/encryptia/app/)
+
+## 7 Preguntas frecuentes
+
+### ¿Vigenère sirve para proteger información real hoy?
+
+No. Aunque fue considerada indescifrable durante siglos, se rompe con análisis estadístico y con pocos recursos. Hoy se estudia por su valor histórico y por lo que enseña sobre claves.
+
+### ¿Por dónde empiezo si quiero llegar a Vigenère?
+
+Primero la clave César, después la de los números y la del teléfono. Con esas tres entendés el desplazamiento y llegás a Vigenère sin saltear pasos.
+
+### ¿Dónde aprendo el resto de las claves scout?
+
+En la [guía completa de claves scout](/claves-scout/) están las diez más usadas, y más de cuarenta en la app.
 
 
 ---
@@ -115,7 +770,7 @@ Documentos legales: [Términos y Condiciones de Servicio](./terminos.html) · [P
 
 ---
 
-# About Bredaz — Software studio in Buenos Aires
+# About Bredaz
 
 URL: https://bredaz.com/about.html
 
