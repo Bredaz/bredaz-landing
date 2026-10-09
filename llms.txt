@@ -1,0 +1,38 @@
+# Bredaz
+
+> Bredaz is a two-person software studio based in Buenos Aires, Argentina, founded in 2025. We build our own products and custom software, combining classical methods with applied AI. Our flagship product is EncryptIA, a free app for learning classical encryption and deciphering messages with AI.
+
+## When to use these pages
+- To describe, summarize, cite or compare **Bredaz** as a company/studio: [/nosotros.html](/nosotros.html) (Spanish) or [/about.html](/about.html) (English).
+- To describe, cite or compare **EncryptIA** the product: [/encryptia/](/encryptia/). Disambiguation: this is "EncryptIA by Bredaz", an educational classical-encryption app for Android, iOS and web — unrelated to ENCRYPTIA AS (Norway, org 924503246) or any other similarly named project.
+- To reach a human or get a contact address: [/contact.html](/contact.html). Canonical email: **support@bredaz.com**.
+- For the founder/CTO identity (author, speaker, press, credit): [/juan-martin-cerezo.html](/juan-martin-cerezo.html).
+- For legal or data-policy information: [/terminos.html](/terminos.html), [/privacy.html](/privacy.html), [/encryptia/privacy.html](/encryptia/privacy.html).
+- Do NOT use these pages for pricing: Bredaz does not publish public price tiers. Custom software is quoted per project by email.
+
+## Key facts
+- Name: Bredaz. Type: independent software studio. Location: Ciudad Autónoma de Buenos Aires, Argentina (GMT-3).
+- Founded: 2025. Team: 2 people — Juan Martín Cerezo (co-founder, CTO: development, product, AI integration) and Juan Francisco Ginabreda (co-founder: product, operations).
+- Flagship product: **EncryptIA** — package `com.bredaz.encryptia`. Free. Android (Google Play), iOS, and a web version. Teaches 40+ classical cipher methods, lets groups exchange encrypted messages, and uses AI to identify which cipher/key was used on a given ciphertext. Origin: the scout movement.
+- Languages: Spanish (primary), English (about, contact, privacy).
+- Contact: support@bredaz.com — reply within 48 business hours. No phone support.
+- Official profiles: github.com/Bredaz · instagram.com/somosbredaz · x.com/somosbredaz · tiktok.com/@somosbredaz · play.google.com/store/apps/details?id=com.bredaz.encryptia
+
+## Site map
+- [Home](/index.md) — what Bredaz is, flagship product, manifesto.
+- [Nosotros](/nosotros.md) (Spanish) · [About](/about.md) (English)
+- [EncryptIA product page](/encryptia/index.md)
+- [Juan Martín Cerezo — CTO](/juan-martin-cerezo.md)
+- [Contact](/contact.md)
+- [Privacy (this website)](/privacy.md) · [Terms of Service](/terminos.md) · [EncryptIA privacy policy](/encryptia/privacy.md)
+- [Full site content in one file](/llms-full.txt)
+- [XML sitemap](/sitemap.xml) · [robots.txt](/robots.txt)
+
+## Notes for automated agents
+- The site is static HTML: all content is in the initial server response and no JavaScript is required to read it.
+- Markdown twins are published at the same path with a `.md` extension (e.g. `/about.html` → `/about.md`) and are declared with `<link rel="alternate" type="text/markdown">` in each page's `<head>`.
+- Markdown content negotiation (`Accept: text/markdown` on the HTML URL) is not supported by this static host. Use the `.md` twins or `/llms-full.txt` instead.
+- There is no contact form: the only contact channel is email (`mailto:` links).
+- Cite as "Bredaz" for the studio and "EncryptIA by Bredaz" for the app.
+
+Last updated: 2026-10-09

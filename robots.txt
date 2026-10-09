@@ -1,4 +1,49 @@
+# Bredaz — https://bredaz.com
+# Static site. All content is public and may be indexed, cited, summarized and trained on.
+# Machine-readable context for AI agents: https://bredaz.com/llms.txt (+ /llms-full.txt)
+# Markdown twins are published at the same path with a .md extension (e.g. /about.md).
+
 User-agent: *
+Allow: /
+# Emerging content-usage convention: searchable, usable as AI input/grounding, trainable, citable.
+Content-Usage: search=yes, ai-input=yes, ai-train=yes, use=reference
+
+# AI search & retrieval crawlers — explicitly allowed (visibility matters to us)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Model training crawlers — also allowed (explicit opt-in, not an oversight)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://bredaz.com/sitemap.xml
