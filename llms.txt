@@ -13,7 +13,7 @@
 ## Key facts
 - Name: Bredaz. Type: independent software studio. Location: Ciudad Autónoma de Buenos Aires, Argentina (GMT-3).
 - Founded: 2025. Team: 2 people — Juan Martín Cerezo (co-founder, CTO: development, product, AI integration) and Juan Francisco Ginabreda (co-founder: product, operations).
-- Flagship product: **EncryptIA** — package `com.bredaz.encryptia`. Free. Android (Google Play), iOS, and a web version. It includes 40+ classical ciphers, lets groups exchange encrypted messages, and uses AI to identify which cipher was used on a given ciphertext. Origin: the scout movement., and uses AI to identify which cipher/key was used on a given ciphertext. Origin: the scout movement.
+- Flagship product: **EncryptIA** — package `com.bredaz.encryptia`. Free. Android (Google Play), iOS, and a web version. It includes 40+ classical ciphers, lets groups exchange encrypted messages, and uses AI to identify which cipher was used on a given ciphertext. Origin: the scout movement.
 - Languages: Spanish (primary), English (about, contact, privacy).
 - Contact: support@bredaz.com — reply within 48 business hours. No phone support.
 - Official profiles: github.com/Bredaz · instagram.com/somosbredaz · x.com/somosbredaz · tiktok.com/@somosbredaz · play.google.com/store/apps/details?id=com.bredaz.encryptia
